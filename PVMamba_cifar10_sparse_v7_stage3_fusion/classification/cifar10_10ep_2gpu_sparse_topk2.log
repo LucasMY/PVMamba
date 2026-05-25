@@ -1,0 +1,1462 @@
+[2026-03-28 02:58:47,630] torch.distributed.run: [WARNING] 
+[2026-03-28 02:58:47,630] torch.distributed.run: [WARNING] *****************************************
+[2026-03-28 02:58:47,630] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2026-03-28 02:58:47,630] torch.distributed.run: [WARNING] *****************************************
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+=> merge config from configs/pvmamba/base.yaml
+=> merge config from configs/pvmamba/tiny_cifar10_10ep.yaml
+=> merge config from configs/pvmamba/base.yaml
+RANK and WORLD_SIZE in environ: 1/2
+=> merge config from configs/pvmamba/tiny_cifar10_10ep.yaml
+RANK and WORLD_SIZE in environ: 0/2
+[2026-03-28 02:58:49 tiny_cifar10_10ep](main.py 516): INFO Full config saved to ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/config.json
+[2026-03-28 02:58:50 tiny_cifar10_10ep](main.py 520): INFO AMP_ENABLE: true
+AMP_OPT_LEVEL: ''
+AUG:
+  AUTO_AUGMENT: rand-m9-mstd0.5-inc1
+  COLOR_JITTER: 0.4
+  CUTMIX: 1.0
+  CUTMIX_MINMAX: null
+  MIXUP: 0.8
+  MIXUP_MODE: batch
+  MIXUP_PROB: 1.0
+  MIXUP_SWITCH_PROB: 0.5
+  RECOUNT: 1
+  REMODE: pixel
+  REPROB: 0.25
+BASE:
+- base.yaml
+DATA:
+  BATCH_SIZE: 128
+  CACHE_MODE: part
+  DATASET: cifar10
+  DATA_PATH: /home/jlx_75/datasets/cifar10
+  IMG_SIZE: 32
+  INTERPOLATION: bicubic
+  MASK_PATCH_SIZE: 32
+  MASK_RATIO: 0.6
+  NUM_WORKERS: 8
+  PERSISTENT_WORKERS: false
+  PIN_MEMORY: true
+  ZIP_MODE: false
+ENABLE_AMP: false
+EVAL_MODE: false
+FUSED_LAYERNORM: false
+MODEL:
+  DDP: torch
+  DROP_PATH_RATE: 0.2
+  DROP_RATE: 0.0
+  LABEL_SMOOTHING: 0.1
+  MMCKPT: false
+  NAME: tiny_cifar10_10ep
+  NUM_CLASSES: 10
+  PRETRAINED: ''
+  PVMAMBA:
+    DEPTHS:
+    - 2
+    - 4
+    - 8
+    - 4
+    DT_INIT: random
+    D_STATE: 64
+    EMBED_DIM: 64
+    IMAGE_SIZE: 224
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 2
+    - 4
+    - 8
+    - 16
+    PATCH_SIZE: 4
+    SPATIAL_FLAG:
+    - []
+    - []
+    - - 0
+      - 2
+      - 2
+      - 1
+      - 2
+      - 2
+      - 1
+      - 2
+    - - 0
+      - 2
+      - 2
+      - 1
+    SSD_CHUNK_SIZE: 256
+    SSD_EXPANSION: 2
+    TOKEN_MIXER_TYPES:
+    - LoDSA
+    - LoDSA
+    - SaDSA
+    - attention
+  RESUME: ''
+  TYPE: pvmamba
+OUTPUT: ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2
+PRINT_FREQ: 10
+SAVE_FREQ: 1
+SEED: 0
+TAG: cifar10_10ep_2gpu_sparse_topk2
+TEST:
+  CROP: true
+  SEQUENTIAL: false
+  SHUFFLE: false
+THROUGHPUT_MODE: false
+TRAIN:
+  ACCUMULATION_STEPS: 1
+  AUTO_RESUME: false
+  BASE_LR: 0.00025
+  CLIP_GRAD: 5.0
+  EPOCHS: 10
+  LAYER_DECAY: 1.0
+  LR_SCHEDULER:
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1
+    GAMMA: 0.1
+    MULTISTEPS: []
+    NAME: cosine
+    WARMUP_PREFIX: true
+  MESA: 1.0
+  MIN_LR: 2.5e-06
+  MOE:
+    SAVE_MASTER: false
+  OPTIMIZER:
+    BETAS:
+    - 0.9
+    - 0.999
+    EPS: 1.0e-08
+    MOMENTUM: 0.9
+    NAME: adamw
+  START_EPOCH: 0
+  USE_CHECKPOINT: false
+  WARMUP_EPOCHS: 1
+  WARMUP_LR: 2.5e-07
+  WEIGHT_DECAY: 0.05
+TRAINCOST_MODE: false
+
+[2026-03-28 02:58:50 tiny_cifar10_10ep](main.py 521): INFO {"cfg": "configs/pvmamba/tiny_cifar10_10ep.yaml", "opts": null, "batch_size": null, "data_path": "/home/jlx_75/datasets/cifar10", "zip": false, "cache_mode": "part", "pretrained": null, "resume": null, "accumulation_steps": null, "use_checkpoint": false, "disable_amp": false, "output": "./output_cifar10_10ep_2gpu_sparse_topk2", "tag": "cifar10_10ep_2gpu_sparse_topk2", "eval": false, "throughput": false, "fused_layernorm": false, "optim": null, "model_ema": false, "model_ema_decay": 0.9999, "model_ema_force_cpu": false, "memory_limit_rate": -1, "ddp": "torch", "enable_preload": false, "enable_persistance": false, "mesa": false, "mesa_value": 1.0, "mute_repeat": false}
+rank 1 successfully build train dataset
+rank 0 successfully build train dataset
+rank 0 successfully build val dataset
+[2026-03-28 02:58:50 tiny_cifar10_10ep](main.py 122): INFO Creating model:pvmamba/tiny_cifar10_10ep
+rank 1 successfully build val dataset
+[2026-03-28 02:58:51 tiny_cifar10_10ep](main.py 128): INFO PVMAMBA(
+  (patch_embed): PatchEmbeding(
+    (conv1): ConvLayer(
+      (conv): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (act): ReLU()
+    )
+    (conv2): Sequential(
+      (0): ConvLayer(
+        (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): ReLU()
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (conv3): Sequential(
+      (0): ConvLayer(
+        (conv): Conv2d(32, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): ReLU()
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): BasicLayer(
+      dim=64, input_resolution=(56, 56), depth=2
+      (blocks): ModuleList(
+        (0): PVMAMBABlock(
+          (cpe1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm1): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=64, out_features=386, bias=False)
+            (conv2d): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (act): SiLU()
+            (norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=128, out_features=64, bias=False)
+            (pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+          )
+          (drop_path): Identity()
+          (cpe2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm2): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=64, out_features=256, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=256, out_features=64, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): PVMAMBABlock(
+          (cpe1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm1): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=64, out_features=386, bias=False)
+            (conv2d): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (act): SiLU()
+            (norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=128, out_features=64, bias=False)
+            (pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm2): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=64, out_features=256, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=256, out_features=64, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        (conv): Sequential(
+          (0): ConvLayer(
+            (conv): Conv2d(64, 512, kernel_size=(1, 1), stride=(1, 1))
+            (act): ReLU()
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=512)
+            (act): ReLU()
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1))
+            (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (1): BasicLayer(
+      dim=128, input_resolution=(28, 28), depth=4
+      (blocks): ModuleList(
+        (0-3): 4 x PVMAMBABlock(
+          (cpe1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=128, out_features=644, bias=False)
+            (conv2d): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384)
+            (act): SiLU()
+            (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=256, out_features=128, bias=False)
+            (pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=128, out_features=512, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=512, out_features=128, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        (conv): Sequential(
+          (0): ConvLayer(
+            (conv): Conv2d(128, 1024, kernel_size=(1, 1), stride=(1, 1))
+            (act): ReLU()
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=1024)
+            (act): ReLU()
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+            (norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (2): BasicLayer(
+      dim=256, input_resolution=(14, 14), depth=8
+      (blocks): ModuleList(
+        (0): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator(
+              (sampling_offsets): Linear(in_features=512, out_features=8, bias=True)
+            )
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1-2): 2 x PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator()
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator(
+              (sampling_offsets): Linear(in_features=512, out_features=8, bias=True)
+            )
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4-5): 2 x PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator()
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator(
+              (sampling_offsets): Linear(in_features=512, out_features=8, bias=True)
+            )
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator()
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        (conv): Sequential(
+          (0): ConvLayer(
+            (conv): Conv2d(256, 2048, kernel_size=(1, 1), stride=(1, 1))
+            (act): ReLU()
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=2048)
+            (act): ReLU()
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1))
+            (norm): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (3): BasicLayer(
+      dim=512, input_resolution=(7, 7), depth=4
+      (blocks): ModuleList(
+        (0-3): 4 x PVMAMBABlock(
+          (cpe1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): Attention(
+            (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+            (to_out): Linear(in_features=512, out_features=512, bias=True)
+            (dropout): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+    )
+  )
+  (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  (avgpool): AdaptiveAvgPool1d(output_size=1)
+  (head): Linear(in_features=512, out_features=10, bias=True)
+)
+[2026-03-28 02:58:51 tiny_cifar10_10ep](main.py 130): INFO number of params: 23780458
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3526.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Unsupported operator aten::add encountered 104 time(s)
+Unsupported operator aten::softplus encountered 14 time(s)
+Unsupported operator aten::mul encountered 101 time(s)
+Unsupported operator aten::alias encountered 1363 time(s)
+Unsupported operator aten::repeat encountered 28 time(s)
+Unsupported operator aten::avg_pool2d encountered 6 time(s)
+Unsupported operator aten::gelu encountered 18 time(s)
+Unsupported operator aten::sub encountered 18 time(s)
+Unsupported operator aten::linspace encountered 2 time(s)
+Unsupported operator aten::meshgrid encountered 1 time(s)
+Unsupported operator aten::div encountered 13 time(s)
+Unsupported operator aten::abs encountered 8 time(s)
+Unsupported operator aten::mean encountered 8 time(s)
+Unsupported operator aten::topk encountered 8 time(s)
+Unsupported operator aten::scatter_ encountered 8 time(s)
+Unsupported operator aten::sum encountered 16 time(s)
+Unsupported operator aten::softmax encountered 4 time(s)
+Unsupported operator aten::adaptive_avg_pool1d encountered 1 time(s)
+The following submodules of the model were never called during the trace of the graph. They may be unused, or they were accessed by direct calls to .forward() or via other python methods. In the latter case they will have zeros for statistics, though their statistics will still contribute to their parent calling module.
+layers.0.blocks.1.drop_path, layers.1.blocks.0.drop_path, layers.1.blocks.1.drop_path, layers.1.blocks.2.drop_path, layers.1.blocks.3.drop_path, layers.2.blocks.0.drop_path, layers.2.blocks.1.drop_path, layers.2.blocks.2.drop_path, layers.2.blocks.3.drop_path, layers.2.blocks.4.drop_path, layers.2.blocks.5.drop_path, layers.2.blocks.6.drop_path, layers.2.blocks.7.drop_path, layers.3.blocks.0.drop_path, layers.3.blocks.1.drop_path, layers.3.blocks.2.drop_path, layers.3.blocks.3.drop_path
+[2026-03-28 02:58:52 tiny_cifar10_10ep](main.py 132): INFO number of GFLOPs: 4.50297648
+[2026-03-28 02:58:52 tiny_cifar10_10ep](optimizer.py 18): INFO ==============> building optimizer adamw....................
+[2026-03-28 02:58:52 tiny_cifar10_10ep](optimizer.py 27): INFO No weight decay list: ['patch_embed.conv1.norm.weight', 'patch_embed.conv1.norm.bias', 'patch_embed.conv2.0.norm.weight', 'patch_embed.conv2.0.norm.bias', 'patch_embed.conv2.1.norm.weight', 'patch_embed.conv2.1.norm.bias', 'patch_embed.conv3.0.norm.weight', 'patch_embed.conv3.0.norm.bias', 'patch_embed.conv3.1.norm.weight', 'patch_embed.conv3.1.norm.bias', 'layers.0.blocks.0.cpe1.bias', 'layers.0.blocks.0.norm1.weight', 'layers.0.blocks.0.norm1.bias', 'layers.0.blocks.0.token_mixer.dt_bias', 'layers.0.blocks.0.token_mixer.A_log', 'layers.0.blocks.0.token_mixer.D', 'layers.0.blocks.0.token_mixer.conv2d.bias', 'layers.0.blocks.0.token_mixer.norm.weight', 'layers.0.blocks.0.token_mixer.norm.bias', 'layers.0.blocks.0.cpe2.bias', 'layers.0.blocks.0.norm2.weight', 'layers.0.blocks.0.norm2.bias', 'layers.0.blocks.0.mlp.fc1.bias', 'layers.0.blocks.0.mlp.fc2.bias', 'layers.0.blocks.1.cpe1.bias', 'layers.0.blocks.1.norm1.weight', 'layers.0.blocks.1.norm1.bias', 'layers.0.blocks.1.token_mixer.dt_bias', 'layers.0.blocks.1.token_mixer.A_log', 'layers.0.blocks.1.token_mixer.D', 'layers.0.blocks.1.token_mixer.conv2d.bias', 'layers.0.blocks.1.token_mixer.norm.weight', 'layers.0.blocks.1.token_mixer.norm.bias', 'layers.0.blocks.1.cpe2.bias', 'layers.0.blocks.1.norm2.weight', 'layers.0.blocks.1.norm2.bias', 'layers.0.blocks.1.mlp.fc1.bias', 'layers.0.blocks.1.mlp.fc2.bias', 'layers.0.downsample.conv.0.conv.bias', 'layers.0.downsample.conv.1.conv.bias', 'layers.0.downsample.conv.2.conv.bias', 'layers.0.downsample.conv.2.norm.weight', 'layers.0.downsample.conv.2.norm.bias', 'layers.1.blocks.0.cpe1.bias', 'layers.1.blocks.0.norm1.weight', 'layers.1.blocks.0.norm1.bias', 'layers.1.blocks.0.token_mixer.dt_bias', 'layers.1.blocks.0.token_mixer.A_log', 'layers.1.blocks.0.token_mixer.D', 'layers.1.blocks.0.token_mixer.conv2d.bias', 'layers.1.blocks.0.token_mixer.norm.weight', 'layers.1.blocks.0.token_mixer.norm.bias', 'layers.1.blocks.0.cpe2.bias', 'layers.1.blocks.0.norm2.weight', 'layers.1.blocks.0.norm2.bias', 'layers.1.blocks.0.mlp.fc1.bias', 'layers.1.blocks.0.mlp.fc2.bias', 'layers.1.blocks.1.cpe1.bias', 'layers.1.blocks.1.norm1.weight', 'layers.1.blocks.1.norm1.bias', 'layers.1.blocks.1.token_mixer.dt_bias', 'layers.1.blocks.1.token_mixer.A_log', 'layers.1.blocks.1.token_mixer.D', 'layers.1.blocks.1.token_mixer.conv2d.bias', 'layers.1.blocks.1.token_mixer.norm.weight', 'layers.1.blocks.1.token_mixer.norm.bias', 'layers.1.blocks.1.cpe2.bias', 'layers.1.blocks.1.norm2.weight', 'layers.1.blocks.1.norm2.bias', 'layers.1.blocks.1.mlp.fc1.bias', 'layers.1.blocks.1.mlp.fc2.bias', 'layers.1.blocks.2.cpe1.bias', 'layers.1.blocks.2.norm1.weight', 'layers.1.blocks.2.norm1.bias', 'layers.1.blocks.2.token_mixer.dt_bias', 'layers.1.blocks.2.token_mixer.A_log', 'layers.1.blocks.2.token_mixer.D', 'layers.1.blocks.2.token_mixer.conv2d.bias', 'layers.1.blocks.2.token_mixer.norm.weight', 'layers.1.blocks.2.token_mixer.norm.bias', 'layers.1.blocks.2.cpe2.bias', 'layers.1.blocks.2.norm2.weight', 'layers.1.blocks.2.norm2.bias', 'layers.1.blocks.2.mlp.fc1.bias', 'layers.1.blocks.2.mlp.fc2.bias', 'layers.1.blocks.3.cpe1.bias', 'layers.1.blocks.3.norm1.weight', 'layers.1.blocks.3.norm1.bias', 'layers.1.blocks.3.token_mixer.dt_bias', 'layers.1.blocks.3.token_mixer.A_log', 'layers.1.blocks.3.token_mixer.D', 'layers.1.blocks.3.token_mixer.conv2d.bias', 'layers.1.blocks.3.token_mixer.norm.weight', 'layers.1.blocks.3.token_mixer.norm.bias', 'layers.1.blocks.3.cpe2.bias', 'layers.1.blocks.3.norm2.weight', 'layers.1.blocks.3.norm2.bias', 'layers.1.blocks.3.mlp.fc1.bias', 'layers.1.blocks.3.mlp.fc2.bias', 'layers.1.downsample.conv.0.conv.bias', 'layers.1.downsample.conv.1.conv.bias', 'layers.1.downsample.conv.2.conv.bias', 'layers.1.downsample.conv.2.norm.weight', 'layers.1.downsample.conv.2.norm.bias', 'layers.2.blocks.0.cpe1.bias', 'layers.2.blocks.0.norm1.weight', 'layers.2.blocks.0.norm1.bias', 'layers.2.blocks.0.token_mixer.dt_bias', 'layers.2.blocks.0.token_mixer.A_log', 'layers.2.blocks.0.token_mixer.D', 'layers.2.blocks.0.token_mixer.conv2d.bias', 'layers.2.blocks.0.token_mixer.norm.weight', 'layers.2.blocks.0.token_mixer.norm.bias', 'layers.2.blocks.0.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.0.cpe2.bias', 'layers.2.blocks.0.norm2.weight', 'layers.2.blocks.0.norm2.bias', 'layers.2.blocks.0.mlp.fc1.bias', 'layers.2.blocks.0.mlp.fc2.bias', 'layers.2.blocks.1.cpe1.bias', 'layers.2.blocks.1.norm1.weight', 'layers.2.blocks.1.norm1.bias', 'layers.2.blocks.1.token_mixer.dt_bias', 'layers.2.blocks.1.token_mixer.A_log', 'layers.2.blocks.1.token_mixer.D', 'layers.2.blocks.1.token_mixer.conv2d.bias', 'layers.2.blocks.1.token_mixer.norm.weight', 'layers.2.blocks.1.token_mixer.norm.bias', 'layers.2.blocks.1.cpe2.bias', 'layers.2.blocks.1.norm2.weight', 'layers.2.blocks.1.norm2.bias', 'layers.2.blocks.1.mlp.fc1.bias', 'layers.2.blocks.1.mlp.fc2.bias', 'layers.2.blocks.2.cpe1.bias', 'layers.2.blocks.2.norm1.weight', 'layers.2.blocks.2.norm1.bias', 'layers.2.blocks.2.token_mixer.dt_bias', 'layers.2.blocks.2.token_mixer.A_log', 'layers.2.blocks.2.token_mixer.D', 'layers.2.blocks.2.token_mixer.conv2d.bias', 'layers.2.blocks.2.token_mixer.norm.weight', 'layers.2.blocks.2.token_mixer.norm.bias', 'layers.2.blocks.2.cpe2.bias', 'layers.2.blocks.2.norm2.weight', 'layers.2.blocks.2.norm2.bias', 'layers.2.blocks.2.mlp.fc1.bias', 'layers.2.blocks.2.mlp.fc2.bias', 'layers.2.blocks.3.cpe1.bias', 'layers.2.blocks.3.norm1.weight', 'layers.2.blocks.3.norm1.bias', 'layers.2.blocks.3.token_mixer.dt_bias', 'layers.2.blocks.3.token_mixer.A_log', 'layers.2.blocks.3.token_mixer.D', 'layers.2.blocks.3.token_mixer.conv2d.bias', 'layers.2.blocks.3.token_mixer.norm.weight', 'layers.2.blocks.3.token_mixer.norm.bias', 'layers.2.blocks.3.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.3.cpe2.bias', 'layers.2.blocks.3.norm2.weight', 'layers.2.blocks.3.norm2.bias', 'layers.2.blocks.3.mlp.fc1.bias', 'layers.2.blocks.3.mlp.fc2.bias', 'layers.2.blocks.4.cpe1.bias', 'layers.2.blocks.4.norm1.weight', 'layers.2.blocks.4.norm1.bias', 'layers.2.blocks.4.token_mixer.dt_bias', 'layers.2.blocks.4.token_mixer.A_log', 'layers.2.blocks.4.token_mixer.D', 'layers.2.blocks.4.token_mixer.conv2d.bias', 'layers.2.blocks.4.token_mixer.norm.weight', 'layers.2.blocks.4.token_mixer.norm.bias', 'layers.2.blocks.4.cpe2.bias', 'layers.2.blocks.4.norm2.weight', 'layers.2.blocks.4.norm2.bias', 'layers.2.blocks.4.mlp.fc1.bias', 'layers.2.blocks.4.mlp.fc2.bias', 'layers.2.blocks.5.cpe1.bias', 'layers.2.blocks.5.norm1.weight', 'layers.2.blocks.5.norm1.bias', 'layers.2.blocks.5.token_mixer.dt_bias', 'layers.2.blocks.5.token_mixer.A_log', 'layers.2.blocks.5.token_mixer.D', 'layers.2.blocks.5.token_mixer.conv2d.bias', 'layers.2.blocks.5.token_mixer.norm.weight', 'layers.2.blocks.5.token_mixer.norm.bias', 'layers.2.blocks.5.cpe2.bias', 'layers.2.blocks.5.norm2.weight', 'layers.2.blocks.5.norm2.bias', 'layers.2.blocks.5.mlp.fc1.bias', 'layers.2.blocks.5.mlp.fc2.bias', 'layers.2.blocks.6.cpe1.bias', 'layers.2.blocks.6.norm1.weight', 'layers.2.blocks.6.norm1.bias', 'layers.2.blocks.6.token_mixer.dt_bias', 'layers.2.blocks.6.token_mixer.A_log', 'layers.2.blocks.6.token_mixer.D', 'layers.2.blocks.6.token_mixer.conv2d.bias', 'layers.2.blocks.6.token_mixer.norm.weight', 'layers.2.blocks.6.token_mixer.norm.bias', 'layers.2.blocks.6.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.6.cpe2.bias', 'layers.2.blocks.6.norm2.weight', 'layers.2.blocks.6.norm2.bias', 'layers.2.blocks.6.mlp.fc1.bias', 'layers.2.blocks.6.mlp.fc2.bias', 'layers.2.blocks.7.cpe1.bias', 'layers.2.blocks.7.norm1.weight', 'layers.2.blocks.7.norm1.bias', 'layers.2.blocks.7.token_mixer.dt_bias', 'layers.2.blocks.7.token_mixer.A_log', 'layers.2.blocks.7.token_mixer.D', 'layers.2.blocks.7.token_mixer.conv2d.bias', 'layers.2.blocks.7.token_mixer.norm.weight', 'layers.2.blocks.7.token_mixer.norm.bias', 'layers.2.blocks.7.cpe2.bias', 'layers.2.blocks.7.norm2.weight', 'layers.2.blocks.7.norm2.bias', 'layers.2.blocks.7.mlp.fc1.bias', 'layers.2.blocks.7.mlp.fc2.bias', 'layers.2.downsample.conv.0.conv.bias', 'layers.2.downsample.conv.1.conv.bias', 'layers.2.downsample.conv.2.conv.bias', 'layers.2.downsample.conv.2.norm.weight', 'layers.2.downsample.conv.2.norm.bias', 'layers.3.blocks.0.cpe1.bias', 'layers.3.blocks.0.norm1.weight', 'layers.3.blocks.0.norm1.bias', 'layers.3.blocks.0.token_mixer.to_out.bias', 'layers.3.blocks.0.cpe2.bias', 'layers.3.blocks.0.norm2.weight', 'layers.3.blocks.0.norm2.bias', 'layers.3.blocks.0.mlp.fc1.bias', 'layers.3.blocks.0.mlp.fc2.bias', 'layers.3.blocks.1.cpe1.bias', 'layers.3.blocks.1.norm1.weight', 'layers.3.blocks.1.norm1.bias', 'layers.3.blocks.1.token_mixer.to_out.bias', 'layers.3.blocks.1.cpe2.bias', 'layers.3.blocks.1.norm2.weight', 'layers.3.blocks.1.norm2.bias', 'layers.3.blocks.1.mlp.fc1.bias', 'layers.3.blocks.1.mlp.fc2.bias', 'layers.3.blocks.2.cpe1.bias', 'layers.3.blocks.2.norm1.weight', 'layers.3.blocks.2.norm1.bias', 'layers.3.blocks.2.token_mixer.to_out.bias', 'layers.3.blocks.2.cpe2.bias', 'layers.3.blocks.2.norm2.weight', 'layers.3.blocks.2.norm2.bias', 'layers.3.blocks.2.mlp.fc1.bias', 'layers.3.blocks.2.mlp.fc2.bias', 'layers.3.blocks.3.cpe1.bias', 'layers.3.blocks.3.norm1.weight', 'layers.3.blocks.3.norm1.bias', 'layers.3.blocks.3.token_mixer.to_out.bias', 'layers.3.blocks.3.cpe2.bias', 'layers.3.blocks.3.norm2.weight', 'layers.3.blocks.3.norm2.bias', 'layers.3.blocks.3.mlp.fc1.bias', 'layers.3.blocks.3.mlp.fc2.bias', 'norm.weight', 'norm.bias', 'head.bias']
+[2026-03-28 02:58:52 tiny_cifar10_10ep](main.py 217): INFO Start training
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3526.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/torch/autograd/__init__.py:251: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [512, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [512, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:320.)
+  Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/torch/autograd/__init__.py:251: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
+grad.sizes() = [512, 1, 3, 3], strides() = [9, 1, 3, 1]
+bucket_view.sizes() = [512, 1, 3, 3], strides() = [9, 9, 3, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:320.)
+  Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[2026-03-28 02:59:16 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][0/195]	eta 1:18:14 lr 0.000000	 wd 0.0500	time 24.0720 (24.0720)	data time 22.9260 (22.9260)	model time 0.0000 (0.0000)	loss 2.3388 (2.3388)	grad_norm 5.0292 (5.0292)	loss_scale 65536.0000 (65536.0000)	mem 1497MB
+[2026-03-28 02:59:17 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][10/195]	eta 0:07:06 lr 0.000013	 wd 0.0500	time 0.1340 (2.3042)	data time 0.0006 (2.0848)	model time 0.0000 (0.0000)	loss 2.3213 (2.3512)	grad_norm 4.2739 (4.3047)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:18 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][20/195]	eta 0:03:41 lr 0.000026	 wd 0.0500	time 0.1238 (1.2681)	data time 0.0005 (1.0924)	model time 0.0000 (0.0000)	loss 2.2903 (2.3272)	grad_norm 3.9263 (4.1876)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:20 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][30/195]	eta 0:02:28 lr 0.000039	 wd 0.0500	time 0.1207 (0.8977)	data time 0.0007 (0.7402)	model time 0.0000 (0.0000)	loss 2.2963 (2.3064)	grad_norm 3.8184 (4.1125)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:21 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][40/195]	eta 0:01:49 lr 0.000051	 wd 0.0500	time 0.1221 (0.7083)	data time 0.0007 (0.5598)	model time 0.0000 (0.0000)	loss 2.1294 (2.2844)	grad_norm 3.9402 (4.0433)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:22 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][50/195]	eta 0:01:26 lr 0.000064	 wd 0.0500	time 0.1470 (0.5981)	data time 0.0008 (0.4502)	model time 0.0000 (0.0000)	loss 2.1783 (2.2672)	grad_norm 3.5022 (3.9411)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:23 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][60/195]	eta 0:01:10 lr 0.000077	 wd 0.0500	time 0.1197 (0.5208)	data time 0.0007 (0.3766)	model time 0.1190 (0.1254)	loss 2.1581 (2.2504)	grad_norm 3.4087 (3.8817)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:25 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][70/195]	eta 0:00:58 lr 0.000090	 wd 0.0500	time 0.1451 (0.4676)	data time 0.0006 (0.3236)	model time 0.1445 (0.1342)	loss 2.0231 (2.2328)	grad_norm 3.2726 (3.8389)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:26 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][80/195]	eta 0:00:49 lr 0.000103	 wd 0.0500	time 0.1494 (0.4280)	data time 0.0006 (0.2837)	model time 0.1489 (0.1382)	loss 2.1780 (2.2192)	grad_norm 3.0653 (3.7574)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:28 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][90/195]	eta 0:00:41 lr 0.000116	 wd 0.0500	time 0.1355 (0.3966)	data time 0.0006 (0.2526)	model time 0.1349 (0.1389)	loss 1.9203 (2.2056)	grad_norm 3.2669 (3.6856)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:29 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][100/195]	eta 0:00:35 lr 0.000128	 wd 0.0500	time 0.1224 (0.3697)	data time 0.0005 (0.2277)	model time 0.1219 (0.1360)	loss 2.1245 (2.2003)	grad_norm 2.7108 (3.5969)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:30 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][110/195]	eta 0:00:29 lr 0.000141	 wd 0.0500	time 0.1361 (0.3487)	data time 0.0007 (0.2072)	model time 0.1354 (0.1360)	loss 2.0260 (2.1892)	grad_norm 2.8427 (3.5254)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:32 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][120/195]	eta 0:00:24 lr 0.000154	 wd 0.0500	time 0.1370 (0.3312)	data time 0.0008 (0.1902)	model time 0.1362 (0.1361)	loss 2.1954 (2.1810)	grad_norm 2.8306 (3.4741)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:33 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][130/195]	eta 0:00:20 lr 0.000167	 wd 0.0500	time 0.1373 (0.3164)	data time 0.0009 (0.1757)	model time 0.1365 (0.1361)	loss 2.1729 (2.1716)	grad_norm 2.3469 (3.4289)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:34 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][140/195]	eta 0:00:16 lr 0.000180	 wd 0.0500	time 0.1193 (0.3031)	data time 0.0005 (0.1633)	model time 0.1188 (0.1353)	loss 2.2134 (2.1640)	grad_norm 2.6029 (3.3748)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:36 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][150/195]	eta 0:00:13 lr 0.000192	 wd 0.0500	time 0.1212 (0.2913)	data time 0.0007 (0.1525)	model time 0.1206 (0.1342)	loss 2.1521 (2.1604)	grad_norm 2.3600 (3.3188)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:37 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][160/195]	eta 0:00:09 lr 0.000205	 wd 0.0500	time 0.1253 (0.2811)	data time 0.0007 (0.1431)	model time 0.1246 (0.1335)	loss 1.9902 (2.1528)	grad_norm 2.3749 (3.2680)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:38 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][170/195]	eta 0:00:06 lr 0.000218	 wd 0.0500	time 0.1460 (0.2722)	data time 0.0009 (0.1348)	model time 0.1451 (0.1330)	loss 1.8928 (2.1480)	grad_norm 2.4042 (3.2188)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:40 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][180/195]	eta 0:00:03 lr 0.000231	 wd 0.0500	time 0.1414 (0.2651)	data time 0.0005 (0.1274)	model time 0.1409 (0.1337)	loss 1.9829 (2.1392)	grad_norm 2.2456 (3.1811)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:41 tiny_cifar10_10ep](main.py 348): INFO Train: [0/10][190/195]	eta 0:00:01 lr 0.000244	 wd 0.0500	time 0.1407 (0.2586)	data time 0.0004 (0.1207)	model time 0.1403 (0.1342)	loss 2.0454 (2.1316)	grad_norm 2.5886 (3.1630)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 02:59:42 tiny_cifar10_10ep](main.py 359): INFO EPOCH 0 training takes 0:00:50
+[2026-03-28 02:59:42 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 02:59:43 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 02:59:59 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 15.937 (15.937)	Loss 1.6260 (1.6260)	Acc@1 44.531 (44.531)	Acc@5 88.281 (88.281)	Mem 1041MB
+[2026-03-28 02:59:59 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.037 (1.484)	Loss 1.6074 (1.6321)	Acc@1 43.359 (42.578)	Acc@5 94.141 (89.560)	Mem 1041MB
+[2026-03-28 03:00:00 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.037 (0.796)	Loss 1.6445 (1.6257)	Acc@1 43.359 (42.969)	Acc@5 90.234 (89.900)	Mem 1041MB
+[2026-03-28 03:00:00 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.035 (0.551)	Loss 1.5811 (1.6287)	Acc@1 44.141 (42.893)	Acc@5 91.016 (89.907)	Mem 1041MB
+[2026-03-28 03:00:01 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 42.690 Acc@5 89.770
+[2026-03-28 03:00:01 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 42.7%
+[2026-03-28 03:00:01 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 42.69%
+[2026-03-28 03:00:01 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:00:02 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:00:24 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][0/195]	eta 1:11:05 lr 0.000250	 wd 0.0500	time 21.8720 (21.8720)	data time 21.7155 (21.7155)	model time 0.0000 (0.0000)	loss 2.0818 (2.0818)	grad_norm 2.5624 (2.5624)	loss_scale 65536.0000 (65536.0000)	mem 1044MB
+[2026-03-28 03:00:25 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][10/195]	eta 0:06:28 lr 0.000250	 wd 0.0500	time 0.1173 (2.0990)	data time 0.0006 (1.9747)	model time 0.0000 (0.0000)	loss 2.1463 (2.0051)	grad_norm 2.3087 (2.4460)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:26 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][20/195]	eta 0:03:22 lr 0.000250	 wd 0.0500	time 0.1217 (1.1575)	data time 0.0005 (1.0347)	model time 0.0000 (0.0000)	loss 1.8778 (1.9848)	grad_norm 2.9222 (2.5431)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:27 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][30/195]	eta 0:02:15 lr 0.000250	 wd 0.0500	time 0.1225 (0.8236)	data time 0.0005 (0.7011)	model time 0.0000 (0.0000)	loss 1.9500 (2.0038)	grad_norm 2.5142 (2.4823)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:29 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][40/195]	eta 0:01:41 lr 0.000250	 wd 0.0500	time 0.1261 (0.6535)	data time 0.0005 (0.5303)	model time 0.0000 (0.0000)	loss 1.8731 (2.0037)	grad_norm 2.1586 (2.4356)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:30 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][50/195]	eta 0:01:19 lr 0.000250	 wd 0.0500	time 0.1162 (0.5496)	data time 0.0006 (0.4264)	model time 0.0000 (0.0000)	loss 2.1275 (2.0024)	grad_norm 2.1947 (2.4343)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:31 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][60/195]	eta 0:01:04 lr 0.000249	 wd 0.0500	time 0.1198 (0.4799)	data time 0.0006 (0.3566)	model time 0.1192 (0.1238)	loss 2.1666 (1.9912)	grad_norm 2.0994 (2.3918)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:32 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][70/195]	eta 0:00:53 lr 0.000249	 wd 0.0500	time 0.1360 (0.4304)	data time 0.0006 (0.3065)	model time 0.1354 (0.1257)	loss 1.8936 (1.9891)	grad_norm 2.3671 (2.3859)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:34 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][80/195]	eta 0:00:45 lr 0.000249	 wd 0.0500	time 0.1211 (0.3929)	data time 0.0005 (0.2687)	model time 0.1206 (0.1258)	loss 2.1711 (1.9836)	grad_norm 2.4920 (2.3735)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:35 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][90/195]	eta 0:00:38 lr 0.000248	 wd 0.0500	time 0.1296 (0.3639)	data time 0.0004 (0.2393)	model time 0.1291 (0.1265)	loss 2.1217 (1.9832)	grad_norm 2.3562 (2.3921)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:36 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][100/195]	eta 0:00:32 lr 0.000248	 wd 0.0500	time 0.1226 (0.3405)	data time 0.0006 (0.2157)	model time 0.1219 (0.1265)	loss 1.9780 (1.9847)	grad_norm 2.0591 (2.3864)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:37 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][110/195]	eta 0:00:27 lr 0.000248	 wd 0.0500	time 0.1244 (0.3214)	data time 0.0006 (0.1963)	model time 0.1238 (0.1268)	loss 2.1016 (1.9848)	grad_norm 2.0085 (2.3603)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:39 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][120/195]	eta 0:00:22 lr 0.000247	 wd 0.0500	time 0.1212 (0.3051)	data time 0.0006 (0.1801)	model time 0.1206 (0.1262)	loss 2.1384 (1.9860)	grad_norm 2.4889 (2.3514)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:40 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][130/195]	eta 0:00:18 lr 0.000247	 wd 0.0500	time 0.1313 (0.2916)	data time 0.0006 (0.1664)	model time 0.1307 (0.1265)	loss 1.9043 (1.9838)	grad_norm 2.2565 (2.3347)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:41 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][140/195]	eta 0:00:15 lr 0.000246	 wd 0.0500	time 0.1378 (0.2800)	data time 0.0006 (0.1547)	model time 0.1372 (0.1266)	loss 2.0127 (1.9827)	grad_norm 1.7831 (2.3166)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:42 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][150/195]	eta 0:00:12 lr 0.000246	 wd 0.0500	time 0.1231 (0.2699)	data time 0.0007 (0.1445)	model time 0.1223 (0.1265)	loss 2.2012 (1.9816)	grad_norm 2.0997 (2.3086)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:44 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][160/195]	eta 0:00:09 lr 0.000245	 wd 0.0500	time 0.1263 (0.2609)	data time 0.0007 (0.1356)	model time 0.1256 (0.1264)	loss 2.0838 (1.9755)	grad_norm 2.5329 (2.3100)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:45 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][170/195]	eta 0:00:06 lr 0.000244	 wd 0.0500	time 0.1356 (0.2533)	data time 0.0005 (0.1277)	model time 0.1351 (0.1267)	loss 1.7918 (1.9734)	grad_norm 1.7329 (2.3007)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:46 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][180/195]	eta 0:00:03 lr 0.000244	 wd 0.0500	time 0.1190 (0.2462)	data time 0.0004 (0.1207)	model time 0.1185 (0.1265)	loss 2.1821 (1.9736)	grad_norm 2.0899 (2.2909)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:47 tiny_cifar10_10ep](main.py 348): INFO Train: [1/10][190/195]	eta 0:00:01 lr 0.000243	 wd 0.0500	time 0.1187 (0.2395)	data time 0.0003 (0.1144)	model time 0.1184 (0.1259)	loss 1.8494 (1.9742)	grad_norm 2.0738 (2.2794)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:00:49 tiny_cifar10_10ep](main.py 359): INFO EPOCH 1 training takes 0:00:46
+[2026-03-28 03:00:49 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:00:50 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:01:06 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 16.538 (16.538)	Loss 1.5020 (1.5020)	Acc@1 48.828 (48.828)	Acc@5 91.797 (91.797)	Mem 1041MB
+[2026-03-28 03:01:07 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.052 (1.551)	Loss 1.5029 (1.5177)	Acc@1 46.484 (47.266)	Acc@5 95.312 (92.969)	Mem 1041MB
+[2026-03-28 03:01:07 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.038 (0.832)	Loss 1.5420 (1.5060)	Acc@1 43.359 (47.917)	Acc@5 94.531 (93.192)	Mem 1041MB
+[2026-03-28 03:01:08 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.035 (0.575)	Loss 1.4746 (1.5070)	Acc@1 46.484 (47.303)	Acc@5 95.703 (93.233)	Mem 1041MB
+[2026-03-28 03:01:09 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 47.310 Acc@5 93.080
+[2026-03-28 03:01:09 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 47.3%
+[2026-03-28 03:01:09 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 47.31%
+[2026-03-28 03:01:09 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:01:10 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:01:31 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][0/195]	eta 1:09:41 lr 0.000243	 wd 0.0500	time 21.4412 (21.4412)	data time 21.2595 (21.2595)	model time 0.0000 (0.0000)	loss 1.5947 (1.5947)	grad_norm 1.7251 (1.7251)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:01:32 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][10/195]	eta 0:06:22 lr 0.000242	 wd 0.0500	time 0.1231 (2.0673)	data time 0.0006 (1.9333)	model time 0.0000 (0.0000)	loss 1.9540 (1.8101)	grad_norm 2.3577 (2.0970)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:01:34 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][20/195]	eta 0:03:19 lr 0.000241	 wd 0.0500	time 0.1236 (1.1416)	data time 0.0005 (1.0130)	model time 0.0000 (0.0000)	loss 1.8322 (1.8487)	grad_norm 2.2925 (2.2312)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:01:35 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][30/195]	eta 0:02:14 lr 0.000240	 wd 0.0500	time 0.1209 (0.8124)	data time 0.0007 (0.6864)	model time 0.0000 (0.0000)	loss 2.0918 (1.8948)	grad_norm 1.9358 (2.2071)	loss_scale 65536.0000 (65536.0000)	mem 1041MB
+[2026-03-28 03:01:36 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][40/195]	eta 0:01:39 lr 0.000239	 wd 0.0500	time 0.1238 (0.6449)	data time 0.0006 (0.5192)	model time 0.0000 (0.0000)	loss 2.0662 (1.9013)	grad_norm 2.1118 (inf)	loss_scale 32768.0000 (62339.1220)	mem 1041MB
+[2026-03-28 03:01:37 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][50/195]	eta 0:01:18 lr 0.000238	 wd 0.0500	time 0.1194 (0.5430)	data time 0.0005 (0.4175)	model time 0.0000 (0.0000)	loss 1.8402 (1.9053)	grad_norm 2.2794 (inf)	loss_scale 32768.0000 (56540.8627)	mem 1041MB
+[2026-03-28 03:01:39 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][60/195]	eta 0:01:03 lr 0.000237	 wd 0.0500	time 0.1196 (0.4737)	data time 0.0006 (0.3492)	model time 0.1190 (0.1195)	loss 1.8740 (1.9131)	grad_norm 1.6881 (inf)	loss_scale 32768.0000 (52643.6721)	mem 1041MB
+[2026-03-28 03:01:40 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][70/195]	eta 0:00:53 lr 0.000236	 wd 0.0500	time 0.1273 (0.4243)	data time 0.0005 (0.3001)	model time 0.1268 (0.1209)	loss 2.0606 (1.9168)	grad_norm 1.8590 (inf)	loss_scale 32768.0000 (49844.2817)	mem 1041MB
+[2026-03-28 03:01:41 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][80/195]	eta 0:00:44 lr 0.000235	 wd 0.0500	time 0.1259 (0.3868)	data time 0.0006 (0.2631)	model time 0.1253 (0.1206)	loss 1.6017 (1.9091)	grad_norm 2.9702 (inf)	loss_scale 32768.0000 (47736.0988)	mem 1041MB
+[2026-03-28 03:01:42 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][90/195]	eta 0:00:37 lr 0.000234	 wd 0.0500	time 0.1302 (0.3577)	data time 0.0005 (0.2343)	model time 0.1296 (0.1207)	loss 1.7367 (1.9061)	grad_norm 2.2498 (inf)	loss_scale 32768.0000 (46091.2527)	mem 1041MB
+[2026-03-28 03:01:43 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][100/195]	eta 0:00:31 lr 0.000233	 wd 0.0500	time 0.1234 (0.3346)	data time 0.0006 (0.2111)	model time 0.1229 (0.1213)	loss 1.6446 (1.9036)	grad_norm 2.1760 (inf)	loss_scale 32768.0000 (44772.1188)	mem 1041MB
+[2026-03-28 03:01:45 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][110/195]	eta 0:00:26 lr 0.000232	 wd 0.0500	time 0.1215 (0.3154)	data time 0.0007 (0.1922)	model time 0.1209 (0.1214)	loss 1.7405 (1.9060)	grad_norm 2.2324 (inf)	loss_scale 32768.0000 (43690.6667)	mem 1041MB
+[2026-03-28 03:01:46 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][120/195]	eta 0:00:22 lr 0.000231	 wd 0.0500	time 0.1250 (0.2997)	data time 0.0005 (0.1763)	model time 0.1245 (0.1217)	loss 2.0889 (1.9050)	grad_norm 2.4447 (inf)	loss_scale 32768.0000 (42787.9669)	mem 1041MB
+[2026-03-28 03:01:47 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][130/195]	eta 0:00:18 lr 0.000230	 wd 0.0500	time 0.1227 (0.2863)	data time 0.0007 (0.1629)	model time 0.1220 (0.1220)	loss 1.9813 (1.9050)	grad_norm 2.2224 (inf)	loss_scale 32768.0000 (42023.0840)	mem 1041MB
+[2026-03-28 03:01:48 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][140/195]	eta 0:00:15 lr 0.000228	 wd 0.0500	time 0.1218 (0.2748)	data time 0.0005 (0.1514)	model time 0.1212 (0.1221)	loss 1.4877 (1.8974)	grad_norm 2.3485 (inf)	loss_scale 32768.0000 (41366.6950)	mem 1041MB
+[2026-03-28 03:01:50 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][150/195]	eta 0:00:11 lr 0.000227	 wd 0.0500	time 0.1203 (0.2647)	data time 0.0007 (0.1415)	model time 0.1195 (0.1221)	loss 1.9474 (1.9037)	grad_norm 2.5899 (inf)	loss_scale 32768.0000 (40797.2450)	mem 1041MB
+[2026-03-28 03:01:51 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][160/195]	eta 0:00:08 lr 0.000226	 wd 0.0500	time 0.1207 (0.2558)	data time 0.0007 (0.1327)	model time 0.1200 (0.1220)	loss 2.1393 (1.9059)	grad_norm 2.1347 (inf)	loss_scale 32768.0000 (40298.5342)	mem 1041MB
+[2026-03-28 03:01:52 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][170/195]	eta 0:00:06 lr 0.000225	 wd 0.0500	time 0.1223 (0.2479)	data time 0.0007 (0.1250)	model time 0.1216 (0.1219)	loss 2.0263 (1.9120)	grad_norm 2.4763 (inf)	loss_scale 32768.0000 (39858.1520)	mem 1041MB
+[2026-03-28 03:01:53 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][180/195]	eta 0:00:03 lr 0.000223	 wd 0.0500	time 0.1217 (0.2415)	data time 0.0003 (0.1181)	model time 0.1214 (0.1225)	loss 1.7528 (1.9139)	grad_norm 2.3306 (inf)	loss_scale 32768.0000 (39466.4309)	mem 1041MB
+[2026-03-28 03:01:55 tiny_cifar10_10ep](main.py 348): INFO Train: [2/10][190/195]	eta 0:00:01 lr 0.000222	 wd 0.0500	time 0.1188 (0.2351)	data time 0.0004 (0.1120)	model time 0.1184 (0.1223)	loss 1.6777 (1.9111)	grad_norm 2.5380 (inf)	loss_scale 32768.0000 (39115.7277)	mem 1041MB
+[2026-03-28 03:01:56 tiny_cifar10_10ep](main.py 359): INFO EPOCH 2 training takes 0:00:46
+[2026-03-28 03:01:56 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:01:57 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:02:14 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 17.056 (17.056)	Loss 1.3066 (1.3066)	Acc@1 58.594 (58.594)	Acc@5 94.141 (94.141)	Mem 1041MB
+[2026-03-28 03:02:15 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.039 (1.599)	Loss 1.3730 (1.3415)	Acc@1 53.125 (54.226)	Acc@5 95.703 (94.354)	Mem 1041MB
+[2026-03-28 03:02:15 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.036 (0.856)	Loss 1.3799 (1.3332)	Acc@1 53.125 (55.004)	Acc@5 94.922 (94.494)	Mem 1041MB
+[2026-03-28 03:02:15 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.035 (0.591)	Loss 1.3018 (1.3312)	Acc@1 58.203 (54.902)	Acc@5 95.703 (94.619)	Mem 1041MB
+[2026-03-28 03:02:16 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 54.840 Acc@5 94.560
+[2026-03-28 03:02:16 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 54.8%
+[2026-03-28 03:02:16 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 54.84%
+[2026-03-28 03:02:16 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:02:17 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:02:41 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][0/195]	eta 1:17:07 lr 0.000221	 wd 0.0500	time 23.7328 (23.7328)	data time 23.5313 (23.5313)	model time 0.0000 (0.0000)	loss 1.8163 (1.8163)	grad_norm 2.3568 (2.3568)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:43 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][10/195]	eta 0:07:03 lr 0.000220	 wd 0.0500	time 0.1434 (2.2886)	data time 0.0007 (2.1399)	model time 0.0000 (0.0000)	loss 1.8054 (1.9159)	grad_norm 2.6891 (2.6209)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:44 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][20/195]	eta 0:03:41 lr 0.000218	 wd 0.0500	time 0.1350 (1.2639)	data time 0.0008 (1.1213)	model time 0.0000 (0.0000)	loss 1.9834 (1.8981)	grad_norm 1.9714 (2.4366)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:45 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][30/195]	eta 0:02:28 lr 0.000217	 wd 0.0500	time 0.1250 (0.8995)	data time 0.0008 (0.7599)	model time 0.0000 (0.0000)	loss 2.0298 (1.8981)	grad_norm 1.9605 (2.3260)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:47 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][40/195]	eta 0:01:50 lr 0.000215	 wd 0.0500	time 0.1269 (0.7106)	data time 0.0006 (0.5747)	model time 0.0000 (0.0000)	loss 2.1563 (1.8892)	grad_norm 2.5928 (2.2990)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:48 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][50/195]	eta 0:01:26 lr 0.000214	 wd 0.0500	time 0.1245 (0.5964)	data time 0.0007 (0.4621)	model time 0.0000 (0.0000)	loss 1.9821 (1.8903)	grad_norm 2.2656 (2.2581)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:49 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][60/195]	eta 0:01:09 lr 0.000212	 wd 0.0500	time 0.1191 (0.5185)	data time 0.0007 (0.3865)	model time 0.1184 (0.1202)	loss 1.9087 (1.8912)	grad_norm 2.3294 (2.2422)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:50 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][70/195]	eta 0:00:57 lr 0.000210	 wd 0.0500	time 0.1301 (0.4633)	data time 0.0007 (0.3322)	model time 0.1294 (0.1230)	loss 1.9807 (1.8945)	grad_norm 2.2674 (2.2838)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:52 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][80/195]	eta 0:00:48 lr 0.000209	 wd 0.0500	time 0.1272 (0.4218)	data time 0.0007 (0.2912)	model time 0.1265 (0.1242)	loss 1.9771 (1.8823)	grad_norm 2.8058 (2.3055)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:53 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][90/195]	eta 0:00:40 lr 0.000207	 wd 0.0500	time 0.1234 (0.3894)	data time 0.0008 (0.2593)	model time 0.1226 (0.1248)	loss 1.7498 (1.8821)	grad_norm 2.2526 (2.3066)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:54 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][100/195]	eta 0:00:34 lr 0.000205	 wd 0.0500	time 0.1193 (0.3630)	data time 0.0007 (0.2337)	model time 0.1185 (0.1241)	loss 1.8341 (1.8762)	grad_norm 2.2289 (2.3004)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:55 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][110/195]	eta 0:00:29 lr 0.000204	 wd 0.0500	time 0.1312 (0.3415)	data time 0.0007 (0.2127)	model time 0.1305 (0.1242)	loss 1.9710 (1.8667)	grad_norm 2.3445 (2.3076)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:57 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][120/195]	eta 0:00:24 lr 0.000202	 wd 0.0500	time 0.1320 (0.3240)	data time 0.0007 (0.1952)	model time 0.1313 (0.1248)	loss 1.5883 (1.8538)	grad_norm 2.4583 (2.3263)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:58 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][130/195]	eta 0:00:20 lr 0.000200	 wd 0.0500	time 0.1227 (0.3087)	data time 0.0007 (0.1804)	model time 0.1221 (0.1245)	loss 1.9006 (1.8516)	grad_norm 2.4064 (2.3368)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:02:59 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][140/195]	eta 0:00:16 lr 0.000198	 wd 0.0500	time 0.1211 (0.2956)	data time 0.0005 (0.1676)	model time 0.1206 (0.1245)	loss 1.7372 (1.8534)	grad_norm 2.0661 (2.3333)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:00 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][150/195]	eta 0:00:12 lr 0.000197	 wd 0.0500	time 0.1364 (0.2843)	data time 0.0007 (0.1566)	model time 0.1357 (0.1245)	loss 1.9865 (1.8536)	grad_norm 2.3207 (2.3342)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:02 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][160/195]	eta 0:00:09 lr 0.000195	 wd 0.0500	time 0.1250 (0.2744)	data time 0.0006 (0.1469)	model time 0.1244 (0.1243)	loss 1.9765 (1.8498)	grad_norm 2.4256 (2.3318)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:03 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][170/195]	eta 0:00:06 lr 0.000193	 wd 0.0500	time 0.1259 (0.2656)	data time 0.0005 (0.1383)	model time 0.1254 (0.1243)	loss 1.6163 (1.8535)	grad_norm 2.4406 (2.3260)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:04 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][180/195]	eta 0:00:03 lr 0.000191	 wd 0.0500	time 0.1196 (0.2579)	data time 0.0004 (0.1307)	model time 0.1192 (0.1243)	loss 1.6103 (1.8511)	grad_norm 2.2803 (2.3180)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:05 tiny_cifar10_10ep](main.py 348): INFO Train: [3/10][190/195]	eta 0:00:01 lr 0.000189	 wd 0.0500	time 0.1199 (0.2506)	data time 0.0003 (0.1239)	model time 0.1196 (0.1240)	loss 1.6934 (1.8497)	grad_norm 2.3157 (2.3271)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:06 tiny_cifar10_10ep](main.py 359): INFO EPOCH 3 training takes 0:00:49
+[2026-03-28 03:03:06 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:03:09 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:03:26 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 17.251 (17.251)	Loss 1.3271 (1.3271)	Acc@1 55.859 (55.859)	Acc@5 93.359 (93.359)	Mem 1041MB
+[2026-03-28 03:03:27 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.052 (1.617)	Loss 1.2832 (1.2760)	Acc@1 59.766 (57.777)	Acc@5 95.312 (95.312)	Mem 1041MB
+[2026-03-28 03:03:27 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.052 (0.872)	Loss 1.2695 (1.2724)	Acc@1 56.250 (58.017)	Acc@5 96.484 (95.294)	Mem 1041MB
+[2026-03-28 03:03:28 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.050 (0.607)	Loss 1.2559 (1.2761)	Acc@1 58.984 (58.002)	Acc@5 96.484 (95.489)	Mem 1041MB
+[2026-03-28 03:03:29 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 57.700 Acc@5 95.450
+[2026-03-28 03:03:29 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 57.7%
+[2026-03-28 03:03:29 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 57.70%
+[2026-03-28 03:03:29 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:03:30 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:03:52 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][0/195]	eta 1:12:57 lr 0.000188	 wd 0.0500	time 22.4471 (22.4471)	data time 22.2491 (22.2491)	model time 0.0000 (0.0000)	loss 1.5721 (1.5721)	grad_norm 2.5770 (2.5770)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:54 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][10/195]	eta 0:06:38 lr 0.000186	 wd 0.0500	time 0.1247 (2.1557)	data time 0.0007 (2.0233)	model time 0.0000 (0.0000)	loss 1.7694 (1.8982)	grad_norm 2.2091 (2.3926)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:55 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][20/195]	eta 0:03:28 lr 0.000184	 wd 0.0500	time 0.1222 (1.1888)	data time 0.0006 (1.0601)	model time 0.0000 (0.0000)	loss 1.7039 (1.8552)	grad_norm 2.1656 (2.3974)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:56 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][30/195]	eta 0:02:19 lr 0.000182	 wd 0.0500	time 0.1212 (0.8450)	data time 0.0006 (0.7184)	model time 0.0000 (0.0000)	loss 1.6175 (1.8572)	grad_norm 2.0393 (2.4415)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:57 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][40/195]	eta 0:01:43 lr 0.000180	 wd 0.0500	time 0.1222 (0.6686)	data time 0.0006 (0.5433)	model time 0.0000 (0.0000)	loss 1.7972 (1.8599)	grad_norm 2.3716 (2.4243)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:03:59 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][50/195]	eta 0:01:21 lr 0.000178	 wd 0.0500	time 0.1202 (0.5614)	data time 0.0006 (0.4369)	model time 0.0000 (0.0000)	loss 2.0597 (1.8493)	grad_norm 2.7686 (2.4700)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:00 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][60/195]	eta 0:01:06 lr 0.000176	 wd 0.0500	time 0.1204 (0.4891)	data time 0.0007 (0.3654)	model time 0.1197 (0.1196)	loss 1.5071 (1.8276)	grad_norm 2.3465 (2.4712)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:01 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][70/195]	eta 0:00:54 lr 0.000174	 wd 0.0500	time 0.1191 (0.4372)	data time 0.0006 (0.3140)	model time 0.1185 (0.1199)	loss 2.0204 (1.8208)	grad_norm 2.7025 (2.4843)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:02 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][80/195]	eta 0:00:45 lr 0.000172	 wd 0.0500	time 0.1223 (0.3982)	data time 0.0006 (0.2753)	model time 0.1217 (0.1202)	loss 1.3854 (1.8000)	grad_norm 2.5068 (2.4958)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:03 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][90/195]	eta 0:00:38 lr 0.000170	 wd 0.0500	time 0.1294 (0.3679)	data time 0.0006 (0.2451)	model time 0.1289 (0.1206)	loss 1.9824 (1.8018)	grad_norm 2.4207 (2.4844)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:05 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][100/195]	eta 0:00:32 lr 0.000168	 wd 0.0500	time 0.1193 (0.3434)	data time 0.0005 (0.2209)	model time 0.1187 (0.1205)	loss 1.8824 (1.8093)	grad_norm 2.3234 (2.4867)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:06 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][110/195]	eta 0:00:27 lr 0.000166	 wd 0.0500	time 0.1199 (0.3234)	data time 0.0005 (0.2011)	model time 0.1194 (0.1205)	loss 1.7883 (1.8107)	grad_norm 2.7355 (2.4803)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:07 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][120/195]	eta 0:00:23 lr 0.000164	 wd 0.0500	time 0.1198 (0.3069)	data time 0.0006 (0.1845)	model time 0.1191 (0.1209)	loss 1.8802 (1.8052)	grad_norm 2.8500 (2.4910)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:08 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][130/195]	eta 0:00:19 lr 0.000162	 wd 0.0500	time 0.1186 (0.2926)	data time 0.0007 (0.1705)	model time 0.1179 (0.1206)	loss 1.9599 (1.7964)	grad_norm 2.8216 (2.4877)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:09 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][140/195]	eta 0:00:15 lr 0.000160	 wd 0.0500	time 0.1193 (0.2804)	data time 0.0006 (0.1585)	model time 0.1188 (0.1205)	loss 1.8102 (1.7887)	grad_norm 2.9081 (2.5031)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:11 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][150/195]	eta 0:00:12 lr 0.000157	 wd 0.0500	time 0.1201 (0.2698)	data time 0.0006 (0.1480)	model time 0.1195 (0.1205)	loss 1.8845 (1.7916)	grad_norm 2.3574 (2.5058)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:12 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][160/195]	eta 0:00:09 lr 0.000155	 wd 0.0500	time 0.1311 (0.2609)	data time 0.0006 (0.1389)	model time 0.1305 (0.1209)	loss 1.9421 (1.7908)	grad_norm 2.5069 (2.5001)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:13 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][170/195]	eta 0:00:06 lr 0.000153	 wd 0.0500	time 0.1148 (0.2528)	data time 0.0005 (0.1308)	model time 0.1143 (0.1209)	loss 1.9498 (1.7859)	grad_norm 2.6756 (2.5038)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:14 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][180/195]	eta 0:00:03 lr 0.000151	 wd 0.0500	time 0.1093 (0.2452)	data time 0.0003 (0.1236)	model time 0.1090 (0.1205)	loss 1.6284 (1.7868)	grad_norm 2.7002 (2.5056)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:15 tiny_cifar10_10ep](main.py 348): INFO Train: [4/10][190/195]	eta 0:00:01 lr 0.000149	 wd 0.0500	time 0.1171 (0.2385)	data time 0.0003 (0.1171)	model time 0.1168 (0.1203)	loss 1.9362 (1.7804)	grad_norm 3.1697 (2.5190)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:04:17 tiny_cifar10_10ep](main.py 359): INFO EPOCH 4 training takes 0:00:46
+[2026-03-28 03:04:17 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:04:18 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:04:33 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 14.852 (14.852)	Loss 1.1943 (1.1943)	Acc@1 62.109 (62.109)	Acc@5 94.922 (94.922)	Mem 1041MB
+[2026-03-28 03:04:33 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.052 (1.399)	Loss 1.1875 (1.1491)	Acc@1 59.375 (62.216)	Acc@5 97.266 (96.129)	Mem 1041MB
+[2026-03-28 03:04:34 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.051 (0.758)	Loss 1.1426 (1.1462)	Acc@1 62.109 (62.221)	Acc@5 96.484 (96.280)	Mem 1041MB
+[2026-03-28 03:04:34 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.049 (0.530)	Loss 1.1230 (1.1452)	Acc@1 61.328 (62.273)	Acc@5 97.266 (96.585)	Mem 1041MB
+[2026-03-28 03:04:35 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 62.060 Acc@5 96.550
+[2026-03-28 03:04:35 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 62.1%
+[2026-03-28 03:04:35 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 62.06%
+[2026-03-28 03:04:35 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:04:36 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:05:00 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][0/195]	eta 1:15:25 lr 0.000148	 wd 0.0500	time 23.2065 (23.2065)	data time 23.0034 (23.0034)	model time 0.0000 (0.0000)	loss 1.9069 (1.9069)	grad_norm 3.2137 (3.2137)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:01 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][10/195]	eta 0:06:54 lr 0.000146	 wd 0.0500	time 0.1426 (2.2422)	data time 0.0008 (2.0920)	model time 0.0000 (0.0000)	loss 1.4110 (1.7716)	grad_norm 2.6107 (2.6804)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:02 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][20/195]	eta 0:03:36 lr 0.000143	 wd 0.0500	time 0.1310 (1.2395)	data time 0.0006 (1.0962)	model time 0.0000 (0.0000)	loss 2.0442 (1.8015)	grad_norm 2.3726 (2.5814)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:04 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][30/195]	eta 0:02:25 lr 0.000141	 wd 0.0500	time 0.1240 (0.8799)	data time 0.0005 (0.7428)	model time 0.0000 (0.0000)	loss 2.0341 (1.8079)	grad_norm 3.1174 (2.5191)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:05 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][40/195]	eta 0:01:47 lr 0.000139	 wd 0.0500	time 0.1232 (0.6954)	data time 0.0006 (0.5618)	model time 0.0000 (0.0000)	loss 1.8684 (1.8173)	grad_norm 2.1750 (2.5410)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:06 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][50/195]	eta 0:01:24 lr 0.000137	 wd 0.0500	time 0.1253 (0.5833)	data time 0.0007 (0.4518)	model time 0.0000 (0.0000)	loss 1.9668 (1.7952)	grad_norm 2.2335 (2.5161)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:07 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][60/195]	eta 0:01:08 lr 0.000135	 wd 0.0500	time 0.1292 (0.5086)	data time 0.0006 (0.3778)	model time 0.1286 (0.1269)	loss 1.4547 (1.7881)	grad_norm 2.2587 (2.4894)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:09 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][70/195]	eta 0:00:56 lr 0.000132	 wd 0.0500	time 0.1208 (0.4545)	data time 0.0007 (0.3247)	model time 0.1201 (0.1253)	loss 1.8013 (1.7903)	grad_norm 2.5500 (2.4824)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:10 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][80/195]	eta 0:00:47 lr 0.000130	 wd 0.0500	time 0.1320 (0.4137)	data time 0.0007 (0.2847)	model time 0.1313 (0.1247)	loss 1.9538 (1.7882)	grad_norm 2.2746 (2.4966)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:11 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][90/195]	eta 0:00:40 lr 0.000128	 wd 0.0500	time 0.1331 (0.3819)	data time 0.0007 (0.2535)	model time 0.1324 (0.1244)	loss 1.6226 (1.7887)	grad_norm 2.5215 (2.5092)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:12 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][100/195]	eta 0:00:33 lr 0.000126	 wd 0.0500	time 0.1258 (0.3566)	data time 0.0008 (0.2285)	model time 0.1250 (0.1247)	loss 1.8268 (1.7911)	grad_norm 2.7333 (2.5201)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:14 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][110/195]	eta 0:00:28 lr 0.000123	 wd 0.0500	time 0.1151 (0.3356)	data time 0.0007 (0.2080)	model time 0.1145 (0.1244)	loss 1.9054 (1.7946)	grad_norm 2.2863 (2.5007)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:15 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][120/195]	eta 0:00:23 lr 0.000121	 wd 0.0500	time 0.1737 (0.3196)	data time 0.0006 (0.1908)	model time 0.1732 (0.1268)	loss 1.5188 (1.7988)	grad_norm 2.4960 (2.4854)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:17 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][130/195]	eta 0:00:19 lr 0.000119	 wd 0.0500	time 0.1435 (0.3064)	data time 0.0007 (0.1763)	model time 0.1428 (0.1292)	loss 2.0148 (1.7972)	grad_norm 2.4942 (2.4794)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:18 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][140/195]	eta 0:00:16 lr 0.000117	 wd 0.0500	time 0.1314 (0.2948)	data time 0.0006 (0.1639)	model time 0.1308 (0.1306)	loss 1.7276 (1.7957)	grad_norm 2.4996 (2.5012)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:19 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][150/195]	eta 0:00:12 lr 0.000115	 wd 0.0500	time 0.1220 (0.2842)	data time 0.0006 (0.1531)	model time 0.1214 (0.1309)	loss 1.8228 (1.7982)	grad_norm 2.2498 (2.5016)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:21 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][160/195]	eta 0:00:09 lr 0.000112	 wd 0.0500	time 0.1411 (0.2743)	data time 0.0007 (0.1436)	model time 0.1404 (0.1303)	loss 1.4736 (1.7962)	grad_norm 2.8210 (2.5026)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:22 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][170/195]	eta 0:00:06 lr 0.000110	 wd 0.0500	time 0.1209 (0.2656)	data time 0.0008 (0.1352)	model time 0.1201 (0.1299)	loss 1.5491 (1.7928)	grad_norm 2.6873 (2.5036)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:23 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][180/195]	eta 0:00:03 lr 0.000108	 wd 0.0500	time 0.1194 (0.2579)	data time 0.0004 (0.1278)	model time 0.1190 (0.1296)	loss 1.6757 (1.7908)	grad_norm 2.6041 (2.5070)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:24 tiny_cifar10_10ep](main.py 348): INFO Train: [5/10][190/195]	eta 0:00:01 lr 0.000106	 wd 0.0500	time 0.1191 (0.2507)	data time 0.0004 (0.1211)	model time 0.1186 (0.1289)	loss 1.4232 (1.7882)	grad_norm 2.6065 (2.5146)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:05:26 tiny_cifar10_10ep](main.py 359): INFO EPOCH 5 training takes 0:00:49
+[2026-03-28 03:05:26 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:05:27 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:05:43 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 16.497 (16.497)	Loss 1.1797 (1.1797)	Acc@1 61.328 (61.328)	Acc@5 95.312 (95.312)	Mem 1041MB
+[2026-03-28 03:05:44 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.051 (1.550)	Loss 1.1367 (1.1229)	Acc@1 63.281 (64.453)	Acc@5 97.266 (96.413)	Mem 1041MB
+[2026-03-28 03:05:44 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.064 (0.839)	Loss 1.1250 (1.1195)	Acc@1 66.016 (64.993)	Acc@5 96.484 (96.336)	Mem 1041MB
+[2026-03-28 03:05:45 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.050 (0.585)	Loss 1.1543 (1.1231)	Acc@1 58.594 (64.856)	Acc@5 96.484 (96.497)	Mem 1041MB
+[2026-03-28 03:05:46 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 64.670 Acc@5 96.580
+[2026-03-28 03:05:46 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 64.7%
+[2026-03-28 03:05:46 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 64.67%
+[2026-03-28 03:05:46 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:05:47 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:06:09 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][0/195]	eta 1:13:10 lr 0.000105	 wd 0.0500	time 22.5178 (22.5178)	data time 22.3630 (22.3630)	model time 0.0000 (0.0000)	loss 1.3818 (1.3818)	grad_norm 2.4224 (2.4224)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:11 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][10/195]	eta 0:06:42 lr 0.000103	 wd 0.0500	time 0.1368 (2.1750)	data time 0.0009 (2.0338)	model time 0.0000 (0.0000)	loss 1.3583 (1.6242)	grad_norm 2.6124 (2.8214)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:12 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][20/195]	eta 0:03:30 lr 0.000100	 wd 0.0500	time 0.1281 (1.2035)	data time 0.0005 (1.0657)	model time 0.0000 (0.0000)	loss 1.3542 (1.6985)	grad_norm 3.1766 (2.7835)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:13 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][30/195]	eta 0:02:20 lr 0.000098	 wd 0.0500	time 0.1126 (0.8521)	data time 0.0009 (0.7221)	model time 0.0000 (0.0000)	loss 2.1046 (1.7567)	grad_norm 2.1283 (2.6640)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:14 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][40/195]	eta 0:01:44 lr 0.000096	 wd 0.0500	time 0.1155 (0.6725)	data time 0.0008 (0.5462)	model time 0.0000 (0.0000)	loss 1.5623 (1.7381)	grad_norm 3.9879 (2.6494)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:16 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][50/195]	eta 0:01:21 lr 0.000094	 wd 0.0500	time 0.1132 (0.5632)	data time 0.0007 (0.4392)	model time 0.0000 (0.0000)	loss 1.4475 (1.7558)	grad_norm 2.4863 (2.6447)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:17 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][60/195]	eta 0:01:06 lr 0.000092	 wd 0.0500	time 0.1164 (0.4898)	data time 0.0006 (0.3673)	model time 0.1158 (0.1147)	loss 1.3894 (1.7436)	grad_norm 2.6401 (2.6080)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:18 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][70/195]	eta 0:00:54 lr 0.000090	 wd 0.0500	time 0.1103 (0.4373)	data time 0.0006 (0.3157)	model time 0.1097 (0.1156)	loss 1.6746 (1.7264)	grad_norm 2.9784 (2.6104)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:19 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][80/195]	eta 0:00:45 lr 0.000088	 wd 0.0500	time 0.1192 (0.3979)	data time 0.0006 (0.2768)	model time 0.1185 (0.1163)	loss 1.2777 (1.7203)	grad_norm 2.5877 (2.6310)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:20 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][90/195]	eta 0:00:38 lr 0.000085	 wd 0.0500	time 0.1212 (0.3675)	data time 0.0007 (0.2464)	model time 0.1205 (0.1172)	loss 1.5162 (1.7251)	grad_norm 2.3460 (2.6463)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:22 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][100/195]	eta 0:00:32 lr 0.000083	 wd 0.0500	time 0.1315 (0.3436)	data time 0.0006 (0.2221)	model time 0.1309 (0.1190)	loss 1.4108 (1.7199)	grad_norm 2.8045 (2.6581)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:23 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][110/195]	eta 0:00:27 lr 0.000081	 wd 0.0500	time 0.1226 (0.3241)	data time 0.0006 (0.2022)	model time 0.1220 (0.1201)	loss 1.5424 (1.7210)	grad_norm 2.6088 (2.6532)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:24 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][120/195]	eta 0:00:23 lr 0.000079	 wd 0.0500	time 0.1248 (0.3076)	data time 0.0006 (0.1855)	model time 0.1242 (0.1207)	loss 1.2826 (1.7213)	grad_norm 2.2884 (2.6490)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:25 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][130/195]	eta 0:00:19 lr 0.000077	 wd 0.0500	time 0.1224 (0.2935)	data time 0.0007 (0.1714)	model time 0.1217 (0.1209)	loss 2.0291 (1.7218)	grad_norm 2.4166 (2.6413)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:27 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][140/195]	eta 0:00:15 lr 0.000075	 wd 0.0500	time 0.1224 (0.2816)	data time 0.0006 (0.1593)	model time 0.1219 (0.1213)	loss 1.7961 (1.7190)	grad_norm 2.5059 (2.6497)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:28 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][150/195]	eta 0:00:12 lr 0.000073	 wd 0.0500	time 0.1223 (0.2711)	data time 0.0007 (0.1488)	model time 0.1217 (0.1215)	loss 1.9738 (1.7203)	grad_norm 2.5398 (2.6610)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:29 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][160/195]	eta 0:00:09 lr 0.000071	 wd 0.0500	time 0.1237 (0.2622)	data time 0.0006 (0.1396)	model time 0.1231 (0.1219)	loss 1.8800 (1.7266)	grad_norm 2.4851 (2.6608)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:30 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][170/195]	eta 0:00:06 lr 0.000069	 wd 0.0500	time 0.1220 (0.2541)	data time 0.0007 (0.1315)	model time 0.1214 (0.1220)	loss 1.7577 (1.7252)	grad_norm 2.6771 (2.6581)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:32 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][180/195]	eta 0:00:03 lr 0.000067	 wd 0.0500	time 0.1210 (0.2470)	data time 0.0003 (0.1243)	model time 0.1206 (0.1222)	loss 1.7567 (1.7212)	grad_norm 2.1991 (2.6425)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:33 tiny_cifar10_10ep](main.py 348): INFO Train: [6/10][190/195]	eta 0:00:01 lr 0.000065	 wd 0.0500	time 0.1206 (0.2404)	data time 0.0004 (0.1178)	model time 0.1202 (0.1221)	loss 1.8370 (1.7243)	grad_norm 2.1089 (2.6430)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:06:34 tiny_cifar10_10ep](main.py 359): INFO EPOCH 6 training takes 0:00:47
+[2026-03-28 03:06:34 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:06:35 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:06:51 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 15.896 (15.896)	Loss 1.1621 (1.1621)	Acc@1 66.406 (66.406)	Acc@5 94.922 (94.922)	Mem 1041MB
+[2026-03-28 03:06:51 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.051 (1.492)	Loss 1.1230 (1.1027)	Acc@1 66.406 (65.803)	Acc@5 97.266 (96.875)	Mem 1041MB
+[2026-03-28 03:06:52 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.051 (0.806)	Loss 1.1133 (1.0997)	Acc@1 65.625 (66.183)	Acc@5 96.484 (96.615)	Mem 1041MB
+[2026-03-28 03:06:52 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.050 (0.563)	Loss 1.1172 (1.0982)	Acc@1 63.672 (66.368)	Acc@5 96.484 (96.875)	Mem 1041MB
+[2026-03-28 03:06:54 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 66.330 Acc@5 96.930
+[2026-03-28 03:06:54 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 66.3%
+[2026-03-28 03:06:54 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 66.33%
+[2026-03-28 03:06:54 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:06:55 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:07:16 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][0/195]	eta 1:10:39 lr 0.000064	 wd 0.0500	time 21.7410 (21.7410)	data time 21.5779 (21.5779)	model time 0.0000 (0.0000)	loss 1.7451 (1.7451)	grad_norm 1.9817 (1.9817)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:18 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][10/195]	eta 0:06:26 lr 0.000062	 wd 0.0500	time 0.1363 (2.0913)	data time 0.0009 (1.9623)	model time 0.0000 (0.0000)	loss 1.9350 (1.9053)	grad_norm 2.3864 (2.4452)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:19 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][20/195]	eta 0:03:21 lr 0.000061	 wd 0.0500	time 0.1121 (1.1516)	data time 0.0006 (1.0282)	model time 0.0000 (0.0000)	loss 1.4993 (1.7539)	grad_norm 2.7917 (2.5212)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:20 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][30/195]	eta 0:02:14 lr 0.000059	 wd 0.0500	time 0.1149 (0.8177)	data time 0.0006 (0.6967)	model time 0.0000 (0.0000)	loss 1.4866 (1.7812)	grad_norm 2.6792 (2.5406)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:21 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][40/195]	eta 0:01:40 lr 0.000057	 wd 0.0500	time 0.1145 (0.6471)	data time 0.0008 (0.5270)	model time 0.0000 (0.0000)	loss 2.0156 (1.7951)	grad_norm 2.5208 (2.5507)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:22 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][50/195]	eta 0:01:18 lr 0.000055	 wd 0.0500	time 0.1329 (0.5437)	data time 0.0005 (0.4238)	model time 0.0000 (0.0000)	loss 1.3105 (1.7755)	grad_norm 2.6609 (2.5964)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:24 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][60/195]	eta 0:01:03 lr 0.000053	 wd 0.0500	time 0.1116 (0.4733)	data time 0.0008 (0.3544)	model time 0.1109 (0.1138)	loss 2.1129 (1.7645)	grad_norm 2.9842 (2.6251)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:25 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][70/195]	eta 0:00:52 lr 0.000051	 wd 0.0500	time 0.1190 (0.4230)	data time 0.0007 (0.3046)	model time 0.1183 (0.1144)	loss 1.3605 (1.7416)	grad_norm 3.1325 (2.6383)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:26 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][80/195]	eta 0:00:44 lr 0.000050	 wd 0.0500	time 0.1115 (0.3856)	data time 0.0007 (0.2671)	model time 0.1108 (0.1162)	loss 1.7091 (1.7381)	grad_norm 3.1028 (2.6407)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:27 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][90/195]	eta 0:00:37 lr 0.000048	 wd 0.0500	time 0.1364 (0.3565)	data time 0.0007 (0.2378)	model time 0.1357 (0.1172)	loss 1.8812 (1.7344)	grad_norm 2.2567 (2.6320)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:28 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][100/195]	eta 0:00:31 lr 0.000046	 wd 0.0500	time 0.1212 (0.3338)	data time 0.0007 (0.2143)	model time 0.1205 (0.1189)	loss 1.6421 (1.7309)	grad_norm 2.4189 (2.6354)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:30 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][110/195]	eta 0:00:26 lr 0.000045	 wd 0.0500	time 0.1260 (0.3150)	data time 0.0006 (0.1951)	model time 0.1253 (0.1199)	loss 1.5655 (1.7288)	grad_norm 2.7501 (2.6388)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:31 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][120/195]	eta 0:00:22 lr 0.000043	 wd 0.0500	time 0.1271 (0.2995)	data time 0.0007 (0.1790)	model time 0.1264 (0.1208)	loss 1.8942 (1.7362)	grad_norm 2.6417 (2.6307)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:32 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][130/195]	eta 0:00:18 lr 0.000041	 wd 0.0500	time 0.1427 (0.2866)	data time 0.0008 (0.1654)	model time 0.1418 (0.1219)	loss 1.3888 (1.7347)	grad_norm 2.8560 (2.6161)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:34 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][140/195]	eta 0:00:15 lr 0.000040	 wd 0.0500	time 0.1261 (0.2751)	data time 0.0007 (0.1537)	model time 0.1254 (0.1222)	loss 1.2446 (1.7342)	grad_norm 2.2278 (2.6072)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:35 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][150/195]	eta 0:00:11 lr 0.000038	 wd 0.0500	time 0.1228 (0.2652)	data time 0.0006 (0.1436)	model time 0.1222 (0.1225)	loss 1.8785 (1.7346)	grad_norm 2.9657 (2.6056)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:36 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][160/195]	eta 0:00:08 lr 0.000037	 wd 0.0500	time 0.1248 (0.2567)	data time 0.0007 (0.1347)	model time 0.1241 (0.1229)	loss 1.9411 (1.7321)	grad_norm 2.4198 (2.6029)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:37 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][170/195]	eta 0:00:06 lr 0.000035	 wd 0.0500	time 0.1366 (0.2490)	data time 0.0007 (0.1269)	model time 0.1359 (0.1231)	loss 1.8347 (1.7335)	grad_norm 2.4376 (2.6048)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:39 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][180/195]	eta 0:00:03 lr 0.000034	 wd 0.0500	time 0.1198 (0.2423)	data time 0.0004 (0.1199)	model time 0.1194 (0.1233)	loss 1.4707 (1.7319)	grad_norm 2.7299 (2.6112)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:40 tiny_cifar10_10ep](main.py 348): INFO Train: [7/10][190/195]	eta 0:00:01 lr 0.000032	 wd 0.0500	time 0.1196 (0.2359)	data time 0.0004 (0.1137)	model time 0.1192 (0.1230)	loss 1.9566 (1.7311)	grad_norm 3.0545 (2.6131)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:07:41 tiny_cifar10_10ep](main.py 359): INFO EPOCH 7 training takes 0:00:46
+[2026-03-28 03:07:41 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:07:42 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:07:58 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 15.784 (15.784)	Loss 1.0977 (1.0977)	Acc@1 67.969 (67.969)	Acc@5 95.312 (95.312)	Mem 1041MB
+[2026-03-28 03:07:58 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.051 (1.481)	Loss 1.0684 (1.0410)	Acc@1 67.578 (67.010)	Acc@5 96.484 (97.088)	Mem 1041MB
+[2026-03-28 03:07:59 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.051 (0.800)	Loss 1.0430 (1.0389)	Acc@1 66.406 (67.281)	Acc@5 96.875 (96.856)	Mem 1041MB
+[2026-03-28 03:07:59 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.034 (0.557)	Loss 1.0586 (1.0370)	Acc@1 66.406 (67.465)	Acc@5 97.266 (97.152)	Mem 1041MB
+[2026-03-28 03:08:00 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 67.360 Acc@5 97.270
+[2026-03-28 03:08:00 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 67.4%
+[2026-03-28 03:08:00 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 67.36%
+[2026-03-28 03:08:00 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:08:01 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:08:23 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][0/195]	eta 1:10:54 lr 0.000031	 wd 0.0500	time 21.8170 (21.8170)	data time 21.6255 (21.6255)	model time 0.0000 (0.0000)	loss 1.9614 (1.9614)	grad_norm 2.6820 (2.6820)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:25 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][10/195]	eta 0:06:30 lr 0.000030	 wd 0.0500	time 0.1362 (2.1106)	data time 0.0008 (1.9666)	model time 0.0000 (0.0000)	loss 1.8072 (1.6889)	grad_norm 2.7103 (2.9814)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:26 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][20/195]	eta 0:03:24 lr 0.000029	 wd 0.0500	time 0.1364 (1.1704)	data time 0.0007 (1.0305)	model time 0.0000 (0.0000)	loss 2.0071 (1.7347)	grad_norm 2.7624 (2.8663)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:27 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][30/195]	eta 0:02:17 lr 0.000027	 wd 0.0500	time 0.1253 (0.8335)	data time 0.0006 (0.6983)	model time 0.0000 (0.0000)	loss 1.6383 (1.6803)	grad_norm 3.0192 (2.8259)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:29 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][40/195]	eta 0:01:42 lr 0.000026	 wd 0.0500	time 0.1270 (0.6613)	data time 0.0007 (0.5281)	model time 0.0000 (0.0000)	loss 1.9323 (1.6905)	grad_norm 2.8079 (2.7820)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:30 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][50/195]	eta 0:01:20 lr 0.000025	 wd 0.0500	time 0.1272 (0.5563)	data time 0.0006 (0.4247)	model time 0.0000 (0.0000)	loss 1.8525 (1.6645)	grad_norm 2.6778 (2.7708)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:31 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][60/195]	eta 0:01:05 lr 0.000023	 wd 0.0500	time 0.1197 (0.4853)	data time 0.0006 (0.3552)	model time 0.1191 (0.1223)	loss 1.7581 (1.6731)	grad_norm 2.4860 (2.7774)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:32 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][70/195]	eta 0:00:54 lr 0.000022	 wd 0.0500	time 0.1263 (0.4347)	data time 0.0005 (0.3053)	model time 0.1258 (0.1237)	loss 1.9137 (1.6739)	grad_norm 2.3472 (2.7710)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:34 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][80/195]	eta 0:00:45 lr 0.000021	 wd 0.0500	time 0.1262 (0.3968)	data time 0.0005 (0.2677)	model time 0.1257 (0.1250)	loss 1.4200 (1.6793)	grad_norm 2.6471 (2.7663)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:35 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][90/195]	eta 0:00:38 lr 0.000020	 wd 0.0500	time 0.1241 (0.3669)	data time 0.0005 (0.2383)	model time 0.1235 (0.1247)	loss 1.6322 (1.6829)	grad_norm 2.1965 (2.7596)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:36 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][100/195]	eta 0:00:32 lr 0.000019	 wd 0.0500	time 0.1295 (0.3430)	data time 0.0007 (0.2148)	model time 0.1289 (0.1247)	loss 1.7452 (1.6852)	grad_norm 2.2712 (2.7444)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:37 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][110/195]	eta 0:00:27 lr 0.000018	 wd 0.0500	time 0.1225 (0.3236)	data time 0.0006 (0.1955)	model time 0.1220 (0.1251)	loss 1.9734 (1.6903)	grad_norm 2.5539 (2.7307)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:39 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][120/195]	eta 0:00:23 lr 0.000017	 wd 0.0500	time 0.1261 (0.3071)	data time 0.0007 (0.1794)	model time 0.1254 (0.1248)	loss 1.3185 (1.6871)	grad_norm 2.8456 (2.7443)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:40 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][130/195]	eta 0:00:19 lr 0.000016	 wd 0.0500	time 0.1233 (0.2932)	data time 0.0005 (0.1658)	model time 0.1228 (0.1248)	loss 1.4118 (1.6953)	grad_norm 2.6054 (2.7489)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:41 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][140/195]	eta 0:00:15 lr 0.000015	 wd 0.0500	time 0.1206 (0.2813)	data time 0.0006 (0.1541)	model time 0.1199 (0.1248)	loss 1.8644 (1.6965)	grad_norm 2.7033 (2.7345)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:42 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][150/195]	eta 0:00:12 lr 0.000014	 wd 0.0500	time 0.1308 (0.2709)	data time 0.0006 (0.1439)	model time 0.1302 (0.1246)	loss 1.3597 (1.6905)	grad_norm 2.8550 (2.7295)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:44 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][160/195]	eta 0:00:09 lr 0.000013	 wd 0.0500	time 0.1362 (0.2620)	data time 0.0007 (0.1350)	model time 0.1355 (0.1248)	loss 1.8327 (1.6879)	grad_norm 2.5658 (2.7225)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:45 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][170/195]	eta 0:00:06 lr 0.000012	 wd 0.0500	time 0.1228 (0.2540)	data time 0.0007 (0.1271)	model time 0.1221 (0.1249)	loss 1.5284 (1.6926)	grad_norm 2.4116 (2.7154)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:46 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][180/195]	eta 0:00:03 lr 0.000011	 wd 0.0500	time 0.1191 (0.2470)	data time 0.0003 (0.1202)	model time 0.1188 (0.1250)	loss 1.3010 (1.6911)	grad_norm 2.7812 (2.7162)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:47 tiny_cifar10_10ep](main.py 348): INFO Train: [8/10][190/195]	eta 0:00:01 lr 0.000010	 wd 0.0500	time 0.1186 (0.2403)	data time 0.0003 (0.1139)	model time 0.1183 (0.1246)	loss 1.9500 (1.6926)	grad_norm 2.6796 (2.7144)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:08:49 tiny_cifar10_10ep](main.py 359): INFO EPOCH 8 training takes 0:00:47
+[2026-03-28 03:08:49 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:08:50 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:09:05 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 15.707 (15.707)	Loss 1.0840 (1.0840)	Acc@1 68.359 (68.359)	Acc@5 96.094 (96.094)	Mem 1041MB
+[2026-03-28 03:09:06 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.051 (1.474)	Loss 1.0684 (1.0369)	Acc@1 66.797 (68.040)	Acc@5 97.656 (97.195)	Mem 1041MB
+[2026-03-28 03:09:06 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.051 (0.796)	Loss 1.0430 (1.0336)	Acc@1 69.141 (68.452)	Acc@5 97.656 (97.005)	Mem 1041MB
+[2026-03-28 03:09:07 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.049 (0.555)	Loss 1.0576 (1.0322)	Acc@1 64.453 (68.448)	Acc@5 96.875 (97.165)	Mem 1041MB
+[2026-03-28 03:09:08 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 68.280 Acc@5 97.320
+[2026-03-28 03:09:08 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 68.3%
+[2026-03-28 03:09:08 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 68.28%
+[2026-03-28 03:09:08 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:09:09 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:09:32 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][0/195]	eta 1:13:08 lr 0.000010	 wd 0.0500	time 22.5056 (22.5056)	data time 22.3057 (22.3057)	model time 0.0000 (0.0000)	loss 1.5603 (1.5603)	grad_norm 2.3942 (2.3942)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:33 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][10/195]	eta 0:06:42 lr 0.000009	 wd 0.0500	time 0.1439 (2.1770)	data time 0.0008 (2.0285)	model time 0.0000 (0.0000)	loss 1.9793 (1.7894)	grad_norm 2.5022 (2.5830)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:34 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][20/195]	eta 0:03:31 lr 0.000009	 wd 0.0500	time 0.1419 (1.2090)	data time 0.0008 (1.0629)	model time 0.0000 (0.0000)	loss 1.3626 (1.7012)	grad_norm 2.2767 (2.6515)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:36 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][30/195]	eta 0:02:22 lr 0.000008	 wd 0.0500	time 0.1370 (0.8630)	data time 0.0008 (0.7203)	model time 0.0000 (0.0000)	loss 1.8139 (1.7375)	grad_norm 2.6851 (2.6427)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:37 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][40/195]	eta 0:01:45 lr 0.000007	 wd 0.0500	time 0.1137 (0.6823)	data time 0.0006 (0.5448)	model time 0.0000 (0.0000)	loss 1.4344 (1.7644)	grad_norm 2.6153 (2.6447)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:38 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][50/195]	eta 0:01:22 lr 0.000007	 wd 0.0500	time 0.1126 (0.5712)	data time 0.0005 (0.4381)	model time 0.0000 (0.0000)	loss 1.8666 (1.7598)	grad_norm 2.4595 (2.6528)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:39 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][60/195]	eta 0:01:06 lr 0.000006	 wd 0.0500	time 0.1119 (0.4962)	data time 0.0007 (0.3664)	model time 0.1112 (0.1135)	loss 1.9315 (1.7548)	grad_norm 2.2038 (2.6463)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:40 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][70/195]	eta 0:00:55 lr 0.000006	 wd 0.0500	time 0.1221 (0.4435)	data time 0.0008 (0.3149)	model time 0.1213 (0.1174)	loss 1.8540 (1.7443)	grad_norm 2.4902 (2.6286)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:42 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][80/195]	eta 0:00:46 lr 0.000005	 wd 0.0500	time 0.1107 (0.4032)	data time 0.0006 (0.2761)	model time 0.1101 (0.1169)	loss 1.2809 (1.7414)	grad_norm 3.7122 (2.6410)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:43 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][90/195]	eta 0:00:38 lr 0.000005	 wd 0.0500	time 0.1085 (0.3712)	data time 0.0006 (0.2459)	model time 0.1078 (0.1157)	loss 1.4493 (1.7315)	grad_norm 2.4805 (2.6484)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:44 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][100/195]	eta 0:00:32 lr 0.000004	 wd 0.0500	time 0.1290 (0.3465)	data time 0.0006 (0.2216)	model time 0.1284 (0.1167)	loss 1.9407 (1.7310)	grad_norm 2.6109 (2.6556)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:45 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][110/195]	eta 0:00:27 lr 0.000004	 wd 0.0500	time 0.1144 (0.3259)	data time 0.0007 (0.2017)	model time 0.1136 (0.1167)	loss 2.0027 (1.7455)	grad_norm 2.2063 (2.6484)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:46 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][120/195]	eta 0:00:23 lr 0.000004	 wd 0.0500	time 0.1163 (0.3085)	data time 0.0007 (0.1851)	model time 0.1156 (0.1165)	loss 2.0771 (1.7524)	grad_norm 2.6437 (2.6408)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:48 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][130/195]	eta 0:00:19 lr 0.000003	 wd 0.0500	time 0.1266 (0.2939)	data time 0.0006 (0.1710)	model time 0.1260 (0.1165)	loss 1.8599 (1.7421)	grad_norm 2.4430 (2.6506)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:49 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][140/195]	eta 0:00:15 lr 0.000003	 wd 0.0500	time 0.1271 (0.2820)	data time 0.0010 (0.1589)	model time 0.1262 (0.1175)	loss 1.9463 (1.7436)	grad_norm 2.8126 (2.6500)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:50 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][150/195]	eta 0:00:12 lr 0.000003	 wd 0.0500	time 0.1313 (0.2721)	data time 0.0007 (0.1484)	model time 0.1306 (0.1189)	loss 1.9204 (1.7524)	grad_norm 2.3150 (2.6601)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:51 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][160/195]	eta 0:00:09 lr 0.000003	 wd 0.0500	time 0.1201 (0.2630)	data time 0.0006 (0.1393)	model time 0.1196 (0.1194)	loss 1.3795 (1.7527)	grad_norm 2.3595 (2.6606)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:53 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][170/195]	eta 0:00:06 lr 0.000003	 wd 0.0500	time 0.1222 (0.2547)	data time 0.0007 (0.1312)	model time 0.1215 (0.1194)	loss 1.6907 (1.7546)	grad_norm 2.3227 (2.6619)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:54 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][180/195]	eta 0:00:03 lr 0.000003	 wd 0.0500	time 0.1181 (0.2473)	data time 0.0004 (0.1240)	model time 0.1178 (0.1195)	loss 1.8616 (1.7508)	grad_norm 2.3061 (2.6506)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:55 tiny_cifar10_10ep](main.py 348): INFO Train: [9/10][190/195]	eta 0:00:01 lr 0.000003	 wd 0.0500	time 0.1179 (0.2405)	data time 0.0003 (0.1175)	model time 0.1176 (0.1194)	loss 1.6140 (1.7510)	grad_norm 2.9195 (2.6575)	loss_scale 32768.0000 (32768.0000)	mem 1041MB
+[2026-03-28 03:09:56 tiny_cifar10_10ep](main.py 359): INFO EPOCH 9 training takes 0:00:47
+[2026-03-28 03:09:56 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saving......
+[2026-03-28 03:09:57 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/latest_ckpt.pth saved !!!
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+[2026-03-28 03:10:14 tiny_cifar10_10ep](main.py 403): INFO Test: [0/40]	Time 17.180 (17.180)	Loss 1.0791 (1.0791)	Acc@1 67.969 (67.969)	Acc@5 95.703 (95.703)	Mem 1041MB
+[2026-03-28 03:10:15 tiny_cifar10_10ep](main.py 403): INFO Test: [10/40]	Time 0.037 (1.600)	Loss 1.0645 (1.0360)	Acc@1 67.578 (67.862)	Acc@5 97.266 (97.088)	Mem 1041MB
+[2026-03-28 03:10:15 tiny_cifar10_10ep](main.py 403): INFO Test: [20/40]	Time 0.051 (0.858)	Loss 1.0420 (1.0331)	Acc@1 66.797 (68.322)	Acc@5 97.656 (96.968)	Mem 1041MB
+[2026-03-28 03:10:16 tiny_cifar10_10ep](main.py 403): INFO Test: [30/40]	Time 0.035 (0.593)	Loss 1.0547 (1.0318)	Acc@1 65.625 (68.422)	Acc@5 96.484 (97.152)	Mem 1041MB
+[2026-03-28 03:10:17 tiny_cifar10_10ep](main.py 410): INFO  * Acc@1 68.350 Acc@5 97.290
+[2026-03-28 03:10:17 tiny_cifar10_10ep](main.py 239): INFO Accuracy of the network on the 10000 test images: 68.3%
+[2026-03-28 03:10:17 tiny_cifar10_10ep](main.py 247): INFO New max accuracy: 68.35%
+[2026-03-28 03:10:17 tiny_cifar10_10ep](utils.py 104): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saving......
+[2026-03-28 03:10:18 tiny_cifar10_10ep](utils.py 106): INFO ./output_cifar10_10ep_2gpu_sparse_topk2/tiny_cifar10_10ep/cifar10_10ep_2gpu_sparse_topk2/best_ckpt.pth saved !!!
+[2026-03-28 03:10:18 tiny_cifar10_10ep](main.py 273): INFO Training time 0:11:26

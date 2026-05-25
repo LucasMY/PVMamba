@@ -1,0 +1,484 @@
+[2026-03-28 10:43:05 tiny_cifar10_1ep] (main.py 516): INFO Full config saved to output_stage3_last4_debug/tiny_cifar10_1ep/20260328104304/config.json
+[2026-03-28 10:43:05 tiny_cifar10_1ep] (main.py 520): INFO AMP_ENABLE: true
+AMP_OPT_LEVEL: ''
+AUG:
+  AUTO_AUGMENT: rand-m9-mstd0.5-inc1
+  COLOR_JITTER: 0.4
+  CUTMIX: 1.0
+  CUTMIX_MINMAX: null
+  MIXUP: 0.8
+  MIXUP_MODE: batch
+  MIXUP_PROB: 1.0
+  MIXUP_SWITCH_PROB: 0.5
+  RECOUNT: 1
+  REMODE: pixel
+  REPROB: 0.25
+BASE:
+- base.yaml
+DATA:
+  BATCH_SIZE: 128
+  CACHE_MODE: part
+  DATASET: cifar10
+  DATA_PATH: /home/jlx_75/datasets/cifar10
+  IMG_SIZE: 32
+  INTERPOLATION: bicubic
+  MASK_PATCH_SIZE: 32
+  MASK_RATIO: 0.6
+  NUM_WORKERS: 8
+  PERSISTENT_WORKERS: false
+  PIN_MEMORY: true
+  ZIP_MODE: false
+ENABLE_AMP: false
+EVAL_MODE: false
+FUSED_LAYERNORM: false
+MODEL:
+  DDP: torch
+  DROP_PATH_RATE: 0.2
+  DROP_RATE: 0.0
+  LABEL_SMOOTHING: 0.1
+  MMCKPT: false
+  NAME: tiny_cifar10_1ep
+  NUM_CLASSES: 10
+  PRETRAINED: ''
+  PVMAMBA:
+    DEPTHS:
+    - 2
+    - 4
+    - 8
+    - 4
+    DT_INIT: random
+    D_STATE: 64
+    EMBED_DIM: 64
+    IMAGE_SIZE: 224
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 2
+    - 4
+    - 8
+    - 16
+    PATCH_SIZE: 4
+    SPATIAL_FLAG:
+    - []
+    - []
+    - - 0
+      - 2
+      - 2
+      - 1
+      - 2
+      - 2
+      - 1
+      - 2
+    - - 0
+      - 2
+      - 2
+      - 1
+    SSD_CHUNK_SIZE: 256
+    SSD_EXPANSION: 2
+    TOKEN_MIXER_TYPES:
+    - LoDSA
+    - LoDSA
+    - SaDSA
+    - attention
+  RESUME: ''
+  TYPE: pvmamba
+OUTPUT: output_stage3_last4_debug/tiny_cifar10_1ep/20260328104304
+PRINT_FREQ: 10
+SAVE_FREQ: 1
+SEED: 0
+TAG: '20260328104304'
+TEST:
+  CROP: true
+  SEQUENTIAL: false
+  SHUFFLE: false
+THROUGHPUT_MODE: false
+TRAIN:
+  ACCUMULATION_STEPS: 1
+  AUTO_RESUME: false
+  BASE_LR: 0.00025
+  CLIP_GRAD: 5.0
+  EPOCHS: 1
+  LAYER_DECAY: 1.0
+  LR_SCHEDULER:
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1
+    GAMMA: 0.1
+    MULTISTEPS: []
+    NAME: cosine
+    WARMUP_PREFIX: true
+  MESA: 1.0
+  MIN_LR: 2.5e-06
+  MOE:
+    SAVE_MASTER: false
+  OPTIMIZER:
+    BETAS:
+    - 0.9
+    - 0.999
+    EPS: 1.0e-08
+    MOMENTUM: 0.9
+    NAME: adamw
+  START_EPOCH: 0
+  USE_CHECKPOINT: false
+  WARMUP_EPOCHS: 0
+  WARMUP_LR: 2.5e-07
+  WEIGHT_DECAY: 0.05
+TRAINCOST_MODE: false
+
+[2026-03-28 10:43:05 tiny_cifar10_1ep] (main.py 521): INFO {"cfg": "configs/pvmamba/tiny_cifar10_1ep.yaml", "opts": null, "batch_size": null, "data_path": "/home/jlx_75/datasets/cifar10", "zip": false, "cache_mode": "part", "pretrained": null, "resume": null, "accumulation_steps": null, "use_checkpoint": false, "disable_amp": false, "output": "output_stage3_last4_debug", "tag": "20260328104304", "eval": false, "throughput": false, "fused_layernorm": false, "optim": null, "model_ema": false, "model_ema_decay": 0.9999, "model_ema_force_cpu": false, "memory_limit_rate": -1, "ddp": "torch", "enable_preload": false, "enable_persistance": false, "mesa": false, "mesa_value": 1.0, "mute_repeat": false}
+[2026-03-28 10:43:06 tiny_cifar10_1ep] (main.py 122): INFO Creating model:pvmamba/tiny_cifar10_1ep
+[2026-03-28 10:43:06 tiny_cifar10_1ep] (main.py 128): INFO PVMAMBA(
+  (patch_embed): PatchEmbeding(
+    (conv1): ConvLayer(
+      (conv): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (act): ReLU()
+    )
+    (conv2): Sequential(
+      (0): ConvLayer(
+        (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): ReLU()
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (conv3): Sequential(
+      (0): ConvLayer(
+        (conv): Conv2d(32, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): ReLU()
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): BasicLayer(
+      dim=64, input_resolution=(56, 56), depth=2
+      (blocks): ModuleList(
+        (0): PVMAMBABlock(
+          (cpe1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm1): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=64, out_features=386, bias=False)
+            (conv2d): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (act): SiLU()
+            (norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=128, out_features=64, bias=False)
+            (pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+          )
+          (drop_path): Identity()
+          (cpe2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm2): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=64, out_features=256, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=256, out_features=64, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): PVMAMBABlock(
+          (cpe1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm1): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=64, out_features=386, bias=False)
+            (conv2d): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (act): SiLU()
+            (norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=128, out_features=64, bias=False)
+            (pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+          (norm2): LayerNorm((64,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=64, out_features=256, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=256, out_features=64, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        (conv): Sequential(
+          (0): ConvLayer(
+            (conv): Conv2d(64, 512, kernel_size=(1, 1), stride=(1, 1))
+            (act): ReLU()
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=512)
+            (act): ReLU()
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1))
+            (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (1): BasicLayer(
+      dim=128, input_resolution=(28, 28), depth=4
+      (blocks): ModuleList(
+        (0-3): 4 x PVMAMBABlock(
+          (cpe1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=128, out_features=644, bias=False)
+            (conv2d): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384)
+            (act): SiLU()
+            (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=256, out_features=128, bias=False)
+            (pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=128, out_features=512, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=512, out_features=128, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        (conv): Sequential(
+          (0): ConvLayer(
+            (conv): Conv2d(128, 1024, kernel_size=(1, 1), stride=(1, 1))
+            (act): ReLU()
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=1024)
+            (act): ReLU()
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+            (norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (2): BasicLayer(
+      dim=256, input_resolution=(14, 14), depth=8
+      (blocks): ModuleList(
+        (0): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator(
+              (sampling_offsets): Linear(in_features=512, out_features=8, bias=True)
+            )
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1-2): 2 x PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator()
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator(
+              (sampling_offsets): Linear(in_features=512, out_features=8, bias=True)
+            )
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4-5): 2 x PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator()
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator(
+              (sampling_offsets): Linear(in_features=512, out_features=8, bias=True)
+            )
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): PVMAMBABlock(
+          (cpe1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): mamba_op(
+            (in_proj): Linear(in_features=256, out_features=1160, bias=False)
+            (conv2d): Conv2d(640, 640, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=640)
+            (act): SiLU()
+            (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+            (out_proj): Linear(in_features=512, out_features=256, bias=False)
+            (sa_op): spatial_adaptive_operator()
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=1024, out_features=256, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        (conv): Sequential(
+          (0): ConvLayer(
+            (conv): Conv2d(256, 2048, kernel_size=(1, 1), stride=(1, 1))
+            (act): ReLU()
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=2048)
+            (act): ReLU()
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1))
+            (norm): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (3): BasicLayer(
+      dim=512, input_resolution=(7, 7), depth=4
+      (blocks): ModuleList(
+        (0-3): 4 x PVMAMBABlock(
+          (cpe1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (token_mixer): Attention(
+            (to_qkv): Linear(in_features=512, out_features=1536, bias=False)
+            (to_out): Linear(in_features=512, out_features=512, bias=True)
+            (dropout): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (cpe2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=512)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+    )
+  )
+  (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+  (avgpool): AdaptiveAvgPool1d(output_size=1)
+  (head): Linear(in_features=512, out_features=10, bias=True)
+)
+[2026-03-28 10:43:06 tiny_cifar10_1ep] (main.py 130): INFO number of params: 23780458
+[2026-03-28 10:43:07 tiny_cifar10_1ep] (main.py 132): INFO number of GFLOPs: 4.50297648
+[2026-03-28 10:43:07 tiny_cifar10_1ep] (optimizer.py 18): INFO ==============> building optimizer adamw....................
+[2026-03-28 10:43:07 tiny_cifar10_1ep] (optimizer.py 27): INFO No weight decay list: ['patch_embed.conv1.norm.weight', 'patch_embed.conv1.norm.bias', 'patch_embed.conv2.0.norm.weight', 'patch_embed.conv2.0.norm.bias', 'patch_embed.conv2.1.norm.weight', 'patch_embed.conv2.1.norm.bias', 'patch_embed.conv3.0.norm.weight', 'patch_embed.conv3.0.norm.bias', 'patch_embed.conv3.1.norm.weight', 'patch_embed.conv3.1.norm.bias', 'layers.0.blocks.0.cpe1.bias', 'layers.0.blocks.0.norm1.weight', 'layers.0.blocks.0.norm1.bias', 'layers.0.blocks.0.token_mixer.dt_bias', 'layers.0.blocks.0.token_mixer.A_log', 'layers.0.blocks.0.token_mixer.D', 'layers.0.blocks.0.token_mixer.conv2d.bias', 'layers.0.blocks.0.token_mixer.norm.weight', 'layers.0.blocks.0.token_mixer.norm.bias', 'layers.0.blocks.0.cpe2.bias', 'layers.0.blocks.0.norm2.weight', 'layers.0.blocks.0.norm2.bias', 'layers.0.blocks.0.mlp.fc1.bias', 'layers.0.blocks.0.mlp.fc2.bias', 'layers.0.blocks.1.cpe1.bias', 'layers.0.blocks.1.norm1.weight', 'layers.0.blocks.1.norm1.bias', 'layers.0.blocks.1.token_mixer.dt_bias', 'layers.0.blocks.1.token_mixer.A_log', 'layers.0.blocks.1.token_mixer.D', 'layers.0.blocks.1.token_mixer.conv2d.bias', 'layers.0.blocks.1.token_mixer.norm.weight', 'layers.0.blocks.1.token_mixer.norm.bias', 'layers.0.blocks.1.cpe2.bias', 'layers.0.blocks.1.norm2.weight', 'layers.0.blocks.1.norm2.bias', 'layers.0.blocks.1.mlp.fc1.bias', 'layers.0.blocks.1.mlp.fc2.bias', 'layers.0.downsample.conv.0.conv.bias', 'layers.0.downsample.conv.1.conv.bias', 'layers.0.downsample.conv.2.conv.bias', 'layers.0.downsample.conv.2.norm.weight', 'layers.0.downsample.conv.2.norm.bias', 'layers.1.blocks.0.cpe1.bias', 'layers.1.blocks.0.norm1.weight', 'layers.1.blocks.0.norm1.bias', 'layers.1.blocks.0.token_mixer.dt_bias', 'layers.1.blocks.0.token_mixer.A_log', 'layers.1.blocks.0.token_mixer.D', 'layers.1.blocks.0.token_mixer.conv2d.bias', 'layers.1.blocks.0.token_mixer.norm.weight', 'layers.1.blocks.0.token_mixer.norm.bias', 'layers.1.blocks.0.cpe2.bias', 'layers.1.blocks.0.norm2.weight', 'layers.1.blocks.0.norm2.bias', 'layers.1.blocks.0.mlp.fc1.bias', 'layers.1.blocks.0.mlp.fc2.bias', 'layers.1.blocks.1.cpe1.bias', 'layers.1.blocks.1.norm1.weight', 'layers.1.blocks.1.norm1.bias', 'layers.1.blocks.1.token_mixer.dt_bias', 'layers.1.blocks.1.token_mixer.A_log', 'layers.1.blocks.1.token_mixer.D', 'layers.1.blocks.1.token_mixer.conv2d.bias', 'layers.1.blocks.1.token_mixer.norm.weight', 'layers.1.blocks.1.token_mixer.norm.bias', 'layers.1.blocks.1.cpe2.bias', 'layers.1.blocks.1.norm2.weight', 'layers.1.blocks.1.norm2.bias', 'layers.1.blocks.1.mlp.fc1.bias', 'layers.1.blocks.1.mlp.fc2.bias', 'layers.1.blocks.2.cpe1.bias', 'layers.1.blocks.2.norm1.weight', 'layers.1.blocks.2.norm1.bias', 'layers.1.blocks.2.token_mixer.dt_bias', 'layers.1.blocks.2.token_mixer.A_log', 'layers.1.blocks.2.token_mixer.D', 'layers.1.blocks.2.token_mixer.conv2d.bias', 'layers.1.blocks.2.token_mixer.norm.weight', 'layers.1.blocks.2.token_mixer.norm.bias', 'layers.1.blocks.2.cpe2.bias', 'layers.1.blocks.2.norm2.weight', 'layers.1.blocks.2.norm2.bias', 'layers.1.blocks.2.mlp.fc1.bias', 'layers.1.blocks.2.mlp.fc2.bias', 'layers.1.blocks.3.cpe1.bias', 'layers.1.blocks.3.norm1.weight', 'layers.1.blocks.3.norm1.bias', 'layers.1.blocks.3.token_mixer.dt_bias', 'layers.1.blocks.3.token_mixer.A_log', 'layers.1.blocks.3.token_mixer.D', 'layers.1.blocks.3.token_mixer.conv2d.bias', 'layers.1.blocks.3.token_mixer.norm.weight', 'layers.1.blocks.3.token_mixer.norm.bias', 'layers.1.blocks.3.cpe2.bias', 'layers.1.blocks.3.norm2.weight', 'layers.1.blocks.3.norm2.bias', 'layers.1.blocks.3.mlp.fc1.bias', 'layers.1.blocks.3.mlp.fc2.bias', 'layers.1.downsample.conv.0.conv.bias', 'layers.1.downsample.conv.1.conv.bias', 'layers.1.downsample.conv.2.conv.bias', 'layers.1.downsample.conv.2.norm.weight', 'layers.1.downsample.conv.2.norm.bias', 'layers.2.blocks.0.cpe1.bias', 'layers.2.blocks.0.norm1.weight', 'layers.2.blocks.0.norm1.bias', 'layers.2.blocks.0.token_mixer.dt_bias', 'layers.2.blocks.0.token_mixer.A_log', 'layers.2.blocks.0.token_mixer.D', 'layers.2.blocks.0.token_mixer.conv2d.bias', 'layers.2.blocks.0.token_mixer.norm.weight', 'layers.2.blocks.0.token_mixer.norm.bias', 'layers.2.blocks.0.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.0.cpe2.bias', 'layers.2.blocks.0.norm2.weight', 'layers.2.blocks.0.norm2.bias', 'layers.2.blocks.0.mlp.fc1.bias', 'layers.2.blocks.0.mlp.fc2.bias', 'layers.2.blocks.1.cpe1.bias', 'layers.2.blocks.1.norm1.weight', 'layers.2.blocks.1.norm1.bias', 'layers.2.blocks.1.token_mixer.dt_bias', 'layers.2.blocks.1.token_mixer.A_log', 'layers.2.blocks.1.token_mixer.D', 'layers.2.blocks.1.token_mixer.conv2d.bias', 'layers.2.blocks.1.token_mixer.norm.weight', 'layers.2.blocks.1.token_mixer.norm.bias', 'layers.2.blocks.1.cpe2.bias', 'layers.2.blocks.1.norm2.weight', 'layers.2.blocks.1.norm2.bias', 'layers.2.blocks.1.mlp.fc1.bias', 'layers.2.blocks.1.mlp.fc2.bias', 'layers.2.blocks.2.cpe1.bias', 'layers.2.blocks.2.norm1.weight', 'layers.2.blocks.2.norm1.bias', 'layers.2.blocks.2.token_mixer.dt_bias', 'layers.2.blocks.2.token_mixer.A_log', 'layers.2.blocks.2.token_mixer.D', 'layers.2.blocks.2.token_mixer.conv2d.bias', 'layers.2.blocks.2.token_mixer.norm.weight', 'layers.2.blocks.2.token_mixer.norm.bias', 'layers.2.blocks.2.cpe2.bias', 'layers.2.blocks.2.norm2.weight', 'layers.2.blocks.2.norm2.bias', 'layers.2.blocks.2.mlp.fc1.bias', 'layers.2.blocks.2.mlp.fc2.bias', 'layers.2.blocks.3.cpe1.bias', 'layers.2.blocks.3.norm1.weight', 'layers.2.blocks.3.norm1.bias', 'layers.2.blocks.3.token_mixer.dt_bias', 'layers.2.blocks.3.token_mixer.A_log', 'layers.2.blocks.3.token_mixer.D', 'layers.2.blocks.3.token_mixer.conv2d.bias', 'layers.2.blocks.3.token_mixer.norm.weight', 'layers.2.blocks.3.token_mixer.norm.bias', 'layers.2.blocks.3.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.3.cpe2.bias', 'layers.2.blocks.3.norm2.weight', 'layers.2.blocks.3.norm2.bias', 'layers.2.blocks.3.mlp.fc1.bias', 'layers.2.blocks.3.mlp.fc2.bias', 'layers.2.blocks.4.cpe1.bias', 'layers.2.blocks.4.norm1.weight', 'layers.2.blocks.4.norm1.bias', 'layers.2.blocks.4.token_mixer.dt_bias', 'layers.2.blocks.4.token_mixer.A_log', 'layers.2.blocks.4.token_mixer.D', 'layers.2.blocks.4.token_mixer.conv2d.bias', 'layers.2.blocks.4.token_mixer.norm.weight', 'layers.2.blocks.4.token_mixer.norm.bias', 'layers.2.blocks.4.cpe2.bias', 'layers.2.blocks.4.norm2.weight', 'layers.2.blocks.4.norm2.bias', 'layers.2.blocks.4.mlp.fc1.bias', 'layers.2.blocks.4.mlp.fc2.bias', 'layers.2.blocks.5.cpe1.bias', 'layers.2.blocks.5.norm1.weight', 'layers.2.blocks.5.norm1.bias', 'layers.2.blocks.5.token_mixer.dt_bias', 'layers.2.blocks.5.token_mixer.A_log', 'layers.2.blocks.5.token_mixer.D', 'layers.2.blocks.5.token_mixer.conv2d.bias', 'layers.2.blocks.5.token_mixer.norm.weight', 'layers.2.blocks.5.token_mixer.norm.bias', 'layers.2.blocks.5.cpe2.bias', 'layers.2.blocks.5.norm2.weight', 'layers.2.blocks.5.norm2.bias', 'layers.2.blocks.5.mlp.fc1.bias', 'layers.2.blocks.5.mlp.fc2.bias', 'layers.2.blocks.6.cpe1.bias', 'layers.2.blocks.6.norm1.weight', 'layers.2.blocks.6.norm1.bias', 'layers.2.blocks.6.token_mixer.dt_bias', 'layers.2.blocks.6.token_mixer.A_log', 'layers.2.blocks.6.token_mixer.D', 'layers.2.blocks.6.token_mixer.conv2d.bias', 'layers.2.blocks.6.token_mixer.norm.weight', 'layers.2.blocks.6.token_mixer.norm.bias', 'layers.2.blocks.6.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.6.cpe2.bias', 'layers.2.blocks.6.norm2.weight', 'layers.2.blocks.6.norm2.bias', 'layers.2.blocks.6.mlp.fc1.bias', 'layers.2.blocks.6.mlp.fc2.bias', 'layers.2.blocks.7.cpe1.bias', 'layers.2.blocks.7.norm1.weight', 'layers.2.blocks.7.norm1.bias', 'layers.2.blocks.7.token_mixer.dt_bias', 'layers.2.blocks.7.token_mixer.A_log', 'layers.2.blocks.7.token_mixer.D', 'layers.2.blocks.7.token_mixer.conv2d.bias', 'layers.2.blocks.7.token_mixer.norm.weight', 'layers.2.blocks.7.token_mixer.norm.bias', 'layers.2.blocks.7.cpe2.bias', 'layers.2.blocks.7.norm2.weight', 'layers.2.blocks.7.norm2.bias', 'layers.2.blocks.7.mlp.fc1.bias', 'layers.2.blocks.7.mlp.fc2.bias', 'layers.2.downsample.conv.0.conv.bias', 'layers.2.downsample.conv.1.conv.bias', 'layers.2.downsample.conv.2.conv.bias', 'layers.2.downsample.conv.2.norm.weight', 'layers.2.downsample.conv.2.norm.bias', 'layers.3.blocks.0.cpe1.bias', 'layers.3.blocks.0.norm1.weight', 'layers.3.blocks.0.norm1.bias', 'layers.3.blocks.0.token_mixer.to_out.bias', 'layers.3.blocks.0.cpe2.bias', 'layers.3.blocks.0.norm2.weight', 'layers.3.blocks.0.norm2.bias', 'layers.3.blocks.0.mlp.fc1.bias', 'layers.3.blocks.0.mlp.fc2.bias', 'layers.3.blocks.1.cpe1.bias', 'layers.3.blocks.1.norm1.weight', 'layers.3.blocks.1.norm1.bias', 'layers.3.blocks.1.token_mixer.to_out.bias', 'layers.3.blocks.1.cpe2.bias', 'layers.3.blocks.1.norm2.weight', 'layers.3.blocks.1.norm2.bias', 'layers.3.blocks.1.mlp.fc1.bias', 'layers.3.blocks.1.mlp.fc2.bias', 'layers.3.blocks.2.cpe1.bias', 'layers.3.blocks.2.norm1.weight', 'layers.3.blocks.2.norm1.bias', 'layers.3.blocks.2.token_mixer.to_out.bias', 'layers.3.blocks.2.cpe2.bias', 'layers.3.blocks.2.norm2.weight', 'layers.3.blocks.2.norm2.bias', 'layers.3.blocks.2.mlp.fc1.bias', 'layers.3.blocks.2.mlp.fc2.bias', 'layers.3.blocks.3.cpe1.bias', 'layers.3.blocks.3.norm1.weight', 'layers.3.blocks.3.norm1.bias', 'layers.3.blocks.3.token_mixer.to_out.bias', 'layers.3.blocks.3.cpe2.bias', 'layers.3.blocks.3.norm2.weight', 'layers.3.blocks.3.norm2.bias', 'layers.3.blocks.3.mlp.fc1.bias', 'layers.3.blocks.3.mlp.fc2.bias', 'norm.weight', 'norm.bias', 'head.bias']
+[2026-03-28 10:43:07 tiny_cifar10_1ep] (main.py 217): INFO Start training
+[2026-03-28 10:43:32 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][0/195]	eta 1:20:52 lr 0.000250	 wd 0.0500	time 24.8848 (24.8848)	data time 22.0336 (22.0336)	model time 0.0000 (0.0000)	loss 2.3387 (2.3387)	grad_norm 5.0237 (5.0237)	loss_scale 65536.0000 (65536.0000)	mem 1513MB
+[2026-03-28 10:43:34 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][10/195]	eta 0:07:19 lr 0.000248	 wd 0.0500	time 0.1270 (2.3766)	data time 0.0007 (2.0037)	model time 0.0000 (0.0000)	loss 2.2144 (2.3270)	grad_norm 3.6568 (4.5514)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:35 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][20/195]	eta 0:03:48 lr 0.000244	 wd 0.0500	time 0.1262 (1.3047)	data time 0.0007 (1.0499)	model time 0.0000 (0.0000)	loss 2.1339 (2.2789)	grad_norm 2.3448 (3.7444)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:36 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][30/195]	eta 0:02:32 lr 0.000236	 wd 0.0500	time 0.1283 (0.9249)	data time 0.0007 (0.7114)	model time 0.0000 (0.0000)	loss 2.1620 (2.2458)	grad_norm 2.2345 (3.2797)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:37 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][40/195]	eta 0:01:53 lr 0.000225	 wd 0.0500	time 0.1263 (0.7307)	data time 0.0006 (0.5381)	model time 0.0000 (0.0000)	loss 2.0334 (2.2178)	grad_norm 2.1841 (3.0193)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:39 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][50/195]	eta 0:01:28 lr 0.000212	 wd 0.0500	time 0.1161 (0.6108)	data time 0.0006 (0.4327)	model time 0.0000 (0.0000)	loss 2.1219 (2.1945)	grad_norm 1.9395 (2.8181)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:40 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][60/195]	eta 0:01:11 lr 0.000197	 wd 0.0500	time 0.1193 (0.5294)	data time 0.0007 (0.3619)	model time 0.1186 (0.1135)	loss 1.9927 (2.1731)	grad_norm 1.7870 (2.6841)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:41 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][70/195]	eta 0:00:58 lr 0.000179	 wd 0.0500	time 0.0961 (0.4710)	data time 0.0007 (0.3110)	model time 0.0954 (0.1140)	loss 1.9612 (2.1524)	grad_norm 1.8749 (2.6064)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:42 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][80/195]	eta 0:00:49 lr 0.000161	 wd 0.0500	time 0.1189 (0.4271)	data time 0.0006 (0.2727)	model time 0.1183 (0.1142)	loss 2.1076 (2.1400)	grad_norm 2.1179 (2.5328)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:43 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][90/195]	eta 0:00:41 lr 0.000141	 wd 0.0500	time 0.1128 (0.3929)	data time 0.0006 (0.2428)	model time 0.1122 (0.1145)	loss 1.8500 (2.1267)	grad_norm 2.2720 (2.4655)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:44 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][100/195]	eta 0:00:34 lr 0.000121	 wd 0.0500	time 0.1123 (0.3655)	data time 0.0007 (0.2188)	model time 0.1116 (0.1146)	loss 2.0670 (2.1234)	grad_norm 1.9783 (2.4105)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:46 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][110/195]	eta 0:00:29 lr 0.000101	 wd 0.0500	time 0.1203 (0.3433)	data time 0.0007 (0.1992)	model time 0.1196 (0.1152)	loss 1.9324 (2.1131)	grad_norm 2.1766 (2.3709)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:47 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][120/195]	eta 0:00:24 lr 0.000082	 wd 0.0500	time 0.1300 (0.3254)	data time 0.0007 (0.1828)	model time 0.1293 (0.1167)	loss 2.1566 (2.1053)	grad_norm 1.9710 (2.3408)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:48 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][130/195]	eta 0:00:20 lr 0.000064	 wd 0.0500	time 0.1229 (0.3102)	data time 0.0008 (0.1689)	model time 0.1221 (0.1179)	loss 2.1584 (2.0971)	grad_norm 2.0283 (2.3303)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:49 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][140/195]	eta 0:00:16 lr 0.000048	 wd 0.0500	time 0.1153 (0.2965)	data time 0.0006 (0.1570)	model time 0.1147 (0.1178)	loss 2.1576 (2.0907)	grad_norm 1.8145 (2.3162)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:50 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][150/195]	eta 0:00:12 lr 0.000034	 wd 0.0500	time 0.1129 (0.2845)	data time 0.0008 (0.1466)	model time 0.1121 (0.1174)	loss 2.1194 (2.0880)	grad_norm 1.6017 (2.2889)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:52 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][160/195]	eta 0:00:09 lr 0.000022	 wd 0.0500	time 0.1101 (0.2742)	data time 0.0005 (0.1375)	model time 0.1095 (0.1175)	loss 1.9173 (2.0814)	grad_norm 1.7634 (2.2704)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:53 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][170/195]	eta 0:00:06 lr 0.000012	 wd 0.0500	time 0.1104 (0.2646)	data time 0.0007 (0.1295)	model time 0.1097 (0.1167)	loss 1.8611 (2.0785)	grad_norm 1.8413 (2.2496)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:54 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][180/195]	eta 0:00:03 lr 0.000006	 wd 0.0500	time 0.0979 (0.2565)	data time 0.0003 (0.1224)	model time 0.0976 (0.1168)	loss 1.9371 (2.0711)	grad_norm 1.7180 (2.2356)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:55 tiny_cifar10_1ep] (main.py 348): INFO Train: [0/1][190/195]	eta 0:00:01 lr 0.000003	 wd 0.0500	time 0.1019 (0.2484)	data time 0.0003 (0.1160)	model time 0.1016 (0.1157)	loss 1.9836 (2.0641)	grad_norm 1.8429 (2.2257)	loss_scale 65536.0000 (65536.0000)	mem 1066MB
+[2026-03-28 10:43:56 tiny_cifar10_1ep] (main.py 359): INFO EPOCH 0 training takes 0:00:48
+[2026-03-28 10:43:56 tiny_cifar10_1ep] (utils.py 104): INFO output_stage3_last4_debug/tiny_cifar10_1ep/20260328104304/latest_ckpt.pth saving......
+[2026-03-28 10:43:57 tiny_cifar10_1ep] (utils.py 106): INFO output_stage3_last4_debug/tiny_cifar10_1ep/20260328104304/latest_ckpt.pth saved !!!
+[2026-03-28 10:44:13 tiny_cifar10_1ep] (main.py 403): INFO Test: [0/40]	Time 15.897 (15.897)	Loss 1.5996 (1.5996)	Acc@1 44.141 (44.141)	Acc@5 91.797 (91.797)	Mem 1066MB
+[2026-03-28 10:44:13 tiny_cifar10_1ep] (main.py 403): INFO Test: [10/40]	Time 0.050 (1.491)	Loss 1.5977 (1.5939)	Acc@1 42.578 (43.395)	Acc@5 94.141 (91.371)	Mem 1066MB
+[2026-03-28 10:44:14 tiny_cifar10_1ep] (main.py 403): INFO Test: [20/40]	Time 0.050 (0.805)	Loss 1.6152 (1.5882)	Acc@1 41.406 (44.141)	Acc@5 93.750 (91.499)	Mem 1066MB
+[2026-03-28 10:44:14 tiny_cifar10_1ep] (main.py 403): INFO Test: [30/40]	Time 0.048 (0.561)	Loss 1.5176 (1.5886)	Acc@1 49.609 (44.052)	Acc@5 94.922 (91.494)	Mem 1066MB
+[2026-03-28 10:44:15 tiny_cifar10_1ep] (main.py 410): INFO  * Acc@1 43.930 Acc@5 91.400
+[2026-03-28 10:44:15 tiny_cifar10_1ep] (main.py 239): INFO Accuracy of the network on the 10000 test images: 43.9%
+[2026-03-28 10:44:15 tiny_cifar10_1ep] (main.py 247): INFO New max accuracy: 43.93%
+[2026-03-28 10:44:15 tiny_cifar10_1ep] (utils.py 104): INFO output_stage3_last4_debug/tiny_cifar10_1ep/20260328104304/best_ckpt.pth saving......
+[2026-03-28 10:44:16 tiny_cifar10_1ep] (utils.py 106): INFO output_stage3_last4_debug/tiny_cifar10_1ep/20260328104304/best_ckpt.pth saved !!!
+[2026-03-28 10:44:16 tiny_cifar10_1ep] (main.py 273): INFO Training time 0:01:08

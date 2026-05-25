@@ -1,0 +1,222 @@
+[2026-03-25 21:46:14 tiny_tinyimagenet] (main.py 520): INFO AMP_ENABLE: true
+AMP_OPT_LEVEL: ''
+AUG:
+  AUTO_AUGMENT: rand-m9-mstd0.5-inc1
+  COLOR_JITTER: 0.4
+  CUTMIX: 1.0
+  CUTMIX_MINMAX: null
+  MIXUP: 0.8
+  MIXUP_MODE: batch
+  MIXUP_PROB: 1.0
+  MIXUP_SWITCH_PROB: 0.5
+  RECOUNT: 1
+  REMODE: pixel
+  REPROB: 0.25
+BASE:
+- base.yaml
+DATA:
+  BATCH_SIZE: 64
+  CACHE_MODE: part
+  DATASET: imagenet
+  DATA_PATH: /home/jlx_75/datasets/tiny-imagenet/tiny-imagenet-200
+  IMG_SIZE: 64
+  INTERPOLATION: bicubic
+  MASK_PATCH_SIZE: 32
+  MASK_RATIO: 0.6
+  NUM_WORKERS: 8
+  PERSISTENT_WORKERS: false
+  PIN_MEMORY: true
+  ZIP_MODE: false
+ENABLE_AMP: false
+EVAL_MODE: false
+FUSED_LAYERNORM: false
+MODEL:
+  DDP: torch
+  DROP_PATH_RATE: 0.2
+  DROP_RATE: 0.0
+  LABEL_SMOOTHING: 0.1
+  MMCKPT: false
+  NAME: tiny_tinyimagenet
+  NUM_CLASSES: 200
+  PRETRAINED: ''
+  PVMAMBA:
+    DEPTHS:
+    - 2
+    - 4
+    - 8
+    - 4
+    DT_INIT: random
+    D_STATE: 64
+    EMBED_DIM: 64
+    IMAGE_SIZE: 64
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 2
+    - 4
+    - 8
+    - 16
+    PATCH_SIZE: 4
+    SPATIAL_FLAG:
+    - []
+    - []
+    - - 0
+      - 2
+      - 2
+      - 1
+      - 2
+      - 2
+      - 1
+      - 2
+    - - 0
+      - 2
+      - 2
+      - 1
+    SSD_CHUNK_SIZE: 256
+    SSD_EXPANSION: 2
+    TOKEN_MIXER_TYPES:
+    - LoDSA
+    - LoDSA
+    - SaDSA
+    - attention
+  RESUME: ''
+  TYPE: pvmamba
+OUTPUT: ./output_tinyimagenet_2gpu_1ep/tiny_tinyimagenet/20260325214613
+PRINT_FREQ: 10
+SAVE_FREQ: 1
+SEED: 0
+TAG: '20260325214613'
+TEST:
+  CROP: true
+  SEQUENTIAL: false
+  SHUFFLE: false
+THROUGHPUT_MODE: false
+TRAIN:
+  ACCUMULATION_STEPS: 1
+  AUTO_RESUME: false
+  BASE_LR: 0.000125
+  CLIP_GRAD: 5.0
+  EPOCHS: 1
+  LAYER_DECAY: 1.0
+  LR_SCHEDULER:
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1
+    GAMMA: 0.1
+    MULTISTEPS: []
+    NAME: cosine
+    WARMUP_PREFIX: true
+  MESA: 1.0
+  MIN_LR: 1.25e-06
+  MOE:
+    SAVE_MASTER: false
+  OPTIMIZER:
+    BETAS:
+    - 0.9
+    - 0.999
+    EPS: 1.0e-08
+    MOMENTUM: 0.9
+    NAME: adamw
+  START_EPOCH: 0
+  USE_CHECKPOINT: false
+  WARMUP_EPOCHS: 0
+  WARMUP_LR: 1.25e-07
+  WEIGHT_DECAY: 0.05
+TRAINCOST_MODE: false
+
+[2026-03-25 21:46:14 tiny_tinyimagenet] (main.py 521): INFO {"cfg": "configs/pvmamba/tiny_tinyimagenet.yaml", "opts": ["TRAIN.EPOCHS", "1"], "batch_size": null, "data_path": "/home/jlx_75/datasets/tiny-imagenet/tiny-imagenet-200", "zip": false, "cache_mode": "part", "pretrained": null, "resume": null, "accumulation_steps": null, "use_checkpoint": false, "disable_amp": false, "output": "./output_tinyimagenet_2gpu_1ep", "tag": "20260325214613", "eval": false, "throughput": false, "fused_layernorm": false, "optim": null, "model_ema": false, "model_ema_decay": 0.9999, "model_ema_force_cpu": false, "memory_limit_rate": -1, "ddp": "torch", "enable_preload": false, "enable_persistance": false, "mesa": false, "mesa_value": 1.0, "mute_repeat": false}
+[2026-03-25 21:46:14 tiny_tinyimagenet] (main.py 122): INFO Creating model:pvmamba/tiny_tinyimagenet
+[2026-03-25 21:46:14 tiny_tinyimagenet] (optimizer.py 18): INFO ==============> building optimizer adamw....................
+[2026-03-25 21:46:14 tiny_tinyimagenet] (optimizer.py 27): INFO No weight decay list: ['patch_embed.conv1.norm.weight', 'patch_embed.conv1.norm.bias', 'patch_embed.conv2.0.norm.weight', 'patch_embed.conv2.0.norm.bias', 'patch_embed.conv2.1.norm.weight', 'patch_embed.conv2.1.norm.bias', 'patch_embed.conv3.0.norm.weight', 'patch_embed.conv3.0.norm.bias', 'patch_embed.conv3.1.norm.weight', 'patch_embed.conv3.1.norm.bias', 'layers.0.blocks.0.cpe1.bias', 'layers.0.blocks.0.norm1.weight', 'layers.0.blocks.0.norm1.bias', 'layers.0.blocks.0.token_mixer.dt_bias', 'layers.0.blocks.0.token_mixer.A_log', 'layers.0.blocks.0.token_mixer.D', 'layers.0.blocks.0.token_mixer.conv2d.bias', 'layers.0.blocks.0.token_mixer.norm.weight', 'layers.0.blocks.0.token_mixer.norm.bias', 'layers.0.blocks.0.cpe2.bias', 'layers.0.blocks.0.norm2.weight', 'layers.0.blocks.0.norm2.bias', 'layers.0.blocks.0.mlp.fc1.bias', 'layers.0.blocks.0.mlp.fc2.bias', 'layers.0.blocks.1.cpe1.bias', 'layers.0.blocks.1.norm1.weight', 'layers.0.blocks.1.norm1.bias', 'layers.0.blocks.1.token_mixer.dt_bias', 'layers.0.blocks.1.token_mixer.A_log', 'layers.0.blocks.1.token_mixer.D', 'layers.0.blocks.1.token_mixer.conv2d.bias', 'layers.0.blocks.1.token_mixer.norm.weight', 'layers.0.blocks.1.token_mixer.norm.bias', 'layers.0.blocks.1.cpe2.bias', 'layers.0.blocks.1.norm2.weight', 'layers.0.blocks.1.norm2.bias', 'layers.0.blocks.1.mlp.fc1.bias', 'layers.0.blocks.1.mlp.fc2.bias', 'layers.0.downsample.conv.0.conv.bias', 'layers.0.downsample.conv.1.conv.bias', 'layers.0.downsample.conv.2.conv.bias', 'layers.0.downsample.conv.2.norm.weight', 'layers.0.downsample.conv.2.norm.bias', 'layers.1.blocks.0.cpe1.bias', 'layers.1.blocks.0.norm1.weight', 'layers.1.blocks.0.norm1.bias', 'layers.1.blocks.0.token_mixer.dt_bias', 'layers.1.blocks.0.token_mixer.A_log', 'layers.1.blocks.0.token_mixer.D', 'layers.1.blocks.0.token_mixer.conv2d.bias', 'layers.1.blocks.0.token_mixer.norm.weight', 'layers.1.blocks.0.token_mixer.norm.bias', 'layers.1.blocks.0.cpe2.bias', 'layers.1.blocks.0.norm2.weight', 'layers.1.blocks.0.norm2.bias', 'layers.1.blocks.0.mlp.fc1.bias', 'layers.1.blocks.0.mlp.fc2.bias', 'layers.1.blocks.1.cpe1.bias', 'layers.1.blocks.1.norm1.weight', 'layers.1.blocks.1.norm1.bias', 'layers.1.blocks.1.token_mixer.dt_bias', 'layers.1.blocks.1.token_mixer.A_log', 'layers.1.blocks.1.token_mixer.D', 'layers.1.blocks.1.token_mixer.conv2d.bias', 'layers.1.blocks.1.token_mixer.norm.weight', 'layers.1.blocks.1.token_mixer.norm.bias', 'layers.1.blocks.1.cpe2.bias', 'layers.1.blocks.1.norm2.weight', 'layers.1.blocks.1.norm2.bias', 'layers.1.blocks.1.mlp.fc1.bias', 'layers.1.blocks.1.mlp.fc2.bias', 'layers.1.blocks.2.cpe1.bias', 'layers.1.blocks.2.norm1.weight', 'layers.1.blocks.2.norm1.bias', 'layers.1.blocks.2.token_mixer.dt_bias', 'layers.1.blocks.2.token_mixer.A_log', 'layers.1.blocks.2.token_mixer.D', 'layers.1.blocks.2.token_mixer.conv2d.bias', 'layers.1.blocks.2.token_mixer.norm.weight', 'layers.1.blocks.2.token_mixer.norm.bias', 'layers.1.blocks.2.cpe2.bias', 'layers.1.blocks.2.norm2.weight', 'layers.1.blocks.2.norm2.bias', 'layers.1.blocks.2.mlp.fc1.bias', 'layers.1.blocks.2.mlp.fc2.bias', 'layers.1.blocks.3.cpe1.bias', 'layers.1.blocks.3.norm1.weight', 'layers.1.blocks.3.norm1.bias', 'layers.1.blocks.3.token_mixer.dt_bias', 'layers.1.blocks.3.token_mixer.A_log', 'layers.1.blocks.3.token_mixer.D', 'layers.1.blocks.3.token_mixer.conv2d.bias', 'layers.1.blocks.3.token_mixer.norm.weight', 'layers.1.blocks.3.token_mixer.norm.bias', 'layers.1.blocks.3.cpe2.bias', 'layers.1.blocks.3.norm2.weight', 'layers.1.blocks.3.norm2.bias', 'layers.1.blocks.3.mlp.fc1.bias', 'layers.1.blocks.3.mlp.fc2.bias', 'layers.1.downsample.conv.0.conv.bias', 'layers.1.downsample.conv.1.conv.bias', 'layers.1.downsample.conv.2.conv.bias', 'layers.1.downsample.conv.2.norm.weight', 'layers.1.downsample.conv.2.norm.bias', 'layers.2.blocks.0.cpe1.bias', 'layers.2.blocks.0.norm1.weight', 'layers.2.blocks.0.norm1.bias', 'layers.2.blocks.0.token_mixer.dt_bias', 'layers.2.blocks.0.token_mixer.A_log', 'layers.2.blocks.0.token_mixer.D', 'layers.2.blocks.0.token_mixer.conv2d.bias', 'layers.2.blocks.0.token_mixer.norm.weight', 'layers.2.blocks.0.token_mixer.norm.bias', 'layers.2.blocks.0.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.0.cpe2.bias', 'layers.2.blocks.0.norm2.weight', 'layers.2.blocks.0.norm2.bias', 'layers.2.blocks.0.mlp.fc1.bias', 'layers.2.blocks.0.mlp.fc2.bias', 'layers.2.blocks.1.cpe1.bias', 'layers.2.blocks.1.norm1.weight', 'layers.2.blocks.1.norm1.bias', 'layers.2.blocks.1.token_mixer.dt_bias', 'layers.2.blocks.1.token_mixer.A_log', 'layers.2.blocks.1.token_mixer.D', 'layers.2.blocks.1.token_mixer.conv2d.bias', 'layers.2.blocks.1.token_mixer.norm.weight', 'layers.2.blocks.1.token_mixer.norm.bias', 'layers.2.blocks.1.cpe2.bias', 'layers.2.blocks.1.norm2.weight', 'layers.2.blocks.1.norm2.bias', 'layers.2.blocks.1.mlp.fc1.bias', 'layers.2.blocks.1.mlp.fc2.bias', 'layers.2.blocks.2.cpe1.bias', 'layers.2.blocks.2.norm1.weight', 'layers.2.blocks.2.norm1.bias', 'layers.2.blocks.2.token_mixer.dt_bias', 'layers.2.blocks.2.token_mixer.A_log', 'layers.2.blocks.2.token_mixer.D', 'layers.2.blocks.2.token_mixer.conv2d.bias', 'layers.2.blocks.2.token_mixer.norm.weight', 'layers.2.blocks.2.token_mixer.norm.bias', 'layers.2.blocks.2.cpe2.bias', 'layers.2.blocks.2.norm2.weight', 'layers.2.blocks.2.norm2.bias', 'layers.2.blocks.2.mlp.fc1.bias', 'layers.2.blocks.2.mlp.fc2.bias', 'layers.2.blocks.3.cpe1.bias', 'layers.2.blocks.3.norm1.weight', 'layers.2.blocks.3.norm1.bias', 'layers.2.blocks.3.token_mixer.dt_bias', 'layers.2.blocks.3.token_mixer.A_log', 'layers.2.blocks.3.token_mixer.D', 'layers.2.blocks.3.token_mixer.conv2d.bias', 'layers.2.blocks.3.token_mixer.norm.weight', 'layers.2.blocks.3.token_mixer.norm.bias', 'layers.2.blocks.3.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.3.cpe2.bias', 'layers.2.blocks.3.norm2.weight', 'layers.2.blocks.3.norm2.bias', 'layers.2.blocks.3.mlp.fc1.bias', 'layers.2.blocks.3.mlp.fc2.bias', 'layers.2.blocks.4.cpe1.bias', 'layers.2.blocks.4.norm1.weight', 'layers.2.blocks.4.norm1.bias', 'layers.2.blocks.4.token_mixer.dt_bias', 'layers.2.blocks.4.token_mixer.A_log', 'layers.2.blocks.4.token_mixer.D', 'layers.2.blocks.4.token_mixer.conv2d.bias', 'layers.2.blocks.4.token_mixer.norm.weight', 'layers.2.blocks.4.token_mixer.norm.bias', 'layers.2.blocks.4.cpe2.bias', 'layers.2.blocks.4.norm2.weight', 'layers.2.blocks.4.norm2.bias', 'layers.2.blocks.4.mlp.fc1.bias', 'layers.2.blocks.4.mlp.fc2.bias', 'layers.2.blocks.5.cpe1.bias', 'layers.2.blocks.5.norm1.weight', 'layers.2.blocks.5.norm1.bias', 'layers.2.blocks.5.token_mixer.dt_bias', 'layers.2.blocks.5.token_mixer.A_log', 'layers.2.blocks.5.token_mixer.D', 'layers.2.blocks.5.token_mixer.conv2d.bias', 'layers.2.blocks.5.token_mixer.norm.weight', 'layers.2.blocks.5.token_mixer.norm.bias', 'layers.2.blocks.5.cpe2.bias', 'layers.2.blocks.5.norm2.weight', 'layers.2.blocks.5.norm2.bias', 'layers.2.blocks.5.mlp.fc1.bias', 'layers.2.blocks.5.mlp.fc2.bias', 'layers.2.blocks.6.cpe1.bias', 'layers.2.blocks.6.norm1.weight', 'layers.2.blocks.6.norm1.bias', 'layers.2.blocks.6.token_mixer.dt_bias', 'layers.2.blocks.6.token_mixer.A_log', 'layers.2.blocks.6.token_mixer.D', 'layers.2.blocks.6.token_mixer.conv2d.bias', 'layers.2.blocks.6.token_mixer.norm.weight', 'layers.2.blocks.6.token_mixer.norm.bias', 'layers.2.blocks.6.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.6.cpe2.bias', 'layers.2.blocks.6.norm2.weight', 'layers.2.blocks.6.norm2.bias', 'layers.2.blocks.6.mlp.fc1.bias', 'layers.2.blocks.6.mlp.fc2.bias', 'layers.2.blocks.7.cpe1.bias', 'layers.2.blocks.7.norm1.weight', 'layers.2.blocks.7.norm1.bias', 'layers.2.blocks.7.token_mixer.dt_bias', 'layers.2.blocks.7.token_mixer.A_log', 'layers.2.blocks.7.token_mixer.D', 'layers.2.blocks.7.token_mixer.conv2d.bias', 'layers.2.blocks.7.token_mixer.norm.weight', 'layers.2.blocks.7.token_mixer.norm.bias', 'layers.2.blocks.7.cpe2.bias', 'layers.2.blocks.7.norm2.weight', 'layers.2.blocks.7.norm2.bias', 'layers.2.blocks.7.mlp.fc1.bias', 'layers.2.blocks.7.mlp.fc2.bias', 'layers.2.downsample.conv.0.conv.bias', 'layers.2.downsample.conv.1.conv.bias', 'layers.2.downsample.conv.2.conv.bias', 'layers.2.downsample.conv.2.norm.weight', 'layers.2.downsample.conv.2.norm.bias', 'layers.3.blocks.0.cpe1.bias', 'layers.3.blocks.0.norm1.weight', 'layers.3.blocks.0.norm1.bias', 'layers.3.blocks.0.token_mixer.to_out.bias', 'layers.3.blocks.0.cpe2.bias', 'layers.3.blocks.0.norm2.weight', 'layers.3.blocks.0.norm2.bias', 'layers.3.blocks.0.mlp.fc1.bias', 'layers.3.blocks.0.mlp.fc2.bias', 'layers.3.blocks.1.cpe1.bias', 'layers.3.blocks.1.norm1.weight', 'layers.3.blocks.1.norm1.bias', 'layers.3.blocks.1.token_mixer.to_out.bias', 'layers.3.blocks.1.cpe2.bias', 'layers.3.blocks.1.norm2.weight', 'layers.3.blocks.1.norm2.bias', 'layers.3.blocks.1.mlp.fc1.bias', 'layers.3.blocks.1.mlp.fc2.bias', 'layers.3.blocks.2.cpe1.bias', 'layers.3.blocks.2.norm1.weight', 'layers.3.blocks.2.norm1.bias', 'layers.3.blocks.2.token_mixer.to_out.bias', 'layers.3.blocks.2.cpe2.bias', 'layers.3.blocks.2.norm2.weight', 'layers.3.blocks.2.norm2.bias', 'layers.3.blocks.2.mlp.fc1.bias', 'layers.3.blocks.2.mlp.fc2.bias', 'layers.3.blocks.3.cpe1.bias', 'layers.3.blocks.3.norm1.weight', 'layers.3.blocks.3.norm1.bias', 'layers.3.blocks.3.token_mixer.to_out.bias', 'layers.3.blocks.3.cpe2.bias', 'layers.3.blocks.3.norm2.weight', 'layers.3.blocks.3.norm2.bias', 'layers.3.blocks.3.mlp.fc1.bias', 'layers.3.blocks.3.mlp.fc2.bias', 'norm.weight', 'norm.bias', 'head.bias']
+[2026-03-25 21:46:15 tiny_tinyimagenet] (main.py 217): INFO Start training
+[2026-03-25 21:46:32 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][0/781]	eta 3:43:00 lr 0.000125	 wd 0.0500	time 17.1322 (17.1322)	data time 15.4713 (15.4713)	model time 0.0000 (0.0000)	loss 5.3535 (5.3535)	grad_norm 3.7576 (3.7576)	loss_scale 65536.0000 (65536.0000)	mem 1642MB
+[2026-03-25 21:46:34 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][10/781]	eta 0:21:32 lr 0.000125	 wd 0.0500	time 0.1059 (1.6768)	data time 0.0007 (1.4072)	model time 0.0000 (0.0000)	loss 5.3890 (5.3434)	grad_norm 2.6983 (2.9609)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:35 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][20/781]	eta 0:11:47 lr 0.000125	 wd 0.0500	time 0.1096 (0.9302)	data time 0.0006 (0.7374)	model time 0.0000 (0.0000)	loss 5.3253 (5.3390)	grad_norm 2.2676 (2.7370)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:36 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][30/781]	eta 0:08:19 lr 0.000125	 wd 0.0500	time 0.1038 (0.6654)	data time 0.0005 (0.4997)	model time 0.0000 (0.0000)	loss 5.3423 (5.3345)	grad_norm 1.9122 (2.5497)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:37 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][40/781]	eta 0:06:32 lr 0.000124	 wd 0.0500	time 0.1067 (0.5295)	data time 0.0004 (0.3780)	model time 0.0000 (0.0000)	loss 5.3059 (5.3323)	grad_norm 1.6525 (2.3648)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:38 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][50/781]	eta 0:05:27 lr 0.000124	 wd 0.0500	time 0.1010 (0.4476)	data time 0.0007 (0.3040)	model time 0.0000 (0.0000)	loss 5.3032 (5.3283)	grad_norm 1.3980 (2.1948)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:39 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][60/781]	eta 0:04:42 lr 0.000123	 wd 0.0500	time 0.1030 (0.3917)	data time 0.0006 (0.2543)	model time 0.1024 (0.1060)	loss 5.2834 (5.3249)	grad_norm 1.2464 (2.0597)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:40 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][70/781]	eta 0:04:10 lr 0.000123	 wd 0.0500	time 0.1126 (0.3525)	data time 0.0005 (0.2185)	model time 0.1121 (0.1094)	loss 5.2914 (5.3204)	grad_norm 1.2747 (1.9519)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:42 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][80/781]	eta 0:03:46 lr 0.000122	 wd 0.0500	time 0.1163 (0.3233)	data time 0.0005 (0.1916)	model time 0.1157 (0.1115)	loss 5.2972 (5.3170)	grad_norm 1.0835 (1.8519)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:43 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][90/781]	eta 0:03:27 lr 0.000121	 wd 0.0500	time 0.1090 (0.3006)	data time 0.0005 (0.1706)	model time 0.1085 (0.1126)	loss 5.2584 (5.3135)	grad_norm 1.2673 (1.7844)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:44 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][100/781]	eta 0:03:11 lr 0.000120	 wd 0.0500	time 0.1044 (0.2816)	data time 0.0007 (0.1538)	model time 0.1037 (0.1117)	loss 5.2391 (5.3112)	grad_norm 1.2200 (1.7260)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:45 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][110/781]	eta 0:02:58 lr 0.000119	 wd 0.0500	time 0.1081 (0.2660)	data time 0.0005 (0.1400)	model time 0.1076 (0.1110)	loss 5.3489 (5.3097)	grad_norm 1.1664 (1.6811)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:46 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][120/781]	eta 0:02:47 lr 0.000118	 wd 0.0500	time 0.1092 (0.2529)	data time 0.0005 (0.1285)	model time 0.1087 (0.1104)	loss 5.2816 (5.3062)	grad_norm 1.1786 (1.6470)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:47 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][130/781]	eta 0:02:37 lr 0.000117	 wd 0.0500	time 0.1109 (0.2422)	data time 0.0004 (0.1187)	model time 0.1105 (0.1107)	loss 5.3170 (5.3054)	grad_norm 1.1517 (1.6126)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:48 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][140/781]	eta 0:02:29 lr 0.000115	 wd 0.0500	time 0.1068 (0.2329)	data time 0.0006 (0.1103)	model time 0.1062 (0.1107)	loss 5.2459 (5.3022)	grad_norm 1.2497 (1.5864)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:49 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][150/781]	eta 0:02:21 lr 0.000114	 wd 0.0500	time 0.1034 (0.2248)	data time 0.0007 (0.1031)	model time 0.1026 (0.1106)	loss 5.3031 (5.2998)	grad_norm 1.0334 (1.5610)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:50 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][160/781]	eta 0:02:15 lr 0.000113	 wd 0.0500	time 0.1019 (0.2176)	data time 0.0004 (0.0967)	model time 0.1015 (0.1104)	loss 5.2682 (5.2981)	grad_norm 1.2812 (1.5465)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:51 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][170/781]	eta 0:02:09 lr 0.000111	 wd 0.0500	time 0.1030 (0.2114)	data time 0.0006 (0.0911)	model time 0.1024 (0.1104)	loss 5.1877 (5.2950)	grad_norm 1.3340 (1.5369)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:53 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][180/781]	eta 0:02:03 lr 0.000109	 wd 0.0500	time 0.1130 (0.2059)	data time 0.0006 (0.0861)	model time 0.1124 (0.1104)	loss 5.2542 (5.2927)	grad_norm 1.2628 (1.5281)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:54 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][190/781]	eta 0:01:58 lr 0.000108	 wd 0.0500	time 0.1076 (0.2008)	data time 0.0006 (0.0816)	model time 0.1070 (0.1103)	loss 5.2574 (5.2901)	grad_norm 1.3297 (1.5170)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:55 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][200/781]	eta 0:01:54 lr 0.000106	 wd 0.0500	time 0.1096 (0.1963)	data time 0.0004 (0.0776)	model time 0.1092 (0.1103)	loss 5.2158 (5.2880)	grad_norm 1.2426 (1.5068)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:56 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][210/781]	eta 0:01:49 lr 0.000104	 wd 0.0500	time 0.0978 (0.1922)	data time 0.0005 (0.0739)	model time 0.0974 (0.1102)	loss 5.1654 (5.2851)	grad_norm 1.2371 (1.4963)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:57 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][220/781]	eta 0:01:45 lr 0.000102	 wd 0.0500	time 0.1028 (0.1884)	data time 0.0005 (0.0706)	model time 0.1023 (0.1101)	loss 5.2013 (5.2830)	grad_norm 1.1598 (1.4837)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:58 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][230/781]	eta 0:01:41 lr 0.000100	 wd 0.0500	time 0.1149 (0.1849)	data time 0.0007 (0.0676)	model time 0.1142 (0.1099)	loss 5.2617 (5.2810)	grad_norm 1.2348 (1.4744)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:46:59 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][240/781]	eta 0:01:38 lr 0.000098	 wd 0.0500	time 0.1153 (0.1819)	data time 0.0005 (0.0648)	model time 0.1148 (0.1100)	loss 5.2533 (5.2780)	grad_norm 1.4158 (1.4665)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:00 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][250/781]	eta 0:01:35 lr 0.000096	 wd 0.0500	time 0.0990 (0.1791)	data time 0.0005 (0.0622)	model time 0.0985 (0.1100)	loss 5.2712 (5.2775)	grad_norm 1.2350 (1.4606)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:01 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][260/781]	eta 0:01:32 lr 0.000094	 wd 0.0500	time 0.1171 (0.1766)	data time 0.0006 (0.0599)	model time 0.1166 (0.1102)	loss 5.2363 (5.2757)	grad_norm 1.3149 (1.4574)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:03 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][270/781]	eta 0:01:28 lr 0.000092	 wd 0.0500	time 0.1065 (0.1741)	data time 0.0006 (0.0577)	model time 0.1059 (0.1101)	loss 5.1777 (5.2744)	grad_norm 1.2976 (1.4518)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:04 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][280/781]	eta 0:01:26 lr 0.000090	 wd 0.0500	time 0.1071 (0.1721)	data time 0.0005 (0.0557)	model time 0.1066 (0.1104)	loss 5.2597 (5.2731)	grad_norm 1.1472 (1.4446)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:05 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][290/781]	eta 0:01:23 lr 0.000087	 wd 0.0500	time 0.1018 (0.1699)	data time 0.0005 (0.0538)	model time 0.1013 (0.1104)	loss 5.2008 (5.2713)	grad_norm 1.1747 (1.4394)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:06 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][300/781]	eta 0:01:20 lr 0.000085	 wd 0.0500	time 0.1090 (0.1679)	data time 0.0005 (0.0520)	model time 0.1085 (0.1103)	loss 5.2372 (5.2701)	grad_norm 1.2232 (1.4347)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:07 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][310/781]	eta 0:01:18 lr 0.000083	 wd 0.0500	time 0.1141 (0.1661)	data time 0.0007 (0.0503)	model time 0.1134 (0.1103)	loss 5.3138 (5.2682)	grad_norm 1.3841 (1.4365)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:08 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][320/781]	eta 0:01:15 lr 0.000080	 wd 0.0500	time 0.1053 (0.1644)	data time 0.0004 (0.0488)	model time 0.1049 (0.1103)	loss 5.2354 (5.2671)	grad_norm 1.4311 (1.4394)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:09 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][330/781]	eta 0:01:13 lr 0.000078	 wd 0.0500	time 0.1013 (0.1628)	data time 0.0005 (0.0473)	model time 0.1008 (0.1103)	loss 5.1133 (5.2657)	grad_norm 1.4869 (1.4407)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:10 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][340/781]	eta 0:01:11 lr 0.000076	 wd 0.0500	time 0.1050 (0.1612)	data time 0.0006 (0.0460)	model time 0.1044 (0.1103)	loss 5.2257 (5.2645)	grad_norm 1.2475 (1.4417)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:11 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][350/781]	eta 0:01:08 lr 0.000073	 wd 0.0500	time 0.1122 (0.1598)	data time 0.0005 (0.0447)	model time 0.1117 (0.1103)	loss 5.1546 (5.2630)	grad_norm 1.4162 (1.4419)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:13 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][360/781]	eta 0:01:06 lr 0.000071	 wd 0.0500	time 0.1258 (0.1584)	data time 0.0006 (0.0435)	model time 0.1252 (0.1102)	loss 5.2407 (5.2623)	grad_norm 1.7149 (1.4451)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:14 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][370/781]	eta 0:01:04 lr 0.000068	 wd 0.0500	time 0.1009 (0.1571)	data time 0.0005 (0.0423)	model time 0.1004 (0.1102)	loss 5.2557 (5.2617)	grad_norm 1.5173 (1.4460)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:15 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][380/781]	eta 0:01:02 lr 0.000066	 wd 0.0500	time 0.1035 (0.1558)	data time 0.0005 (0.0412)	model time 0.1030 (0.1101)	loss 5.2415 (5.2606)	grad_norm 1.4391 (1.4461)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:16 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][390/781]	eta 0:01:00 lr 0.000063	 wd 0.0500	time 0.1045 (0.1546)	data time 0.0005 (0.0402)	model time 0.1040 (0.1101)	loss 5.2453 (5.2594)	grad_norm 1.8420 (1.4485)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:17 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][400/781]	eta 0:00:58 lr 0.000061	 wd 0.0500	time 0.1139 (0.1535)	data time 0.0004 (0.0392)	model time 0.1135 (0.1101)	loss 5.1910 (5.2587)	grad_norm 1.5322 (1.4510)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:18 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][410/781]	eta 0:00:56 lr 0.000058	 wd 0.0500	time 0.1043 (0.1525)	data time 0.0005 (0.0382)	model time 0.1038 (0.1101)	loss 5.0983 (5.2576)	grad_norm 1.4238 (1.4519)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:19 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][420/781]	eta 0:00:54 lr 0.000056	 wd 0.0500	time 0.1037 (0.1516)	data time 0.0004 (0.0373)	model time 0.1033 (0.1102)	loss 5.2775 (5.2570)	grad_norm 1.5379 (1.4540)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:20 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][430/781]	eta 0:00:52 lr 0.000053	 wd 0.0500	time 0.1121 (0.1506)	data time 0.0005 (0.0365)	model time 0.1117 (0.1102)	loss 5.2703 (5.2558)	grad_norm 1.7906 (1.4566)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:21 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][440/781]	eta 0:00:51 lr 0.000051	 wd 0.0500	time 0.1099 (0.1497)	data time 0.0004 (0.0357)	model time 0.1095 (0.1102)	loss 5.2570 (5.2544)	grad_norm 1.4722 (1.4606)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:22 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][450/781]	eta 0:00:49 lr 0.000048	 wd 0.0500	time 0.1004 (0.1488)	data time 0.0004 (0.0349)	model time 0.1000 (0.1101)	loss 5.2467 (5.2532)	grad_norm 1.7226 (1.4670)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:24 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][460/781]	eta 0:00:47 lr 0.000046	 wd 0.0500	time 0.1096 (0.1479)	data time 0.0005 (0.0341)	model time 0.1091 (0.1101)	loss 5.2229 (5.2521)	grad_norm 1.6822 (1.4704)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:25 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][470/781]	eta 0:00:45 lr 0.000044	 wd 0.0500	time 0.1134 (0.1471)	data time 0.0004 (0.0334)	model time 0.1130 (0.1101)	loss 5.2350 (5.2507)	grad_norm 1.7788 (1.4722)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:26 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][480/781]	eta 0:00:44 lr 0.000041	 wd 0.0500	time 0.1113 (0.1463)	data time 0.0005 (0.0327)	model time 0.1108 (0.1100)	loss 5.2237 (5.2495)	grad_norm 1.8027 (1.4782)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:27 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][490/781]	eta 0:00:42 lr 0.000039	 wd 0.0500	time 0.0994 (0.1456)	data time 0.0005 (0.0321)	model time 0.0989 (0.1100)	loss 5.1889 (5.2484)	grad_norm 1.7100 (1.4828)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:28 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][500/781]	eta 0:00:40 lr 0.000037	 wd 0.0500	time 0.1081 (0.1449)	data time 0.0004 (0.0315)	model time 0.1078 (0.1101)	loss 5.1964 (5.2468)	grad_norm 1.8410 (1.4901)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:29 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][510/781]	eta 0:00:39 lr 0.000035	 wd 0.0500	time 0.1093 (0.1443)	data time 0.0006 (0.0309)	model time 0.1087 (0.1101)	loss 5.1381 (5.2457)	grad_norm 2.0035 (1.4991)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:30 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][520/781]	eta 0:00:37 lr 0.000032	 wd 0.0500	time 0.1191 (0.1436)	data time 0.0004 (0.0303)	model time 0.1186 (0.1101)	loss 5.1264 (5.2444)	grad_norm 1.8359 (1.5059)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:31 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][530/781]	eta 0:00:35 lr 0.000030	 wd 0.0500	time 0.1006 (0.1430)	data time 0.0005 (0.0297)	model time 0.1001 (0.1101)	loss 5.1994 (5.2438)	grad_norm 1.7901 (1.5117)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:32 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][540/781]	eta 0:00:34 lr 0.000028	 wd 0.0500	time 0.1080 (0.1425)	data time 0.0004 (0.0292)	model time 0.1076 (0.1101)	loss 5.2879 (5.2429)	grad_norm 1.7453 (1.5163)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:34 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][550/781]	eta 0:00:32 lr 0.000026	 wd 0.0500	time 0.1124 (0.1418)	data time 0.0006 (0.0287)	model time 0.1118 (0.1101)	loss 5.1142 (5.2420)	grad_norm 2.2438 (1.5221)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:35 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][560/781]	eta 0:00:31 lr 0.000024	 wd 0.0500	time 0.1161 (0.1413)	data time 0.0004 (0.0282)	model time 0.1157 (0.1101)	loss 5.0820 (5.2407)	grad_norm 2.0736 (1.5285)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:36 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][570/781]	eta 0:00:29 lr 0.000022	 wd 0.0500	time 0.1032 (0.1407)	data time 0.0005 (0.0277)	model time 0.1027 (0.1101)	loss 5.0937 (5.2397)	grad_norm 2.0420 (1.5332)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:37 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][580/781]	eta 0:00:28 lr 0.000020	 wd 0.0500	time 0.1055 (0.1402)	data time 0.0005 (0.0272)	model time 0.1051 (0.1101)	loss 5.2365 (5.2388)	grad_norm 1.6979 (1.5398)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:38 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][590/781]	eta 0:00:26 lr 0.000019	 wd 0.0500	time 0.1080 (0.1397)	data time 0.0004 (0.0268)	model time 0.1076 (0.1100)	loss 5.2285 (5.2379)	grad_norm 1.7598 (1.5462)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:39 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][600/781]	eta 0:00:25 lr 0.000017	 wd 0.0500	time 0.1066 (0.1391)	data time 0.0004 (0.0263)	model time 0.1061 (0.1100)	loss 5.3035 (5.2367)	grad_norm 1.8418 (1.5535)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:40 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][610/781]	eta 0:00:23 lr 0.000015	 wd 0.0500	time 0.1071 (0.1387)	data time 0.0005 (0.0259)	model time 0.1066 (0.1100)	loss 5.1100 (5.2356)	grad_norm 2.1099 (1.5590)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:41 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][620/781]	eta 0:00:22 lr 0.000014	 wd 0.0500	time 0.1035 (0.1382)	data time 0.0004 (0.0255)	model time 0.1031 (0.1100)	loss 5.1685 (5.2348)	grad_norm 2.3873 (1.5655)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:42 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][630/781]	eta 0:00:20 lr 0.000012	 wd 0.0500	time 0.1049 (0.1378)	data time 0.0004 (0.0251)	model time 0.1045 (0.1099)	loss 5.1310 (5.2341)	grad_norm 2.2549 (1.5716)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:43 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][640/781]	eta 0:00:19 lr 0.000011	 wd 0.0500	time 0.1079 (0.1373)	data time 0.0005 (0.0247)	model time 0.1074 (0.1099)	loss 5.1920 (5.2332)	grad_norm 2.0028 (1.5794)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:44 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][650/781]	eta 0:00:17 lr 0.000010	 wd 0.0500	time 0.0987 (0.1369)	data time 0.0005 (0.0243)	model time 0.0983 (0.1099)	loss 5.1930 (5.2326)	grad_norm 1.8331 (1.5858)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:46 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][660/781]	eta 0:00:16 lr 0.000008	 wd 0.0500	time 0.1031 (0.1364)	data time 0.0005 (0.0240)	model time 0.1026 (0.1098)	loss 5.0658 (5.2313)	grad_norm 1.8053 (1.5901)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:47 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][670/781]	eta 0:00:15 lr 0.000007	 wd 0.0500	time 0.1078 (0.1360)	data time 0.0004 (0.0236)	model time 0.1073 (0.1098)	loss 5.2796 (5.2308)	grad_norm 1.7564 (1.5954)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:48 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][680/781]	eta 0:00:13 lr 0.000006	 wd 0.0500	time 0.1094 (0.1357)	data time 0.0006 (0.0233)	model time 0.1089 (0.1098)	loss 5.1894 (5.2298)	grad_norm 1.8693 (1.5997)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:49 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][690/781]	eta 0:00:12 lr 0.000005	 wd 0.0500	time 0.1005 (0.1353)	data time 0.0006 (0.0230)	model time 0.0999 (0.1099)	loss 5.1168 (5.2287)	grad_norm 1.7879 (1.6033)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:50 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][700/781]	eta 0:00:10 lr 0.000005	 wd 0.0500	time 0.1017 (0.1349)	data time 0.0005 (0.0226)	model time 0.1012 (0.1098)	loss 5.1948 (5.2279)	grad_norm 1.9471 (1.6090)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:51 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][710/781]	eta 0:00:09 lr 0.000004	 wd 0.0500	time 0.1055 (0.1346)	data time 0.0004 (0.0223)	model time 0.1051 (0.1098)	loss 5.0898 (5.2265)	grad_norm 2.2174 (1.6134)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:52 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][720/781]	eta 0:00:08 lr 0.000003	 wd 0.0500	time 0.1165 (0.1343)	data time 0.0005 (0.0220)	model time 0.1161 (0.1098)	loss 5.2969 (5.2260)	grad_norm 1.8172 (1.6179)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:53 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][730/781]	eta 0:00:06 lr 0.000003	 wd 0.0500	time 0.0980 (0.1340)	data time 0.0005 (0.0217)	model time 0.0975 (0.1099)	loss 5.1149 (5.2252)	grad_norm 1.9951 (1.6220)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:54 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][740/781]	eta 0:00:05 lr 0.000002	 wd 0.0500	time 0.1037 (0.1336)	data time 0.0006 (0.0215)	model time 0.1031 (0.1099)	loss 5.1869 (5.2248)	grad_norm 1.9149 (1.6253)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:55 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][750/781]	eta 0:00:04 lr 0.000002	 wd 0.0500	time 0.1092 (0.1333)	data time 0.0005 (0.0212)	model time 0.1087 (0.1099)	loss 5.1741 (5.2237)	grad_norm 2.1298 (1.6316)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:57 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][760/781]	eta 0:00:02 lr 0.000001	 wd 0.0500	time 0.1161 (0.1330)	data time 0.0004 (0.0209)	model time 0.1157 (0.1099)	loss 5.1849 (5.2237)	grad_norm 1.9720 (1.6345)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:58 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][770/781]	eta 0:00:01 lr 0.000001	 wd 0.0500	time 0.1035 (0.1327)	data time 0.0003 (0.0206)	model time 0.1032 (0.1099)	loss 5.0258 (5.2231)	grad_norm 2.2806 (1.6393)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:59 tiny_tinyimagenet] (main.py 348): INFO Train: [0/1][780/781]	eta 0:00:00 lr 0.000001	 wd 0.0500	time 0.1035 (0.1324)	data time 0.0003 (0.0204)	model time 0.1032 (0.1098)	loss 5.1776 (5.2224)	grad_norm 1.9816 (1.6441)	loss_scale 65536.0000 (65536.0000)	mem 1572MB
+[2026-03-25 21:47:59 tiny_tinyimagenet] (main.py 359): INFO EPOCH 0 training takes 0:01:44
+[2026-03-25 21:48:13 tiny_tinyimagenet] (main.py 403): INFO Test: [0/79]	Time 13.673 (13.673)	Loss 4.1055 (4.1055)	Acc@1 32.031 (32.031)	Acc@5 66.406 (66.406)	Mem 1572MB
+[2026-03-25 21:48:14 tiny_tinyimagenet] (main.py 403): INFO Test: [10/79]	Time 0.048 (1.287)	Loss 5.1797 (4.7894)	Acc@1 0.781 (7.884)	Acc@5 5.469 (19.744)	Mem 1572MB
+[2026-03-25 21:48:14 tiny_tinyimagenet] (main.py 403): INFO Test: [20/79]	Time 0.049 (0.697)	Loss 4.8555 (4.8534)	Acc@1 1.562 (5.134)	Acc@5 14.844 (15.104)	Mem 1572MB
+[2026-03-25 21:48:15 tiny_tinyimagenet] (main.py 403): INFO Test: [30/79]	Time 0.049 (0.488)	Loss 5.0469 (4.9132)	Acc@1 0.781 (3.831)	Acc@5 8.594 (12.172)	Mem 1572MB
+[2026-03-25 21:48:15 tiny_tinyimagenet] (main.py 403): INFO Test: [40/79]	Time 0.050 (0.380)	Loss 5.0820 (4.9180)	Acc@1 0.000 (3.697)	Acc@5 0.781 (12.748)	Mem 1572MB
+[2026-03-25 21:48:16 tiny_tinyimagenet] (main.py 403): INFO Test: [50/79]	Time 0.050 (0.315)	Loss 5.0000 (4.9243)	Acc@1 0.000 (3.309)	Acc@5 4.688 (13.051)	Mem 1572MB
+[2026-03-25 21:48:16 tiny_tinyimagenet] (main.py 403): INFO Test: [60/79]	Time 0.050 (0.272)	Loss 4.9922 (4.9426)	Acc@1 0.781 (3.176)	Acc@5 8.594 (12.398)	Mem 1572MB
+[2026-03-25 21:48:17 tiny_tinyimagenet] (main.py 403): INFO Test: [70/79]	Time 0.049 (0.240)	Loss 4.8594 (4.9432)	Acc@1 0.781 (3.103)	Acc@5 17.188 (12.379)	Mem 1572MB
+[2026-03-25 21:48:18 tiny_tinyimagenet] (main.py 410): INFO  * Acc@1 4.270 Acc@5 15.340
+[2026-03-25 21:48:18 tiny_tinyimagenet] (main.py 239): INFO Accuracy of the network on the 10000 test images: 4.3%
+[2026-03-25 21:48:18 tiny_tinyimagenet] (main.py 247): INFO New max accuracy: 4.27%
+[2026-03-25 21:48:18 tiny_tinyimagenet] (main.py 273): INFO Training time 0:02:02

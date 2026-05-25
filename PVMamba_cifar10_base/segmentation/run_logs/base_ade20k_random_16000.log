@@ -1,0 +1,678 @@
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/distributed/launch.py:181: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use-env is set by default in torchrun.
+If your script expects `--local-rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+[2026-04-25 19:39:34,985] torch.distributed.run: [WARNING] 
+[2026-04-25 19:39:34,985] torch.distributed.run: [WARNING] *****************************************
+[2026-04-25 19:39:34,985] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2026-04-25 19:39:34,985] torch.distributed.run: [WARNING] *****************************************
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/utils/dl_utils/setup_env.py:56: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/utils/dl_utils/setup_env.py:56: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+  warnings.warn(
+04/25 19:39:38 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 356824014
+    GPU 0,1: NVIDIA GeForce RTX 3080 Ti
+    CUDA_HOME: /usr/local/cuda
+    NVCC: Cuda compilation tools, release 12.8, V12.8.93
+    GCC: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+    PyTorch: 2.1.2+cu118
+    PyTorch compiling details: PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2022.2-Product Build 20220804 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.1.1 (Git Hash 64f6bcbcbab628e96f33a62c3e975f8535a7bde4)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 11.8
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_90,code=sm_90
+  - CuDNN 8.7
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.8, CUDNN_VERSION=8.7.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-invalid-partial-specialization -Wno-unused-private-field -Wno-aligned-allocation-unavailable -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_DISABLE_GPU_ASSERTS=ON, TORCH_VERSION=2.1.2, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
+
+    TorchVision: 0.16.2+cu118
+    OpenCV: 4.13.0
+    MMEngine: 0.10.7
+
+Runtime environment:
+    cudnn_benchmark: True
+    dist_cfg: {'backend': 'nccl'}
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    seed: 356824014
+    Distributed launcher: pytorch
+    Distributed training: True
+    GPU number: 2
+------------------------------------------------------------
+
+04/25 19:39:38 - mmengine - INFO - Config:
+crop_size = (
+    512,
+    512,
+)
+custom_imports = dict(
+    allow_failed_imports=False, imports=[
+        'model',
+    ])
+data_preprocessor = dict(
+    bgr_to_rgb=True,
+    mean=[
+        123.675,
+        116.28,
+        103.53,
+    ],
+    pad_val=0,
+    seg_pad_val=255,
+    size=(
+        512,
+        512,
+    ),
+    std=[
+        58.395,
+        57.12,
+        57.375,
+    ],
+    type='SegDataPreProcessor')
+data_root = '/home/jlx_75/datasets/ADE20K/ADEChallengeData2016'
+dataset_type = 'ADE20KDataset'
+default_hooks = dict(
+    checkpoint=dict(
+        by_epoch=False,
+        interval=4000,
+        max_keep_ckpts=3,
+        rule='greater',
+        save_best='mIoU',
+        type='CheckpointHook'),
+    logger=dict(interval=20, log_metric_by_epoch=False, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    timer=dict(type='IterTimerHook'),
+    visualization=dict(type='SegVisualizationHook'))
+default_scope = 'mmseg'
+env_cfg = dict(
+    cudnn_benchmark=True,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+launcher = 'pytorch'
+load_from = None
+log_level = 'INFO'
+log_processor = dict(by_epoch=False)
+model = dict(
+    auxiliary_head=dict(
+        align_corners=False,
+        channels=256,
+        concat_input=False,
+        dropout_ratio=0.1,
+        in_channels=256,
+        in_index=2,
+        loss_decode=dict(
+            loss_weight=0.4, type='CrossEntropyLoss', use_sigmoid=False),
+        norm_cfg=dict(requires_grad=True, type='SyncBN'),
+        num_classes=150,
+        num_convs=1,
+        type='FCNHead'),
+    backbone=dict(
+        d_state=64,
+        depths=[
+            2,
+            4,
+            8,
+            4,
+        ],
+        drop_path_rate=0.2,
+        drop_rate=0.0,
+        embed_dim=64,
+        img_size=224,
+        in_chans=3,
+        mlp_ratio=4.0,
+        num_heads=[
+            2,
+            4,
+            8,
+            16,
+        ],
+        out_indices=(
+            0,
+            1,
+            2,
+            3,
+        ),
+        patch_size=4,
+        pretrained=None,
+        spatial_flag=[
+            [],
+            [],
+            [
+                0,
+                2,
+                2,
+                1,
+                2,
+                2,
+                1,
+                2,
+            ],
+            [
+                0,
+                2,
+                2,
+                1,
+            ],
+        ],
+        token_mixer_types=[
+            'LoDSA',
+            'LoDSA',
+            'SaDSA',
+            'attention',
+        ],
+        type='MM_PVMAMBA'),
+    data_preprocessor=dict(
+        bgr_to_rgb=True,
+        mean=[
+            123.675,
+            116.28,
+            103.53,
+        ],
+        pad_val=0,
+        seg_pad_val=255,
+        size=(
+            512,
+            512,
+        ),
+        std=[
+            58.395,
+            57.12,
+            57.375,
+        ],
+        type='SegDataPreProcessor'),
+    decode_head=dict(
+        align_corners=False,
+        channels=512,
+        dropout_ratio=0.1,
+        in_channels=[
+            64,
+            128,
+            256,
+            512,
+        ],
+        in_index=[
+            0,
+            1,
+            2,
+            3,
+        ],
+        loss_decode=dict(
+            loss_weight=1.0, type='CrossEntropyLoss', use_sigmoid=False),
+        norm_cfg=dict(requires_grad=True, type='SyncBN'),
+        num_classes=150,
+        pool_scales=(
+            1,
+            2,
+            3,
+            6,
+        ),
+        type='UPerHead'),
+    pretrained=None,
+    test_cfg=dict(mode='whole'),
+    train_cfg=dict(),
+    type='EncoderDecoder')
+norm_cfg = dict(requires_grad=True, type='SyncBN')
+optim_wrapper = dict(
+    clip_grad=None,
+    optimizer=dict(
+        betas=(
+            0.9,
+            0.999,
+        ), lr=6e-05, type='AdamW', weight_decay=0.01),
+    type='OptimWrapper')
+param_scheduler = [
+    dict(
+        begin=0, by_epoch=False, end=500, start_factor=1e-06, type='LinearLR'),
+    dict(
+        begin=500,
+        by_epoch=False,
+        end=16000,
+        eta_min=0.0,
+        power=1.0,
+        type='PolyLR'),
+]
+resume = False
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        data_prefix=dict(
+            img_path='images/validation',
+            seg_map_path='annotations/validation'),
+        data_root='/home/jlx_75/datasets/ADE20K/ADEChallengeData2016',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(keep_ratio=True, scale=(
+                2048,
+                512,
+            ), type='Resize'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(type='PackSegInputs'),
+        ],
+        type='ADE20KDataset'),
+    num_workers=2,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = dict(
+    iou_metrics=[
+        'mIoU',
+    ], type='IoUMetric')
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(keep_ratio=True, scale=(
+        2048,
+        512,
+    ), type='Resize'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(type='PackSegInputs'),
+]
+train_cfg = dict(max_iters=16000, type='IterBasedTrainLoop', val_interval=4000)
+train_dataloader = dict(
+    batch_size=2,
+    dataset=dict(
+        data_prefix=dict(
+            img_path='images/training', seg_map_path='annotations/training'),
+        data_root='/home/jlx_75/datasets/ADE20K/ADEChallengeData2016',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(
+                keep_ratio=True,
+                ratio_range=(
+                    0.5,
+                    2.0,
+                ),
+                scale=(
+                    2048,
+                    512,
+                ),
+                type='RandomResize'),
+            dict(
+                cat_max_ratio=0.75, crop_size=(
+                    512,
+                    512,
+                ), type='RandomCrop'),
+            dict(prob=0.5, type='RandomFlip'),
+            dict(type='PhotoMetricDistortion'),
+            dict(type='PackSegInputs'),
+        ],
+        type='ADE20KDataset'),
+    num_workers=2,
+    persistent_workers=True,
+    sampler=dict(shuffle=True, type='InfiniteSampler'))
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(
+        keep_ratio=True,
+        ratio_range=(
+            0.5,
+            2.0,
+        ),
+        scale=(
+            2048,
+            512,
+        ),
+        type='RandomResize'),
+    dict(cat_max_ratio=0.75, crop_size=(
+        512,
+        512,
+    ), type='RandomCrop'),
+    dict(prob=0.5, type='RandomFlip'),
+    dict(type='PhotoMetricDistortion'),
+    dict(type='PackSegInputs'),
+]
+val_cfg = dict(type='ValLoop')
+val_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        data_prefix=dict(
+            img_path='images/validation',
+            seg_map_path='annotations/validation'),
+        data_root='/home/jlx_75/datasets/ADE20K/ADEChallengeData2016',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(keep_ratio=True, scale=(
+                2048,
+                512,
+            ), type='Resize'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(type='PackSegInputs'),
+        ],
+        type='ADE20KDataset'),
+    num_workers=2,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+val_evaluator = dict(
+    iou_metrics=[
+        'mIoU',
+    ], type='IoUMetric')
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    name='visualizer',
+    type='SegLocalVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = 'work_dirs/base_ade20k_random_16000'
+
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/builder.py:36: UserWarning: ``build_loss`` would be deprecated soon, please use ``mmseg.registry.MODELS.build()`` 
+  warnings.warn('``build_loss`` would be deprecated soon, please use '
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/losses/cross_entropy_loss.py:250: UserWarning: Default ``avg_non_ignore`` is False, if you would like to ignore the certain label and average loss over non-ignore labels, which is the same with PyTorch official cross_entropy, set ``avg_non_ignore=True``.
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/builder.py:36: UserWarning: ``build_loss`` would be deprecated soon, please use ``mmseg.registry.MODELS.build()`` 
+  warnings.warn('``build_loss`` would be deprecated soon, please use '
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/losses/cross_entropy_loss.py:250: UserWarning: Default ``avg_non_ignore`` is False, if you would like to ignore the certain label and average loss over non-ignore labels, which is the same with PyTorch official cross_entropy, set ``avg_non_ignore=True``.
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/engine/hooks/visualization_hook.py:60: UserWarning: The draw is False, it means that the hook for visualization will not take effect. The results will NOT be visualized or stored.
+  warnings.warn('The draw is False, it means that the '
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/engine/hooks/visualization_hook.py:60: UserWarning: The draw is False, it means that the hook for visualization will not take effect. The results will NOT be visualized or stored.
+  warnings.warn('The draw is False, it means that the '
+04/25 19:39:40 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SegVisualizationHook               
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SegVisualizationHook               
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SegVisualizationHook               
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/datasets/transforms/loading.py:83: UserWarning: `reduce_zero_label` will be deprecated, if you would like to ignore the zero label, please set `reduce_zero_label=True` when dataset initialized
+  warnings.warn('`reduce_zero_label` will be deprecated, '
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/datasets/transforms/loading.py:83: UserWarning: `reduce_zero_label` will be deprecated, if you would like to ignore the zero label, please set `reduce_zero_label=True` when dataset initialized
+  warnings.warn('`reduce_zero_label` will be deprecated, '
+04/25 19:39:40 - mmengine - WARNING - The prefix is not set in metric class IoUMetric.
+04/25 19:39:41 - mmengine - WARNING - "FileClient" will be deprecated in future. Please use io functions in https://mmengine.readthedocs.io/en/latest/api/fileio.html#file-io
+04/25 19:39:41 - mmengine - WARNING - "HardDiskBackend" is the alias of "LocalBackend" and the former will be deprecated in future.
+04/25 19:39:41 - mmengine - INFO - Checkpoints will be saved to /home/jlx_75/PVMamba_cifar10_base/segmentation/work_dirs/base_ade20k_random_16000.
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3526.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3526.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Traceback (most recent call last):
+  File "/home/jlx_75/PVMamba_cifar10_base/segmentation/tools/train.py", line 111, in <module>
+    main()
+  File "/home/jlx_75/PVMamba_cifar10_base/segmentation/tools/train.py", line 107, in main
+    runner.train()
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/runner/runner.py", line 1777, in train
+    model = self.train_loop.run()  # type: ignore
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/runner/loops.py", line 289, in run
+    self.run_iter(data_batch)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/runner/loops.py", line 313, in run_iter
+    outputs = self.runner.model.train_step(
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/model/wrappers/distributed.py", line 121, in train_step
+    losses = self._run_forward(data, mode='loss')
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/model/wrappers/distributed.py", line 161, in _run_forward
+    results = self(**data, mode=mode)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1519, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1355, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/segmentors/base.py", line 94, in forward
+    return self.loss(inputs, data_samples)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/segmentors/encoder_decoder.py", line 178, in loss
+    loss_decode = self._decode_head_forward_train(x, data_samples)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/segmentors/encoder_decoder.py", line 139, in _decode_head_forward_train
+    loss_decode = self.decode_head.loss(inputs, data_samples,
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/decode_head.py", line 261, in loss
+    seg_logits = self.forward(inputs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/uper_head.py", line 137, in forward
+    output = self._forward_feature(inputs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/uper_head.py", line 105, in _forward_feature
+    laterals.append(self.psp_forward(inputs))
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/uper_head.py", line 80, in psp_forward
+    psp_outs.extend(self.psp_modules(x))
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/psp_head.py", line 52, in forward
+    ppm_out = ppm(x)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/container.py", line 215, in forward
+    input = module(input)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmcv/cnn/bricks/conv_module.py", line 285, in forward
+    x = self.activate(x)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 101, in forward
+    return F.relu(input, inplace=self.inplace)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/functional.py", line 1467, in relu
+    return handle_torch_function(relu, (input,), input, inplace=inplace)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/overrides.py", line 1577, in handle_torch_function
+    result = torch_func_method(public_api, types, args, kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/_tensor.py", line 1386, in __torch_function__
+    ret = func(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/functional.py", line 1469, in relu
+    result = torch.relu_(input)
+RuntimeError: Output 0 of SyncBatchNormBackward is a view and is being modified inplace. This view was created inside a custom Function (or because an input was returned as-is) and the autograd logic to handle view+inplace would override the custom backward associated with the custom Function, leading to incorrect gradients. This behavior is forbidden. You can fix this by cloning the output of the custom Function.
+Traceback (most recent call last):
+  File "/home/jlx_75/PVMamba_cifar10_base/segmentation/tools/train.py", line 111, in <module>
+    main()
+  File "/home/jlx_75/PVMamba_cifar10_base/segmentation/tools/train.py", line 107, in main
+    runner.train()
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/runner/runner.py", line 1777, in train
+    model = self.train_loop.run()  # type: ignore
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/runner/loops.py", line 289, in run
+    self.run_iter(data_batch)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/runner/loops.py", line 313, in run_iter
+    outputs = self.runner.model.train_step(
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/model/wrappers/distributed.py", line 121, in train_step
+    losses = self._run_forward(data, mode='loss')
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmengine/model/wrappers/distributed.py", line 161, in _run_forward
+    results = self(**data, mode=mode)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1519, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1355, in _run_ddp_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/segmentors/base.py", line 94, in forward
+    return self.loss(inputs, data_samples)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/segmentors/encoder_decoder.py", line 178, in loss
+    loss_decode = self._decode_head_forward_train(x, data_samples)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/segmentors/encoder_decoder.py", line 139, in _decode_head_forward_train
+    loss_decode = self.decode_head.loss(inputs, data_samples,
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/decode_head.py", line 261, in loss
+    seg_logits = self.forward(inputs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/uper_head.py", line 137, in forward
+    output = self._forward_feature(inputs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/uper_head.py", line 105, in _forward_feature
+    laterals.append(self.psp_forward(inputs))
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/uper_head.py", line 80, in psp_forward
+    psp_outs.extend(self.psp_modules(x))
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmseg/models/decode_heads/psp_head.py", line 52, in forward
+    ppm_out = ppm(x)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/container.py", line 215, in forward
+    input = module(input)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/mmcv/cnn/bricks/conv_module.py", line 285, in forward
+    x = self.activate(x)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 101, in forward
+    return F.relu(input, inplace=self.inplace)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/functional.py", line 1467, in relu
+    return handle_torch_function(relu, (input,), input, inplace=inplace)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/overrides.py", line 1577, in handle_torch_function
+    result = torch_func_method(public_api, types, args, kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/_tensor.py", line 1386, in __torch_function__
+    ret = func(*args, **kwargs)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/nn/functional.py", line 1469, in relu
+    result = torch.relu_(input)
+RuntimeError: Output 0 of SyncBatchNormBackward is a view and is being modified inplace. This view was created inside a custom Function (or because an input was returned as-is) and the autograd logic to handle view+inplace would override the custom backward associated with the custom Function, leading to incorrect gradients. This behavior is forbidden. You can fix this by cloning the output of the custom Function.
+[2026-04-25 19:39:45,000] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 1176955) of binary: /home/jlx_75/miniconda3/envs/pvmamba_seg/bin/python
+Traceback (most recent call last):
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/distributed/launch.py", line 196, in <module>
+    main()
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/distributed/launch.py", line 192, in main
+    launch(args)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/distributed/launch.py", line 177, in launch
+    run(args)
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/jlx_75/miniconda3/envs/pvmamba_seg/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+tools/train.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-04-25_19:39:45
+  host      : jlx75
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1176956)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-04-25_19:39:45
+  host      : jlx75
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1176955)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

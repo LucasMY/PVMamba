@@ -1,0 +1,31 @@
+BASE: ['base.yaml']
+
+MODEL:
+  TYPE: pvmamba
+  NAME: tiny_cifar10_1ep
+  DROP_PATH_RATE: 0.2
+  PRETRAINED: ''
+  RESUME: ''
+  NUM_CLASSES: 10
+  PVMAMBA:
+    EMBED_DIM: 64
+    DEPTHS: [2, 4, 8, 4]
+    NUM_HEADS: [2, 4, 8, 16]
+    SSD_EXPANSION: 2
+    SSD_CHUNK_SIZE: 256
+    TOKEN_MIXER_TYPES: ['LoDSA', 'LoDSA', 'SaDSA', 'attention']
+    SPATIAL_FLAG: [[], [], [0, 2, 2, 1, 2, 2, 1, 2], [0, 2, 2, 1]]
+
+  DDP: 'torch'
+
+DATA:
+  DATASET: 'cifar10'
+  DATA_PATH: '/home/jlx_75/datasets/cifar10'
+  IMG_SIZE: 32
+  BATCH_SIZE: 128
+
+TRAIN:
+  EPOCHS: 1
+  WARMUP_EPOCHS: 0
+  AUTO_RESUME: False
+  MESA: 1.0

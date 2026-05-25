@@ -1,0 +1,35 @@
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.2.0)/charset_normalizer (2.1.1) doesn't match a supported version!
+  warnings.warn(
+/home/jlx_75/miniconda3/envs/pvmamba/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3526.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Unsupported operator aten::add encountered 104 time(s)
+Unsupported operator aten::exp encountered 14 time(s)
+Unsupported operator aten::neg encountered 14 time(s)
+Unsupported operator aten::softplus encountered 14 time(s)
+Unsupported operator aten::silu encountered 14 time(s)
+Unsupported operator aten::mul encountered 93 time(s)
+Unsupported operator aten::alias encountered 1299 time(s)
+Unsupported operator aten::repeat encountered 28 time(s)
+Unsupported operator aten::avg_pool2d encountered 6 time(s)
+Unsupported operator aten::gelu encountered 18 time(s)
+Unsupported operator aten::sub encountered 18 time(s)
+Unsupported operator aten::linspace encountered 2 time(s)
+Unsupported operator aten::meshgrid encountered 1 time(s)
+Unsupported operator aten::div encountered 5 time(s)
+Unsupported operator aten::mean encountered 8 time(s)
+Unsupported operator aten::softmax encountered 4 time(s)
+Unsupported operator aten::adaptive_avg_pool1d encountered 1 time(s)
+The following submodules of the model were never called during the trace of the graph. They may be unused, or they were accessed by direct calls to .forward() or via other python methods. In the latter case they will have zeros for statistics, though their statistics will still contribute to their parent calling module.
+layers.0.blocks.1.drop_path, layers.1.blocks.0.drop_path, layers.1.blocks.1.drop_path, layers.1.blocks.2.drop_path, layers.1.blocks.3.drop_path, layers.2.blocks.0.drop_path, layers.2.blocks.1.drop_path, layers.2.blocks.2.drop_path, layers.2.blocks.3.drop_path, layers.2.blocks.4.drop_path, layers.2.blocks.5.drop_path, layers.2.blocks.6.drop_path, layers.2.blocks.7.drop_path, layers.3.blocks.0.drop_path, layers.3.blocks.1.drop_path, layers.3.blocks.2.drop_path, layers.3.blocks.3.drop_path
+=> merge config from configs/pvmamba/base.yaml
+=> merge config from configs/pvmamba/tiny_cifar10_30ep.yaml
+============================================================
+Profile Result: PVMamba-Tiny Base
+Config: configs/pvmamba/tiny_cifar10_30ep.yaml
+Input size: 32 x 32
+Batch size: 1
+Params(M): 23.7805
+FLOPs(G): 0.0917
+Peak inference memory(GB): 0.2227
+Average inference time(ms/batch): 26.2925
+============================================================

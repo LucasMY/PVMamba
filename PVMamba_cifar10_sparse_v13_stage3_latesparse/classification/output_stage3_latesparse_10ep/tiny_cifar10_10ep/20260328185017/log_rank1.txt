@@ -1,0 +1,411 @@
+[2026-03-28 18:50:18 tiny_cifar10_10ep] (main.py 529): INFO AMP_ENABLE: true
+AMP_OPT_LEVEL: ''
+AUG:
+  AUTO_AUGMENT: rand-m9-mstd0.5-inc1
+  COLOR_JITTER: 0.4
+  CUTMIX: 1.0
+  CUTMIX_MINMAX: null
+  MIXUP: 0.8
+  MIXUP_MODE: batch
+  MIXUP_PROB: 1.0
+  MIXUP_SWITCH_PROB: 0.5
+  RECOUNT: 1
+  REMODE: pixel
+  REPROB: 0.25
+BASE:
+- base.yaml
+DATA:
+  BATCH_SIZE: 128
+  CACHE_MODE: part
+  DATASET: cifar10
+  DATA_PATH: /home/jlx_75/datasets/cifar10
+  IMG_SIZE: 32
+  INTERPOLATION: bicubic
+  MASK_PATCH_SIZE: 32
+  MASK_RATIO: 0.6
+  NUM_WORKERS: 8
+  PERSISTENT_WORKERS: false
+  PIN_MEMORY: true
+  ZIP_MODE: false
+ENABLE_AMP: false
+EVAL_MODE: false
+FUSED_LAYERNORM: false
+MODEL:
+  DDP: torch
+  DROP_PATH_RATE: 0.2
+  DROP_RATE: 0.0
+  LABEL_SMOOTHING: 0.1
+  MMCKPT: false
+  NAME: tiny_cifar10_10ep
+  NUM_CLASSES: 10
+  PRETRAINED: ''
+  PVMAMBA:
+    DEPTHS:
+    - 2
+    - 4
+    - 8
+    - 4
+    DT_INIT: random
+    D_STATE: 64
+    EMBED_DIM: 64
+    IMAGE_SIZE: 224
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 2
+    - 4
+    - 8
+    - 16
+    PATCH_SIZE: 4
+    SPATIAL_FLAG:
+    - []
+    - []
+    - - 0
+      - 2
+      - 2
+      - 1
+      - 2
+      - 2
+      - 1
+      - 2
+    - - 0
+      - 2
+      - 2
+      - 1
+    SSD_CHUNK_SIZE: 256
+    SSD_EXPANSION: 2
+    TOKEN_MIXER_TYPES:
+    - LoDSA
+    - LoDSA
+    - SaDSA
+    - attention
+  RESUME: ''
+  TYPE: pvmamba
+OUTPUT: output_stage3_latesparse_10ep/tiny_cifar10_10ep/20260328185017
+PRINT_FREQ: 10
+SAVE_FREQ: 1
+SEED: 0
+TAG: '20260328185017'
+TEST:
+  CROP: true
+  SEQUENTIAL: false
+  SHUFFLE: false
+THROUGHPUT_MODE: false
+TRAIN:
+  ACCUMULATION_STEPS: 1
+  AUTO_RESUME: false
+  BASE_LR: 0.00025
+  CLIP_GRAD: 5.0
+  EPOCHS: 10
+  LAYER_DECAY: 1.0
+  LR_SCHEDULER:
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1
+    GAMMA: 0.1
+    MULTISTEPS: []
+    NAME: cosine
+    WARMUP_PREFIX: true
+  MESA: 1.0
+  MIN_LR: 2.5e-06
+  MOE:
+    SAVE_MASTER: false
+  OPTIMIZER:
+    BETAS:
+    - 0.9
+    - 0.999
+    EPS: 1.0e-08
+    MOMENTUM: 0.9
+    NAME: adamw
+  START_EPOCH: 0
+  USE_CHECKPOINT: false
+  WARMUP_EPOCHS: 1
+  WARMUP_LR: 2.5e-07
+  WEIGHT_DECAY: 0.05
+TRAINCOST_MODE: false
+
+[2026-03-28 18:50:18 tiny_cifar10_10ep] (main.py 530): INFO {"cfg": "configs/pvmamba/tiny_cifar10_10ep.yaml", "opts": null, "batch_size": null, "data_path": "/home/jlx_75/datasets/cifar10", "zip": false, "cache_mode": "part", "pretrained": null, "resume": null, "accumulation_steps": null, "use_checkpoint": false, "disable_amp": false, "output": "output_stage3_latesparse_10ep", "tag": "20260328185017", "eval": false, "throughput": false, "fused_layernorm": false, "optim": null, "model_ema": false, "model_ema_decay": 0.9999, "model_ema_force_cpu": false, "memory_limit_rate": -1, "ddp": "torch", "enable_preload": false, "enable_persistance": false, "mesa": false, "mesa_value": 1.0, "mute_repeat": false}
+[2026-03-28 18:50:19 tiny_cifar10_10ep] (main.py 122): INFO Creating model:pvmamba/tiny_cifar10_10ep
+[2026-03-28 18:50:19 tiny_cifar10_10ep] (optimizer.py 18): INFO ==============> building optimizer adamw....................
+[2026-03-28 18:50:19 tiny_cifar10_10ep] (optimizer.py 27): INFO No weight decay list: ['patch_embed.conv1.norm.weight', 'patch_embed.conv1.norm.bias', 'patch_embed.conv2.0.norm.weight', 'patch_embed.conv2.0.norm.bias', 'patch_embed.conv2.1.norm.weight', 'patch_embed.conv2.1.norm.bias', 'patch_embed.conv3.0.norm.weight', 'patch_embed.conv3.0.norm.bias', 'patch_embed.conv3.1.norm.weight', 'patch_embed.conv3.1.norm.bias', 'layers.0.blocks.0.cpe1.bias', 'layers.0.blocks.0.norm1.weight', 'layers.0.blocks.0.norm1.bias', 'layers.0.blocks.0.token_mixer.dt_bias', 'layers.0.blocks.0.token_mixer.A_log', 'layers.0.blocks.0.token_mixer.D', 'layers.0.blocks.0.token_mixer.conv2d.bias', 'layers.0.blocks.0.token_mixer.norm.weight', 'layers.0.blocks.0.token_mixer.norm.bias', 'layers.0.blocks.0.cpe2.bias', 'layers.0.blocks.0.norm2.weight', 'layers.0.blocks.0.norm2.bias', 'layers.0.blocks.0.mlp.fc1.bias', 'layers.0.blocks.0.mlp.fc2.bias', 'layers.0.blocks.1.cpe1.bias', 'layers.0.blocks.1.norm1.weight', 'layers.0.blocks.1.norm1.bias', 'layers.0.blocks.1.token_mixer.dt_bias', 'layers.0.blocks.1.token_mixer.A_log', 'layers.0.blocks.1.token_mixer.D', 'layers.0.blocks.1.token_mixer.conv2d.bias', 'layers.0.blocks.1.token_mixer.norm.weight', 'layers.0.blocks.1.token_mixer.norm.bias', 'layers.0.blocks.1.cpe2.bias', 'layers.0.blocks.1.norm2.weight', 'layers.0.blocks.1.norm2.bias', 'layers.0.blocks.1.mlp.fc1.bias', 'layers.0.blocks.1.mlp.fc2.bias', 'layers.0.downsample.conv.0.conv.bias', 'layers.0.downsample.conv.1.conv.bias', 'layers.0.downsample.conv.2.conv.bias', 'layers.0.downsample.conv.2.norm.weight', 'layers.0.downsample.conv.2.norm.bias', 'layers.1.blocks.0.cpe1.bias', 'layers.1.blocks.0.norm1.weight', 'layers.1.blocks.0.norm1.bias', 'layers.1.blocks.0.token_mixer.dt_bias', 'layers.1.blocks.0.token_mixer.A_log', 'layers.1.blocks.0.token_mixer.D', 'layers.1.blocks.0.token_mixer.conv2d.bias', 'layers.1.blocks.0.token_mixer.norm.weight', 'layers.1.blocks.0.token_mixer.norm.bias', 'layers.1.blocks.0.cpe2.bias', 'layers.1.blocks.0.norm2.weight', 'layers.1.blocks.0.norm2.bias', 'layers.1.blocks.0.mlp.fc1.bias', 'layers.1.blocks.0.mlp.fc2.bias', 'layers.1.blocks.1.cpe1.bias', 'layers.1.blocks.1.norm1.weight', 'layers.1.blocks.1.norm1.bias', 'layers.1.blocks.1.token_mixer.dt_bias', 'layers.1.blocks.1.token_mixer.A_log', 'layers.1.blocks.1.token_mixer.D', 'layers.1.blocks.1.token_mixer.conv2d.bias', 'layers.1.blocks.1.token_mixer.norm.weight', 'layers.1.blocks.1.token_mixer.norm.bias', 'layers.1.blocks.1.cpe2.bias', 'layers.1.blocks.1.norm2.weight', 'layers.1.blocks.1.norm2.bias', 'layers.1.blocks.1.mlp.fc1.bias', 'layers.1.blocks.1.mlp.fc2.bias', 'layers.1.blocks.2.cpe1.bias', 'layers.1.blocks.2.norm1.weight', 'layers.1.blocks.2.norm1.bias', 'layers.1.blocks.2.token_mixer.dt_bias', 'layers.1.blocks.2.token_mixer.A_log', 'layers.1.blocks.2.token_mixer.D', 'layers.1.blocks.2.token_mixer.conv2d.bias', 'layers.1.blocks.2.token_mixer.norm.weight', 'layers.1.blocks.2.token_mixer.norm.bias', 'layers.1.blocks.2.cpe2.bias', 'layers.1.blocks.2.norm2.weight', 'layers.1.blocks.2.norm2.bias', 'layers.1.blocks.2.mlp.fc1.bias', 'layers.1.blocks.2.mlp.fc2.bias', 'layers.1.blocks.3.cpe1.bias', 'layers.1.blocks.3.norm1.weight', 'layers.1.blocks.3.norm1.bias', 'layers.1.blocks.3.token_mixer.dt_bias', 'layers.1.blocks.3.token_mixer.A_log', 'layers.1.blocks.3.token_mixer.D', 'layers.1.blocks.3.token_mixer.conv2d.bias', 'layers.1.blocks.3.token_mixer.norm.weight', 'layers.1.blocks.3.token_mixer.norm.bias', 'layers.1.blocks.3.cpe2.bias', 'layers.1.blocks.3.norm2.weight', 'layers.1.blocks.3.norm2.bias', 'layers.1.blocks.3.mlp.fc1.bias', 'layers.1.blocks.3.mlp.fc2.bias', 'layers.1.downsample.conv.0.conv.bias', 'layers.1.downsample.conv.1.conv.bias', 'layers.1.downsample.conv.2.conv.bias', 'layers.1.downsample.conv.2.norm.weight', 'layers.1.downsample.conv.2.norm.bias', 'layers.2.blocks.0.cpe1.bias', 'layers.2.blocks.0.norm1.weight', 'layers.2.blocks.0.norm1.bias', 'layers.2.blocks.0.token_mixer.dt_bias', 'layers.2.blocks.0.token_mixer.A_log', 'layers.2.blocks.0.token_mixer.D', 'layers.2.blocks.0.token_mixer.conv2d.bias', 'layers.2.blocks.0.token_mixer.norm.weight', 'layers.2.blocks.0.token_mixer.norm.bias', 'layers.2.blocks.0.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.0.cpe2.bias', 'layers.2.blocks.0.norm2.weight', 'layers.2.blocks.0.norm2.bias', 'layers.2.blocks.0.mlp.fc1.bias', 'layers.2.blocks.0.mlp.fc2.bias', 'layers.2.blocks.1.cpe1.bias', 'layers.2.blocks.1.norm1.weight', 'layers.2.blocks.1.norm1.bias', 'layers.2.blocks.1.token_mixer.dt_bias', 'layers.2.blocks.1.token_mixer.A_log', 'layers.2.blocks.1.token_mixer.D', 'layers.2.blocks.1.token_mixer.conv2d.bias', 'layers.2.blocks.1.token_mixer.norm.weight', 'layers.2.blocks.1.token_mixer.norm.bias', 'layers.2.blocks.1.cpe2.bias', 'layers.2.blocks.1.norm2.weight', 'layers.2.blocks.1.norm2.bias', 'layers.2.blocks.1.mlp.fc1.bias', 'layers.2.blocks.1.mlp.fc2.bias', 'layers.2.blocks.2.cpe1.bias', 'layers.2.blocks.2.norm1.weight', 'layers.2.blocks.2.norm1.bias', 'layers.2.blocks.2.token_mixer.dt_bias', 'layers.2.blocks.2.token_mixer.A_log', 'layers.2.blocks.2.token_mixer.D', 'layers.2.blocks.2.token_mixer.conv2d.bias', 'layers.2.blocks.2.token_mixer.norm.weight', 'layers.2.blocks.2.token_mixer.norm.bias', 'layers.2.blocks.2.cpe2.bias', 'layers.2.blocks.2.norm2.weight', 'layers.2.blocks.2.norm2.bias', 'layers.2.blocks.2.mlp.fc1.bias', 'layers.2.blocks.2.mlp.fc2.bias', 'layers.2.blocks.3.cpe1.bias', 'layers.2.blocks.3.norm1.weight', 'layers.2.blocks.3.norm1.bias', 'layers.2.blocks.3.token_mixer.dt_bias', 'layers.2.blocks.3.token_mixer.A_log', 'layers.2.blocks.3.token_mixer.D', 'layers.2.blocks.3.token_mixer.conv2d.bias', 'layers.2.blocks.3.token_mixer.norm.weight', 'layers.2.blocks.3.token_mixer.norm.bias', 'layers.2.blocks.3.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.3.cpe2.bias', 'layers.2.blocks.3.norm2.weight', 'layers.2.blocks.3.norm2.bias', 'layers.2.blocks.3.mlp.fc1.bias', 'layers.2.blocks.3.mlp.fc2.bias', 'layers.2.blocks.4.cpe1.bias', 'layers.2.blocks.4.norm1.weight', 'layers.2.blocks.4.norm1.bias', 'layers.2.blocks.4.token_mixer.dt_bias', 'layers.2.blocks.4.token_mixer.A_log', 'layers.2.blocks.4.token_mixer.D', 'layers.2.blocks.4.token_mixer.conv2d.bias', 'layers.2.blocks.4.token_mixer.norm.weight', 'layers.2.blocks.4.token_mixer.norm.bias', 'layers.2.blocks.4.cpe2.bias', 'layers.2.blocks.4.norm2.weight', 'layers.2.blocks.4.norm2.bias', 'layers.2.blocks.4.mlp.fc1.bias', 'layers.2.blocks.4.mlp.fc2.bias', 'layers.2.blocks.5.cpe1.bias', 'layers.2.blocks.5.norm1.weight', 'layers.2.blocks.5.norm1.bias', 'layers.2.blocks.5.token_mixer.dt_bias', 'layers.2.blocks.5.token_mixer.A_log', 'layers.2.blocks.5.token_mixer.D', 'layers.2.blocks.5.token_mixer.conv2d.bias', 'layers.2.blocks.5.token_mixer.norm.weight', 'layers.2.blocks.5.token_mixer.norm.bias', 'layers.2.blocks.5.cpe2.bias', 'layers.2.blocks.5.norm2.weight', 'layers.2.blocks.5.norm2.bias', 'layers.2.blocks.5.mlp.fc1.bias', 'layers.2.blocks.5.mlp.fc2.bias', 'layers.2.blocks.6.cpe1.bias', 'layers.2.blocks.6.norm1.weight', 'layers.2.blocks.6.norm1.bias', 'layers.2.blocks.6.token_mixer.dt_bias', 'layers.2.blocks.6.token_mixer.A_log', 'layers.2.blocks.6.token_mixer.D', 'layers.2.blocks.6.token_mixer.conv2d.bias', 'layers.2.blocks.6.token_mixer.norm.weight', 'layers.2.blocks.6.token_mixer.norm.bias', 'layers.2.blocks.6.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.6.cpe2.bias', 'layers.2.blocks.6.norm2.weight', 'layers.2.blocks.6.norm2.bias', 'layers.2.blocks.6.mlp.fc1.bias', 'layers.2.blocks.6.mlp.fc2.bias', 'layers.2.blocks.7.cpe1.bias', 'layers.2.blocks.7.norm1.weight', 'layers.2.blocks.7.norm1.bias', 'layers.2.blocks.7.token_mixer.dt_bias', 'layers.2.blocks.7.token_mixer.A_log', 'layers.2.blocks.7.token_mixer.D', 'layers.2.blocks.7.token_mixer.conv2d.bias', 'layers.2.blocks.7.token_mixer.norm.weight', 'layers.2.blocks.7.token_mixer.norm.bias', 'layers.2.blocks.7.cpe2.bias', 'layers.2.blocks.7.norm2.weight', 'layers.2.blocks.7.norm2.bias', 'layers.2.blocks.7.mlp.fc1.bias', 'layers.2.blocks.7.mlp.fc2.bias', 'layers.2.downsample.conv.0.conv.bias', 'layers.2.downsample.conv.1.conv.bias', 'layers.2.downsample.conv.2.conv.bias', 'layers.2.downsample.conv.2.norm.weight', 'layers.2.downsample.conv.2.norm.bias', 'layers.3.blocks.0.cpe1.bias', 'layers.3.blocks.0.norm1.weight', 'layers.3.blocks.0.norm1.bias', 'layers.3.blocks.0.token_mixer.to_out.bias', 'layers.3.blocks.0.cpe2.bias', 'layers.3.blocks.0.norm2.weight', 'layers.3.blocks.0.norm2.bias', 'layers.3.blocks.0.mlp.fc1.bias', 'layers.3.blocks.0.mlp.fc2.bias', 'layers.3.blocks.1.cpe1.bias', 'layers.3.blocks.1.norm1.weight', 'layers.3.blocks.1.norm1.bias', 'layers.3.blocks.1.token_mixer.to_out.bias', 'layers.3.blocks.1.cpe2.bias', 'layers.3.blocks.1.norm2.weight', 'layers.3.blocks.1.norm2.bias', 'layers.3.blocks.1.mlp.fc1.bias', 'layers.3.blocks.1.mlp.fc2.bias', 'layers.3.blocks.2.cpe1.bias', 'layers.3.blocks.2.norm1.weight', 'layers.3.blocks.2.norm1.bias', 'layers.3.blocks.2.token_mixer.to_out.bias', 'layers.3.blocks.2.cpe2.bias', 'layers.3.blocks.2.norm2.weight', 'layers.3.blocks.2.norm2.bias', 'layers.3.blocks.2.mlp.fc1.bias', 'layers.3.blocks.2.mlp.fc2.bias', 'layers.3.blocks.3.cpe1.bias', 'layers.3.blocks.3.norm1.weight', 'layers.3.blocks.3.norm1.bias', 'layers.3.blocks.3.token_mixer.to_out.bias', 'layers.3.blocks.3.cpe2.bias', 'layers.3.blocks.3.norm2.weight', 'layers.3.blocks.3.norm2.bias', 'layers.3.blocks.3.mlp.fc1.bias', 'layers.3.blocks.3.mlp.fc2.bias', 'norm.weight', 'norm.bias', 'head.bias']
+[2026-03-28 18:50:20 tiny_cifar10_10ep] (main.py 217): INFO Start training
+[2026-03-28 18:50:43 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][0/195]	eta 1:13:12 lr 0.000000	 wd 0.0500	time 22.5271 (22.5271)	data time 20.4875 (20.4875)	model time 0.0000 (0.0000)	loss 2.4112 (2.4112)	grad_norm 5.0272 (5.0272)	loss_scale 65536.0000 (65536.0000)	mem 1531MB
+[2026-03-28 18:50:44 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][10/195]	eta 0:06:39 lr 0.000013	 wd 0.0500	time 0.1229 (2.1577)	data time 0.0007 (1.8631)	model time 0.0000 (0.0000)	loss 2.3121 (2.3671)	grad_norm 4.2671 (4.3025)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:45 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][20/195]	eta 0:03:28 lr 0.000026	 wd 0.0500	time 0.1235 (1.1892)	data time 0.0006 (0.9762)	model time 0.0000 (0.0000)	loss 2.3378 (2.3333)	grad_norm 3.9119 (4.1862)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:46 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][30/195]	eta 0:02:19 lr 0.000039	 wd 0.0500	time 0.1141 (0.8451)	data time 0.0005 (0.6615)	model time 0.0000 (0.0000)	loss 2.2868 (2.3072)	grad_norm 3.8026 (4.1114)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:48 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][40/195]	eta 0:01:43 lr 0.000051	 wd 0.0500	time 0.1167 (0.6666)	data time 0.0005 (0.5003)	model time 0.0000 (0.0000)	loss 2.1452 (2.2789)	grad_norm 3.9228 (4.0414)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:49 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][50/195]	eta 0:01:21 lr 0.000064	 wd 0.0500	time 0.1179 (0.5588)	data time 0.0008 (0.4024)	model time 0.0000 (0.0000)	loss 2.2305 (2.2640)	grad_norm 3.4969 (3.9398)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:50 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][60/195]	eta 0:01:05 lr 0.000077	 wd 0.0500	time 0.1242 (0.4863)	data time 0.0007 (0.3365)	model time 0.1235 (0.1159)	loss 2.2651 (2.2530)	grad_norm 3.4391 (3.8815)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:51 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][70/195]	eta 0:00:54 lr 0.000090	 wd 0.0500	time 0.1316 (0.4346)	data time 0.0006 (0.2892)	model time 0.1310 (0.1172)	loss 2.1371 (2.2369)	grad_norm 3.3085 (3.8392)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:52 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][80/195]	eta 0:00:45 lr 0.000103	 wd 0.0500	time 0.1087 (0.3950)	data time 0.0007 (0.2536)	model time 0.1080 (0.1157)	loss 2.2536 (2.2314)	grad_norm 3.1079 (3.7598)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:53 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][90/195]	eta 0:00:38 lr 0.000116	 wd 0.0500	time 0.1156 (0.3645)	data time 0.0006 (0.2258)	model time 0.1150 (0.1160)	loss 2.0781 (2.2171)	grad_norm 3.3402 (3.6899)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:55 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][100/195]	eta 0:00:32 lr 0.000128	 wd 0.0500	time 0.1391 (0.3415)	data time 0.0007 (0.2035)	model time 0.1384 (0.1191)	loss 2.1949 (2.2126)	grad_norm 2.7136 (3.6025)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:56 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][110/195]	eta 0:00:27 lr 0.000141	 wd 0.0500	time 0.1385 (0.3233)	data time 0.0006 (0.1852)	model time 0.1379 (0.1224)	loss 2.1452 (2.2042)	grad_norm 2.9346 (3.5328)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:57 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][120/195]	eta 0:00:23 lr 0.000154	 wd 0.0500	time 0.1234 (0.3070)	data time 0.0008 (0.1700)	model time 0.1226 (0.1229)	loss 2.0291 (2.1909)	grad_norm 2.7910 (3.4811)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:50:59 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][130/195]	eta 0:00:19 lr 0.000167	 wd 0.0500	time 0.1162 (0.2929)	data time 0.0006 (0.1571)	model time 0.1156 (0.1227)	loss 2.1161 (2.1835)	grad_norm 2.4492 (3.4354)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:00 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][140/195]	eta 0:00:15 lr 0.000180	 wd 0.0500	time 0.1364 (0.2817)	data time 0.0007 (0.1460)	model time 0.1357 (0.1240)	loss 2.1371 (2.1766)	grad_norm 2.6468 (3.3801)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:01 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][150/195]	eta 0:00:12 lr 0.000192	 wd 0.0500	time 0.1383 (0.2720)	data time 0.0007 (0.1364)	model time 0.1376 (0.1251)	loss 2.2793 (2.1681)	grad_norm 2.3899 (3.3253)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:03 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][160/195]	eta 0:00:09 lr 0.000205	 wd 0.0500	time 0.1255 (0.2632)	data time 0.0006 (0.1279)	model time 0.1249 (0.1254)	loss 2.0939 (2.1606)	grad_norm 2.2914 (3.2739)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:04 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][170/195]	eta 0:00:06 lr 0.000218	 wd 0.0500	time 0.1315 (0.2553)	data time 0.0006 (0.1205)	model time 0.1308 (0.1256)	loss 2.1572 (2.1509)	grad_norm 2.3691 (3.2242)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:05 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][180/195]	eta 0:00:03 lr 0.000231	 wd 0.0500	time 0.1303 (0.2486)	data time 0.0004 (0.1139)	model time 0.1299 (0.1263)	loss 1.9124 (2.1444)	grad_norm 2.1954 (3.1851)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:06 tiny_cifar10_10ep] (main.py 357): INFO Train: [0/10][190/195]	eta 0:00:01 lr 0.000244	 wd 0.0500	time 0.1225 (0.2422)	data time 0.0004 (0.1079)	model time 0.1222 (0.1262)	loss 2.0538 (2.1350)	grad_norm 2.5863 (3.1659)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:08 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 0 training takes 0:00:47
+[2026-03-28 18:51:23 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 15.645 (15.645)	Loss 1.6230 (1.6230)	Acc@1 44.141 (44.141)	Acc@5 88.672 (88.672)	Mem 1206MB
+[2026-03-28 18:51:24 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.049 (1.466)	Loss 1.6133 (1.6326)	Acc@1 45.703 (42.933)	Acc@5 92.578 (89.524)	Mem 1206MB
+[2026-03-28 18:51:24 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.048 (0.791)	Loss 1.6426 (1.6236)	Acc@1 41.797 (43.378)	Acc@5 88.672 (90.030)	Mem 1206MB
+[2026-03-28 18:51:25 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.033 (0.551)	Loss 1.5840 (1.6264)	Acc@1 44.531 (43.233)	Acc@5 90.234 (90.071)	Mem 1206MB
+[2026-03-28 18:51:26 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 43.060 Acc@5 89.970
+[2026-03-28 18:51:26 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 43.1%
+[2026-03-28 18:51:26 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 43.06%
+[2026-03-28 18:51:50 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][0/195]	eta 1:16:54 lr 0.000250	 wd 0.0500	time 23.6629 (23.6629)	data time 22.4626 (22.4626)	model time 0.0000 (0.0000)	loss 2.0768 (2.0768)	grad_norm 2.5074 (2.5074)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:51 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][10/195]	eta 0:07:00 lr 0.000250	 wd 0.0500	time 0.1316 (2.2720)	data time 0.0006 (2.0428)	model time 0.0000 (0.0000)	loss 1.8712 (1.9909)	grad_norm 2.3477 (2.4237)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:52 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][20/195]	eta 0:03:39 lr 0.000250	 wd 0.0500	time 0.1318 (1.2530)	data time 0.0008 (1.0704)	model time 0.0000 (0.0000)	loss 2.0683 (2.0011)	grad_norm 2.8388 (2.5273)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:53 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][30/195]	eta 0:02:26 lr 0.000250	 wd 0.0500	time 0.1117 (0.8867)	data time 0.0006 (0.7254)	model time 0.0000 (0.0000)	loss 2.0333 (2.0043)	grad_norm 2.5613 (2.4668)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:55 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][40/195]	eta 0:01:48 lr 0.000250	 wd 0.0500	time 0.1147 (0.6985)	data time 0.0007 (0.5486)	model time 0.0000 (0.0000)	loss 2.1484 (1.9951)	grad_norm 2.1268 (2.4230)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:56 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][50/195]	eta 0:01:24 lr 0.000250	 wd 0.0500	time 0.1130 (0.5841)	data time 0.0006 (0.4412)	model time 0.0000 (0.0000)	loss 1.8802 (1.9845)	grad_norm 2.1924 (2.4287)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:57 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][60/195]	eta 0:01:08 lr 0.000249	 wd 0.0500	time 0.1324 (0.5081)	data time 0.0008 (0.3690)	model time 0.1316 (0.1195)	loss 2.1942 (1.9870)	grad_norm 2.0454 (2.3848)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:51:58 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][70/195]	eta 0:00:56 lr 0.000249	 wd 0.0500	time 0.1311 (0.4559)	data time 0.0007 (0.3171)	model time 0.1304 (0.1282)	loss 1.8067 (1.9907)	grad_norm 2.2870 (2.3770)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:00 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][80/195]	eta 0:00:47 lr 0.000249	 wd 0.0500	time 0.1336 (0.4161)	data time 0.0007 (0.2781)	model time 0.1328 (0.1296)	loss 1.7357 (1.9876)	grad_norm 2.4971 (2.3666)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:01 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][90/195]	eta 0:00:40 lr 0.000248	 wd 0.0500	time 0.1349 (0.3852)	data time 0.0009 (0.2476)	model time 0.1340 (0.1307)	loss 1.9929 (1.9838)	grad_norm 2.3782 (2.3823)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:02 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][100/195]	eta 0:00:34 lr 0.000248	 wd 0.0500	time 0.1180 (0.3597)	data time 0.0007 (0.2232)	model time 0.1173 (0.1299)	loss 2.0251 (1.9803)	grad_norm 2.1771 (2.3760)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:03 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][110/195]	eta 0:00:28 lr 0.000248	 wd 0.0500	time 0.1087 (0.3376)	data time 0.0007 (0.2031)	model time 0.1081 (0.1273)	loss 1.8242 (1.9817)	grad_norm 2.0483 (2.3571)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:05 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][120/195]	eta 0:00:23 lr 0.000247	 wd 0.0500	time 0.1187 (0.3194)	data time 0.0007 (0.1864)	model time 0.1180 (0.1257)	loss 2.0383 (1.9819)	grad_norm 2.3680 (2.3510)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:06 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][130/195]	eta 0:00:19 lr 0.000247	 wd 0.0500	time 0.1114 (0.3035)	data time 0.0005 (0.1722)	model time 0.1109 (0.1239)	loss 2.0779 (1.9817)	grad_norm 2.2641 (2.3348)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:07 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][140/195]	eta 0:00:15 lr 0.000246	 wd 0.0500	time 0.1063 (0.2902)	data time 0.0006 (0.1601)	model time 0.1058 (0.1228)	loss 1.9034 (1.9836)	grad_norm 1.8490 (2.3158)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:08 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][150/195]	eta 0:00:12 lr 0.000246	 wd 0.0500	time 0.1224 (0.2786)	data time 0.0005 (0.1495)	model time 0.1219 (0.1221)	loss 1.6467 (1.9857)	grad_norm 2.2018 (2.3062)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:09 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][160/195]	eta 0:00:09 lr 0.000245	 wd 0.0500	time 0.1139 (0.2683)	data time 0.0007 (0.1403)	model time 0.1131 (0.1211)	loss 1.8396 (1.9838)	grad_norm 2.5966 (2.3081)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:10 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][170/195]	eta 0:00:06 lr 0.000244	 wd 0.0500	time 0.1165 (0.2592)	data time 0.0006 (0.1321)	model time 0.1159 (0.1204)	loss 1.9557 (1.9870)	grad_norm 1.7184 (2.2998)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:11 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][180/195]	eta 0:00:03 lr 0.000244	 wd 0.0500	time 0.1108 (0.2515)	data time 0.0004 (0.1248)	model time 0.1104 (0.1202)	loss 1.7436 (1.9841)	grad_norm 2.0534 (2.2882)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:12 tiny_cifar10_10ep] (main.py 357): INFO Train: [1/10][190/195]	eta 0:00:01 lr 0.000243	 wd 0.0500	time 0.1081 (0.2441)	data time 0.0004 (0.1183)	model time 0.1077 (0.1195)	loss 2.1596 (1.9832)	grad_norm 2.0746 (2.2771)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:14 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 1 training takes 0:00:47
+[2026-03-28 18:52:29 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 15.776 (15.776)	Loss 1.5039 (1.5039)	Acc@1 49.219 (49.219)	Acc@5 91.797 (91.797)	Mem 1206MB
+[2026-03-28 18:52:30 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.049 (1.478)	Loss 1.5117 (1.5186)	Acc@1 46.094 (47.408)	Acc@5 94.141 (92.365)	Mem 1206MB
+[2026-03-28 18:52:30 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.049 (0.798)	Loss 1.5400 (1.5092)	Acc@1 44.922 (47.563)	Acc@5 92.578 (92.708)	Mem 1206MB
+[2026-03-28 18:52:31 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.047 (0.556)	Loss 1.4766 (1.5095)	Acc@1 46.094 (47.014)	Acc@5 95.312 (92.830)	Mem 1206MB
+[2026-03-28 18:52:32 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 46.810 Acc@5 92.710
+[2026-03-28 18:52:32 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 46.8%
+[2026-03-28 18:52:32 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 46.81%
+[2026-03-28 18:52:54 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][0/195]	eta 1:10:44 lr 0.000243	 wd 0.0500	time 21.7683 (21.7683)	data time 21.1266 (21.1266)	model time 0.0000 (0.0000)	loss 2.1091 (2.1091)	grad_norm 1.6331 (1.6331)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:55 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][10/195]	eta 0:06:28 lr 0.000242	 wd 0.0500	time 0.1309 (2.0983)	data time 0.0006 (1.9213)	model time 0.0000 (0.0000)	loss 1.5922 (1.9583)	grad_norm 2.2279 (2.1018)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:56 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][20/195]	eta 0:03:23 lr 0.000241	 wd 0.0500	time 0.1311 (1.1615)	data time 0.0007 (1.0068)	model time 0.0000 (0.0000)	loss 1.7785 (2.0095)	grad_norm 2.3284 (2.2403)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:58 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][30/195]	eta 0:02:16 lr 0.000240	 wd 0.0500	time 0.1324 (0.8294)	data time 0.0007 (0.6823)	model time 0.0000 (0.0000)	loss 1.9399 (1.9887)	grad_norm 1.8714 (2.2078)	loss_scale 65536.0000 (65536.0000)	mem 1206MB
+[2026-03-28 18:52:59 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][40/195]	eta 0:01:41 lr 0.000239	 wd 0.0500	time 0.1106 (0.6552)	data time 0.0006 (0.5160)	model time 0.0000 (0.0000)	loss 1.9860 (1.9731)	grad_norm 2.1465 (inf)	loss_scale 32768.0000 (62339.1220)	mem 1206MB
+[2026-03-28 18:53:00 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][50/195]	eta 0:01:19 lr 0.000238	 wd 0.0500	time 0.1070 (0.5487)	data time 0.0005 (0.4150)	model time 0.0000 (0.0000)	loss 1.9766 (1.9742)	grad_norm 2.4504 (inf)	loss_scale 32768.0000 (56540.8627)	mem 1206MB
+[2026-03-28 18:53:01 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][60/195]	eta 0:01:04 lr 0.000237	 wd 0.0500	time 0.1073 (0.4766)	data time 0.0006 (0.3471)	model time 0.1067 (0.1081)	loss 1.9875 (1.9782)	grad_norm 1.6463 (inf)	loss_scale 32768.0000 (52643.6721)	mem 1206MB
+[2026-03-28 18:53:02 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][70/195]	eta 0:00:53 lr 0.000236	 wd 0.0500	time 0.1095 (0.4250)	data time 0.0008 (0.2983)	model time 0.1087 (0.1089)	loss 1.9609 (1.9728)	grad_norm 1.8447 (inf)	loss_scale 32768.0000 (49844.2817)	mem 1206MB
+[2026-03-28 18:53:03 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][80/195]	eta 0:00:44 lr 0.000235	 wd 0.0500	time 0.1087 (0.3862)	data time 0.0005 (0.2615)	model time 0.1081 (0.1093)	loss 2.0227 (1.9628)	grad_norm 2.7771 (inf)	loss_scale 32768.0000 (47736.0988)	mem 1206MB
+[2026-03-28 18:53:04 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][90/195]	eta 0:00:37 lr 0.000234	 wd 0.0500	time 0.1077 (0.3560)	data time 0.0006 (0.2329)	model time 0.1071 (0.1095)	loss 1.9206 (1.9587)	grad_norm 2.3012 (inf)	loss_scale 32768.0000 (46091.2527)	mem 1206MB
+[2026-03-28 18:53:06 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][100/195]	eta 0:00:31 lr 0.000233	 wd 0.0500	time 0.1088 (0.3317)	data time 0.0006 (0.2099)	model time 0.1082 (0.1096)	loss 2.0626 (1.9627)	grad_norm 2.1787 (inf)	loss_scale 32768.0000 (44772.1188)	mem 1206MB
+[2026-03-28 18:53:07 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][110/195]	eta 0:00:26 lr 0.000232	 wd 0.0500	time 0.1102 (0.3115)	data time 0.0005 (0.1910)	model time 0.1096 (0.1092)	loss 2.1372 (1.9529)	grad_norm 2.2763 (inf)	loss_scale 32768.0000 (43690.6667)	mem 1206MB
+[2026-03-28 18:53:08 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][120/195]	eta 0:00:22 lr 0.000231	 wd 0.0500	time 0.1087 (0.2949)	data time 0.0006 (0.1753)	model time 0.1082 (0.1094)	loss 1.6675 (1.9479)	grad_norm 2.5160 (inf)	loss_scale 32768.0000 (42787.9669)	mem 1206MB
+[2026-03-28 18:53:09 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][130/195]	eta 0:00:18 lr 0.000230	 wd 0.0500	time 0.1095 (0.2810)	data time 0.0005 (0.1619)	model time 0.1090 (0.1096)	loss 1.8803 (1.9459)	grad_norm 2.2370 (inf)	loss_scale 32768.0000 (42023.0840)	mem 1206MB
+[2026-03-28 18:53:10 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][140/195]	eta 0:00:14 lr 0.000228	 wd 0.0500	time 0.1069 (0.2688)	data time 0.0006 (0.1505)	model time 0.1063 (0.1095)	loss 1.8162 (1.9424)	grad_norm 2.1737 (inf)	loss_scale 32768.0000 (41366.6950)	mem 1206MB
+[2026-03-28 18:53:11 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][150/195]	eta 0:00:11 lr 0.000227	 wd 0.0500	time 0.1068 (0.2582)	data time 0.0006 (0.1406)	model time 0.1063 (0.1094)	loss 1.9895 (1.9441)	grad_norm 2.5948 (inf)	loss_scale 32768.0000 (40797.2450)	mem 1206MB
+[2026-03-28 18:53:12 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][160/195]	eta 0:00:08 lr 0.000226	 wd 0.0500	time 0.1072 (0.2489)	data time 0.0006 (0.1319)	model time 0.1065 (0.1093)	loss 1.5688 (1.9390)	grad_norm 2.2374 (inf)	loss_scale 32768.0000 (40298.5342)	mem 1206MB
+[2026-03-28 18:53:13 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][170/195]	eta 0:00:06 lr 0.000225	 wd 0.0500	time 0.1070 (0.2407)	data time 0.0005 (0.1242)	model time 0.1065 (0.1091)	loss 1.9924 (1.9326)	grad_norm 2.4422 (inf)	loss_scale 32768.0000 (39858.1520)	mem 1206MB
+[2026-03-28 18:53:14 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][180/195]	eta 0:00:03 lr 0.000223	 wd 0.0500	time 0.1048 (0.2333)	data time 0.0003 (0.1174)	model time 0.1044 (0.1089)	loss 1.6668 (1.9316)	grad_norm 2.2716 (inf)	loss_scale 32768.0000 (39466.4309)	mem 1206MB
+[2026-03-28 18:53:15 tiny_cifar10_10ep] (main.py 357): INFO Train: [2/10][190/195]	eta 0:00:01 lr 0.000222	 wd 0.0500	time 0.1054 (0.2266)	data time 0.0004 (0.1112)	model time 0.1050 (0.1087)	loss 1.6552 (1.9271)	grad_norm 2.2872 (inf)	loss_scale 32768.0000 (39115.7277)	mem 1206MB
+[2026-03-28 18:53:16 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 2 training takes 0:00:44
+[2026-03-28 18:53:34 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 17.341 (17.341)	Loss 1.3027 (1.3027)	Acc@1 58.203 (58.203)	Acc@5 93.750 (93.750)	Mem 1206MB
+[2026-03-28 18:53:34 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.035 (1.609)	Loss 1.3750 (1.3338)	Acc@1 50.391 (54.119)	Acc@5 96.484 (94.389)	Mem 1206MB
+[2026-03-28 18:53:35 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.035 (0.860)	Loss 1.3770 (1.3252)	Acc@1 54.297 (54.669)	Acc@5 95.703 (94.513)	Mem 1206MB
+[2026-03-28 18:53:35 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.033 (0.593)	Loss 1.2852 (1.3226)	Acc@1 58.594 (54.776)	Acc@5 96.094 (94.745)	Mem 1206MB
+[2026-03-28 18:53:36 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 54.600 Acc@5 94.700
+[2026-03-28 18:53:36 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 54.6%
+[2026-03-28 18:53:36 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 54.60%
+[2026-03-28 18:53:58 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][0/195]	eta 1:13:17 lr 0.000221	 wd 0.0500	time 22.5525 (22.5525)	data time 20.9448 (20.9448)	model time 0.0000 (0.0000)	loss 1.7690 (1.7690)	grad_norm 2.4042 (2.4042)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:00 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][10/195]	eta 0:06:39 lr 0.000220	 wd 0.0500	time 0.1132 (2.1574)	data time 0.0005 (1.9047)	model time 0.0000 (0.0000)	loss 1.5128 (1.7709)	grad_norm 2.6126 (2.5957)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:01 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][20/195]	eta 0:03:28 lr 0.000218	 wd 0.0500	time 0.1249 (1.1896)	data time 0.0006 (0.9980)	model time 0.0000 (0.0000)	loss 1.9754 (1.8534)	grad_norm 2.0946 (2.4407)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:02 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][30/195]	eta 0:02:19 lr 0.000217	 wd 0.0500	time 0.1249 (0.8462)	data time 0.0005 (0.6763)	model time 0.0000 (0.0000)	loss 1.9363 (1.8742)	grad_norm 1.9507 (2.3256)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:03 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][40/195]	eta 0:01:43 lr 0.000215	 wd 0.0500	time 0.1118 (0.6691)	data time 0.0007 (0.5115)	model time 0.0000 (0.0000)	loss 1.9842 (1.8827)	grad_norm 2.5141 (2.2856)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:05 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][50/195]	eta 0:01:21 lr 0.000214	 wd 0.0500	time 0.1123 (0.5604)	data time 0.0008 (0.4113)	model time 0.0000 (0.0000)	loss 1.9771 (1.8989)	grad_norm 2.3715 (2.2524)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:06 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][60/195]	eta 0:01:06 lr 0.000212	 wd 0.0500	time 0.1442 (0.4913)	data time 0.0009 (0.3440)	model time 0.1434 (0.1381)	loss 1.4963 (1.8745)	grad_norm 2.1868 (2.2372)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:07 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][70/195]	eta 0:00:55 lr 0.000210	 wd 0.0500	time 0.1419 (0.4421)	data time 0.0009 (0.2957)	model time 0.1410 (0.1397)	loss 2.0518 (1.8688)	grad_norm 2.3355 (2.2755)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:09 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][80/195]	eta 0:00:46 lr 0.000209	 wd 0.0500	time 0.1419 (0.4050)	data time 0.0007 (0.2593)	model time 0.1412 (0.1401)	loss 1.8881 (1.8602)	grad_norm 2.5352 (2.2873)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:10 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][90/195]	eta 0:00:39 lr 0.000207	 wd 0.0500	time 0.1419 (0.3761)	data time 0.0008 (0.2309)	model time 0.1412 (0.1404)	loss 1.7584 (1.8615)	grad_norm 2.3406 (2.2904)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:12 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][100/195]	eta 0:00:33 lr 0.000205	 wd 0.0500	time 0.1413 (0.3530)	data time 0.0007 (0.2081)	model time 0.1406 (0.1406)	loss 1.7814 (1.8500)	grad_norm 2.1738 (2.2825)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:13 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][110/195]	eta 0:00:28 lr 0.000204	 wd 0.0500	time 0.1431 (0.3340)	data time 0.0008 (0.1894)	model time 0.1423 (0.1407)	loss 1.6695 (1.8475)	grad_norm 2.3880 (2.2918)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:14 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][120/195]	eta 0:00:23 lr 0.000202	 wd 0.0500	time 0.1333 (0.3182)	data time 0.0008 (0.1739)	model time 0.1325 (0.1409)	loss 1.8474 (1.8501)	grad_norm 2.4872 (2.3099)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:16 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][130/195]	eta 0:00:19 lr 0.000200	 wd 0.0500	time 0.1323 (0.3037)	data time 0.0009 (0.1606)	model time 0.1313 (0.1393)	loss 1.6713 (1.8477)	grad_norm 2.2769 (2.3179)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:17 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][140/195]	eta 0:00:16 lr 0.000198	 wd 0.0500	time 0.1200 (0.2912)	data time 0.0007 (0.1493)	model time 0.1193 (0.1379)	loss 1.6371 (1.8492)	grad_norm 2.2120 (2.3104)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:18 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][150/195]	eta 0:00:12 lr 0.000197	 wd 0.0500	time 0.1203 (0.2800)	data time 0.0006 (0.1395)	model time 0.1197 (0.1362)	loss 1.9035 (1.8492)	grad_norm 2.3397 (2.3096)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:19 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][160/195]	eta 0:00:09 lr 0.000195	 wd 0.0500	time 0.1284 (0.2701)	data time 0.0008 (0.1308)	model time 0.1275 (0.1348)	loss 1.8661 (1.8539)	grad_norm 2.4661 (2.3062)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:21 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][170/195]	eta 0:00:06 lr 0.000193	 wd 0.0500	time 0.1199 (0.2615)	data time 0.0006 (0.1232)	model time 0.1193 (0.1337)	loss 1.8348 (1.8548)	grad_norm 2.4237 (2.3019)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:22 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][180/195]	eta 0:00:03 lr 0.000191	 wd 0.0500	time 0.1184 (0.2537)	data time 0.0004 (0.1165)	model time 0.1181 (0.1327)	loss 1.5125 (1.8520)	grad_norm 2.3096 (2.2954)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:23 tiny_cifar10_10ep] (main.py 357): INFO Train: [3/10][190/195]	eta 0:00:01 lr 0.000189	 wd 0.0500	time 0.1180 (0.2466)	data time 0.0004 (0.1104)	model time 0.1176 (0.1316)	loss 2.0592 (1.8554)	grad_norm 2.2091 (2.3052)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:54:24 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 3 training takes 0:00:48
+[2026-03-28 18:54:42 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 17.440 (17.440)	Loss 1.3320 (1.3320)	Acc@1 54.688 (54.688)	Acc@5 94.141 (94.141)	Mem 1206MB
+[2026-03-28 18:54:42 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.048 (1.630)	Loss 1.2852 (1.2804)	Acc@1 61.328 (58.239)	Acc@5 95.312 (95.419)	Mem 1206MB
+[2026-03-28 18:54:43 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.034 (0.870)	Loss 1.2891 (1.2768)	Acc@1 56.641 (58.668)	Acc@5 94.531 (95.257)	Mem 1206MB
+[2026-03-28 18:54:43 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.033 (0.600)	Loss 1.2871 (1.2838)	Acc@1 56.641 (58.065)	Acc@5 96.094 (95.350)	Mem 1206MB
+[2026-03-28 18:54:44 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 57.760 Acc@5 95.350
+[2026-03-28 18:54:44 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 57.8%
+[2026-03-28 18:54:44 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 57.76%
+[2026-03-28 18:55:06 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][0/195]	eta 1:11:16 lr 0.000188	 wd 0.0500	time 21.9303 (21.9303)	data time 21.7799 (21.7799)	model time 0.0000 (0.0000)	loss 1.5868 (1.5868)	grad_norm 2.5828 (2.5828)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:07 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][10/195]	eta 0:06:30 lr 0.000186	 wd 0.0500	time 0.1257 (2.1088)	data time 0.0006 (1.9806)	model time 0.0000 (0.0000)	loss 2.0624 (1.7653)	grad_norm 2.1029 (2.3435)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:08 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][20/195]	eta 0:03:23 lr 0.000184	 wd 0.0500	time 0.1244 (1.1641)	data time 0.0005 (1.0378)	model time 0.0000 (0.0000)	loss 1.9395 (1.7968)	grad_norm 2.0159 (2.3290)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:09 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][30/195]	eta 0:02:16 lr 0.000182	 wd 0.0500	time 0.1098 (0.8265)	data time 0.0007 (0.7032)	model time 0.0000 (0.0000)	loss 2.0032 (1.8231)	grad_norm 1.9935 (2.3832)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:11 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][40/195]	eta 0:01:41 lr 0.000180	 wd 0.0500	time 0.1086 (0.6521)	data time 0.0006 (0.5318)	model time 0.0000 (0.0000)	loss 1.6221 (1.8044)	grad_norm 2.3651 (2.3719)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:12 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][50/195]	eta 0:01:19 lr 0.000178	 wd 0.0500	time 0.1246 (0.5465)	data time 0.0005 (0.4277)	model time 0.0000 (0.0000)	loss 1.9063 (1.7922)	grad_norm 2.6371 (2.4197)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:13 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][60/195]	eta 0:01:04 lr 0.000176	 wd 0.0500	time 0.1144 (0.4753)	data time 0.0008 (0.3577)	model time 0.1137 (0.1118)	loss 2.0882 (1.8086)	grad_norm 2.3847 (2.4258)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:14 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][70/195]	eta 0:00:52 lr 0.000174	 wd 0.0500	time 0.1094 (0.4239)	data time 0.0006 (0.3074)	model time 0.1088 (0.1108)	loss 1.9484 (1.8159)	grad_norm 2.8904 (2.4569)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:15 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][80/195]	eta 0:00:44 lr 0.000172	 wd 0.0500	time 0.1101 (0.3852)	data time 0.0007 (0.2695)	model time 0.1094 (0.1103)	loss 1.9217 (1.8250)	grad_norm 2.5557 (2.4728)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:16 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][90/195]	eta 0:00:37 lr 0.000170	 wd 0.0500	time 0.1114 (0.3549)	data time 0.0007 (0.2400)	model time 0.1107 (0.1100)	loss 1.5988 (1.8203)	grad_norm 2.4441 (2.4620)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:17 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][100/195]	eta 0:00:31 lr 0.000168	 wd 0.0500	time 0.1172 (0.3309)	data time 0.0007 (0.2163)	model time 0.1165 (0.1104)	loss 1.6729 (1.8246)	grad_norm 2.3664 (2.4660)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:18 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][110/195]	eta 0:00:26 lr 0.000166	 wd 0.0500	time 0.1084 (0.3115)	data time 0.0006 (0.1969)	model time 0.1078 (0.1111)	loss 2.0016 (1.8289)	grad_norm 2.4917 (2.4539)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:20 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][120/195]	eta 0:00:22 lr 0.000164	 wd 0.0500	time 0.1097 (0.2952)	data time 0.0006 (0.1807)	model time 0.1091 (0.1114)	loss 2.0570 (1.8333)	grad_norm 2.7491 (2.4612)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:21 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][130/195]	eta 0:00:18 lr 0.000162	 wd 0.0500	time 0.1078 (0.2813)	data time 0.0007 (0.1669)	model time 0.1071 (0.1116)	loss 2.0129 (1.8320)	grad_norm 2.6648 (2.4625)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:22 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][140/195]	eta 0:00:14 lr 0.000160	 wd 0.0500	time 0.1228 (0.2694)	data time 0.0006 (0.1551)	model time 0.1222 (0.1117)	loss 1.9610 (1.8339)	grad_norm 2.7105 (2.4840)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:23 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][150/195]	eta 0:00:11 lr 0.000157	 wd 0.0500	time 0.1096 (0.2592)	data time 0.0006 (0.1449)	model time 0.1090 (0.1120)	loss 1.9219 (1.8266)	grad_norm 2.4070 (2.4954)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:24 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][160/195]	eta 0:00:08 lr 0.000155	 wd 0.0500	time 0.1082 (0.2502)	data time 0.0006 (0.1359)	model time 0.1076 (0.1121)	loss 1.8339 (1.8288)	grad_norm 2.4109 (2.4865)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:25 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][170/195]	eta 0:00:06 lr 0.000153	 wd 0.0500	time 0.1079 (0.2420)	data time 0.0006 (0.1280)	model time 0.1073 (0.1119)	loss 1.9761 (1.8204)	grad_norm 2.6700 (2.4917)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:26 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][180/195]	eta 0:00:03 lr 0.000151	 wd 0.0500	time 0.1077 (0.2348)	data time 0.0003 (0.1210)	model time 0.1074 (0.1119)	loss 1.4022 (1.8138)	grad_norm 2.6380 (2.4925)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:27 tiny_cifar10_10ep] (main.py 357): INFO Train: [4/10][190/195]	eta 0:00:01 lr 0.000149	 wd 0.0500	time 0.1061 (0.2281)	data time 0.0003 (0.1147)	model time 0.1058 (0.1114)	loss 1.5172 (1.8068)	grad_norm 3.2214 (2.5088)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:55:29 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 4 training takes 0:00:44
+[2026-03-28 18:55:45 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 16.143 (16.143)	Loss 1.2031 (1.2031)	Acc@1 58.984 (58.984)	Acc@5 93.750 (93.750)	Mem 1206MB
+[2026-03-28 18:55:45 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.048 (1.512)	Loss 1.1768 (1.1533)	Acc@1 58.984 (62.003)	Acc@5 98.047 (96.129)	Mem 1206MB
+[2026-03-28 18:55:46 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.049 (0.815)	Loss 1.1543 (1.1496)	Acc@1 59.766 (62.314)	Acc@5 95.312 (96.187)	Mem 1206MB
+[2026-03-28 18:55:46 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.047 (0.567)	Loss 1.1338 (1.1507)	Acc@1 62.109 (62.172)	Acc@5 96.875 (96.396)	Mem 1206MB
+[2026-03-28 18:55:47 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 61.900 Acc@5 96.300
+[2026-03-28 18:55:47 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 61.9%
+[2026-03-28 18:55:47 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 61.90%
+[2026-03-28 18:56:09 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][0/195]	eta 1:11:15 lr 0.000148	 wd 0.0500	time 21.9256 (21.9256)	data time 21.4289 (21.4289)	model time 0.0000 (0.0000)	loss 1.5665 (1.5665)	grad_norm 3.1270 (3.1270)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:11 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][10/195]	eta 0:06:32 lr 0.000146	 wd 0.0500	time 0.1367 (2.1195)	data time 0.0009 (1.9489)	model time 0.0000 (0.0000)	loss 1.7258 (1.7300)	grad_norm 2.3272 (2.6985)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:12 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][20/195]	eta 0:03:25 lr 0.000143	 wd 0.0500	time 0.1286 (1.1735)	data time 0.0007 (1.0212)	model time 0.0000 (0.0000)	loss 1.6358 (1.7555)	grad_norm 2.2543 (2.5500)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:13 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][30/195]	eta 0:02:17 lr 0.000141	 wd 0.0500	time 0.1154 (0.8350)	data time 0.0006 (0.6920)	model time 0.0000 (0.0000)	loss 2.0282 (1.7415)	grad_norm 2.9238 (2.4760)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:14 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][40/195]	eta 0:01:42 lr 0.000139	 wd 0.0500	time 0.1122 (0.6593)	data time 0.0008 (0.5234)	model time 0.0000 (0.0000)	loss 1.8420 (1.7507)	grad_norm 1.9330 (2.4609)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:15 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][50/195]	eta 0:01:20 lr 0.000137	 wd 0.0500	time 0.1131 (0.5528)	data time 0.0006 (0.4209)	model time 0.0000 (0.0000)	loss 2.0372 (1.7718)	grad_norm 2.2140 (2.4522)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:17 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][60/195]	eta 0:01:04 lr 0.000135	 wd 0.0500	time 0.1138 (0.4811)	data time 0.0010 (0.3521)	model time 0.1128 (0.1147)	loss 1.8152 (1.7888)	grad_norm 2.3256 (2.4387)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:18 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][70/195]	eta 0:00:53 lr 0.000132	 wd 0.0500	time 0.1295 (0.4298)	data time 0.0008 (0.3026)	model time 0.1288 (0.1156)	loss 2.1072 (1.7958)	grad_norm 2.2782 (2.4343)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:19 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][80/195]	eta 0:00:45 lr 0.000130	 wd 0.0500	time 0.1144 (0.3913)	data time 0.0008 (0.2653)	model time 0.1137 (0.1161)	loss 1.9508 (1.7832)	grad_norm 2.3473 (2.4473)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:20 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][90/195]	eta 0:00:37 lr 0.000128	 wd 0.0500	time 0.1102 (0.3607)	data time 0.0006 (0.2362)	model time 0.1096 (0.1150)	loss 2.0618 (1.7947)	grad_norm 2.7683 (2.4724)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:21 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][100/195]	eta 0:00:31 lr 0.000126	 wd 0.0500	time 0.1041 (0.3361)	data time 0.0008 (0.2129)	model time 0.1034 (0.1143)	loss 1.9461 (1.7941)	grad_norm 2.5237 (2.4869)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:22 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][110/195]	eta 0:00:26 lr 0.000123	 wd 0.0500	time 0.1276 (0.3165)	data time 0.0007 (0.1938)	model time 0.1269 (0.1150)	loss 1.5215 (1.7875)	grad_norm 2.3885 (2.4699)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:24 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][120/195]	eta 0:00:22 lr 0.000121	 wd 0.0500	time 0.1114 (0.2998)	data time 0.0006 (0.1779)	model time 0.1108 (0.1147)	loss 1.9331 (1.7862)	grad_norm 2.3265 (2.4569)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:25 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][130/195]	eta 0:00:18 lr 0.000119	 wd 0.0500	time 0.1240 (0.2865)	data time 0.0007 (0.1643)	model time 0.1233 (0.1160)	loss 1.8784 (1.7773)	grad_norm 2.4944 (2.4549)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:26 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][140/195]	eta 0:00:15 lr 0.000117	 wd 0.0500	time 0.1055 (0.2742)	data time 0.0007 (0.1527)	model time 0.1048 (0.1156)	loss 2.0331 (1.7715)	grad_norm 2.2507 (2.4733)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:27 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][150/195]	eta 0:00:11 lr 0.000115	 wd 0.0500	time 0.1192 (0.2639)	data time 0.0009 (0.1427)	model time 0.1183 (0.1158)	loss 1.9850 (1.7733)	grad_norm 2.3856 (2.4782)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:28 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][160/195]	eta 0:00:08 lr 0.000112	 wd 0.0500	time 0.1230 (0.2549)	data time 0.0008 (0.1338)	model time 0.1222 (0.1161)	loss 1.9954 (1.7793)	grad_norm 2.7528 (2.4753)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:29 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][170/195]	eta 0:00:06 lr 0.000110	 wd 0.0500	time 0.1101 (0.2467)	data time 0.0006 (0.1261)	model time 0.1095 (0.1159)	loss 1.5707 (1.7727)	grad_norm 2.5702 (2.4715)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:31 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][180/195]	eta 0:00:03 lr 0.000108	 wd 0.0500	time 0.1092 (0.2392)	data time 0.0004 (0.1191)	model time 0.1088 (0.1155)	loss 1.9622 (1.7677)	grad_norm 2.4498 (2.4753)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:32 tiny_cifar10_10ep] (main.py 357): INFO Train: [5/10][190/195]	eta 0:00:01 lr 0.000106	 wd 0.0500	time 0.1097 (0.2324)	data time 0.0004 (0.1129)	model time 0.1093 (0.1151)	loss 2.0140 (1.7685)	grad_norm 2.5517 (2.4850)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:56:33 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 5 training takes 0:00:45
+[2026-03-28 18:56:49 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 16.293 (16.293)	Loss 1.1953 (1.1953)	Acc@1 60.156 (60.156)	Acc@5 94.922 (94.922)	Mem 1206MB
+[2026-03-28 18:56:50 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.048 (1.525)	Loss 1.1328 (1.1303)	Acc@1 64.062 (63.885)	Acc@5 97.656 (96.520)	Mem 1206MB
+[2026-03-28 18:56:50 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.048 (0.822)	Loss 1.1602 (1.1281)	Acc@1 62.500 (64.435)	Acc@5 96.094 (96.466)	Mem 1206MB
+[2026-03-28 18:56:51 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.047 (0.572)	Loss 1.1543 (1.1324)	Acc@1 61.719 (64.226)	Acc@5 96.875 (96.573)	Mem 1206MB
+[2026-03-28 18:56:52 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 64.090 Acc@5 96.530
+[2026-03-28 18:56:52 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 64.1%
+[2026-03-28 18:56:52 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 64.09%
+[2026-03-28 18:57:27 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][0/195]	eta 1:53:02 lr 0.000105	 wd 0.0500	time 34.7801 (34.7801)	data time 23.9634 (23.9634)	model time 0.0000 (0.0000)	loss 1.6847 (1.6847)	grad_norm 2.4477 (2.4477)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:28 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][10/195]	eta 0:10:05 lr 0.000103	 wd 0.0500	time 0.1243 (3.2749)	data time 0.0006 (2.1792)	model time 0.0000 (0.0000)	loss 1.4497 (1.6786)	grad_norm 2.5510 (2.7258)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:29 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][20/195]	eta 0:05:10 lr 0.000100	 wd 0.0500	time 0.1158 (1.7746)	data time 0.0004 (1.1418)	model time 0.0000 (0.0000)	loss 2.0118 (1.7348)	grad_norm 3.0759 (2.7199)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:30 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][30/195]	eta 0:03:24 lr 0.000098	 wd 0.0500	time 0.1269 (1.2417)	data time 0.0007 (0.7737)	model time 0.0000 (0.0000)	loss 1.6586 (1.7707)	grad_norm 2.1731 (2.6014)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:31 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][40/195]	eta 0:02:30 lr 0.000096	 wd 0.0500	time 0.1231 (0.9697)	data time 0.0006 (0.5852)	model time 0.0000 (0.0000)	loss 1.9089 (1.7681)	grad_norm 3.5445 (2.5814)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:33 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][50/195]	eta 0:01:56 lr 0.000094	 wd 0.0500	time 0.1252 (0.8036)	data time 0.0008 (0.4706)	model time 0.0000 (0.0000)	loss 1.4770 (1.7631)	grad_norm 2.3539 (2.5751)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:34 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][60/195]	eta 0:01:33 lr 0.000092	 wd 0.0500	time 0.1307 (0.6926)	data time 0.0007 (0.3936)	model time 0.1299 (0.1260)	loss 1.4629 (1.7528)	grad_norm 2.5965 (2.5542)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:35 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][70/195]	eta 0:01:16 lr 0.000090	 wd 0.0500	time 0.1239 (0.6129)	data time 0.0006 (0.3382)	model time 0.1234 (0.1261)	loss 1.4962 (1.7588)	grad_norm 2.8198 (2.5570)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:36 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][80/195]	eta 0:01:03 lr 0.000088	 wd 0.0500	time 0.1156 (0.5525)	data time 0.0007 (0.2966)	model time 0.1149 (0.1250)	loss 2.0665 (1.7448)	grad_norm 2.5001 (2.5756)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:38 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][90/195]	eta 0:00:52 lr 0.000085	 wd 0.0500	time 0.1150 (0.5045)	data time 0.0007 (0.2640)	model time 0.1143 (0.1224)	loss 1.9271 (1.7521)	grad_norm 2.3033 (2.5913)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:39 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][100/195]	eta 0:00:44 lr 0.000083	 wd 0.0500	time 0.1232 (0.4661)	data time 0.0005 (0.2380)	model time 0.1227 (0.1211)	loss 1.7695 (1.7456)	grad_norm 2.7717 (2.6037)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:40 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][110/195]	eta 0:00:36 lr 0.000081	 wd 0.0500	time 0.1141 (0.4347)	data time 0.0006 (0.2166)	model time 0.1135 (0.1205)	loss 1.9890 (1.7458)	grad_norm 2.6704 (2.6012)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:41 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][120/195]	eta 0:00:30 lr 0.000079	 wd 0.0500	time 0.1243 (0.4087)	data time 0.0007 (0.1987)	model time 0.1236 (0.1203)	loss 1.4958 (1.7339)	grad_norm 2.2075 (2.5999)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:42 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][130/195]	eta 0:00:25 lr 0.000077	 wd 0.0500	time 0.1204 (0.3865)	data time 0.0006 (0.1836)	model time 0.1198 (0.1199)	loss 1.8249 (1.7404)	grad_norm 2.3263 (2.5922)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:44 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][140/195]	eta 0:00:20 lr 0.000075	 wd 0.0500	time 0.1207 (0.3678)	data time 0.0006 (0.1706)	model time 0.1201 (0.1202)	loss 2.0104 (1.7423)	grad_norm 2.4169 (2.6031)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:45 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][150/195]	eta 0:00:15 lr 0.000073	 wd 0.0500	time 0.1327 (0.3512)	data time 0.0006 (0.1594)	model time 0.1321 (0.1198)	loss 1.9800 (1.7453)	grad_norm 2.3807 (2.6104)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:46 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][160/195]	eta 0:00:11 lr 0.000071	 wd 0.0500	time 0.1156 (0.3371)	data time 0.0007 (0.1495)	model time 0.1149 (0.1201)	loss 1.6706 (1.7404)	grad_norm 2.5336 (2.6124)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:47 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][170/195]	eta 0:00:08 lr 0.000069	 wd 0.0500	time 0.1152 (0.3242)	data time 0.0006 (0.1408)	model time 0.1146 (0.1198)	loss 2.0764 (1.7464)	grad_norm 2.5360 (2.6108)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:48 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][180/195]	eta 0:00:04 lr 0.000067	 wd 0.0500	time 0.1138 (0.3128)	data time 0.0003 (0.1331)	model time 0.1135 (0.1195)	loss 1.5661 (1.7541)	grad_norm 2.3540 (2.5959)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:49 tiny_cifar10_10ep] (main.py 357): INFO Train: [6/10][190/195]	eta 0:00:01 lr 0.000065	 wd 0.0500	time 0.1137 (0.3023)	data time 0.0004 (0.1261)	model time 0.1133 (0.1191)	loss 1.9484 (1.7588)	grad_norm 2.0391 (2.5975)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:57:51 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 6 training takes 0:00:58
+[2026-03-28 18:58:07 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 15.828 (15.828)	Loss 1.1699 (1.1699)	Acc@1 64.453 (64.453)	Acc@5 94.141 (94.141)	Mem 1206MB
+[2026-03-28 18:58:07 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.049 (1.485)	Loss 1.1240 (1.1068)	Acc@1 67.578 (65.803)	Acc@5 97.266 (96.946)	Mem 1206MB
+[2026-03-28 18:58:08 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.049 (0.801)	Loss 1.1396 (1.1026)	Acc@1 64.453 (66.313)	Acc@5 96.875 (96.670)	Mem 1206MB
+[2026-03-28 18:58:08 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.047 (0.558)	Loss 1.1113 (1.1015)	Acc@1 64.062 (66.318)	Acc@5 96.484 (96.900)	Mem 1206MB
+[2026-03-28 18:58:09 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 66.220 Acc@5 96.970
+[2026-03-28 18:58:09 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 66.2%
+[2026-03-28 18:58:09 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 66.22%
+[2026-03-28 18:58:31 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][0/195]	eta 1:12:00 lr 0.000064	 wd 0.0500	time 22.1588 (22.1588)	data time 21.9762 (21.9762)	model time 0.0000 (0.0000)	loss 1.9513 (1.9513)	grad_norm 2.0017 (2.0017)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:33 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][10/195]	eta 0:06:34 lr 0.000062	 wd 0.0500	time 0.1295 (2.1324)	data time 0.0006 (1.9985)	model time 0.0000 (0.0000)	loss 1.7438 (1.7084)	grad_norm 2.4389 (2.4669)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:34 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][20/195]	eta 0:03:26 lr 0.000061	 wd 0.0500	time 0.1288 (1.1785)	data time 0.0007 (1.0472)	model time 0.0000 (0.0000)	loss 1.3712 (1.7086)	grad_norm 2.6581 (2.5006)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:35 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][30/195]	eta 0:02:18 lr 0.000059	 wd 0.0500	time 0.1288 (0.8400)	data time 0.0006 (0.7097)	model time 0.0000 (0.0000)	loss 1.4907 (1.7033)	grad_norm 2.7140 (2.5143)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:36 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][40/195]	eta 0:01:42 lr 0.000057	 wd 0.0500	time 0.1099 (0.6634)	data time 0.0007 (0.5367)	model time 0.0000 (0.0000)	loss 1.7549 (1.7187)	grad_norm 2.5362 (2.5238)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:38 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][50/195]	eta 0:01:20 lr 0.000055	 wd 0.0500	time 0.1194 (0.5564)	data time 0.0006 (0.4316)	model time 0.0000 (0.0000)	loss 1.6391 (1.6946)	grad_norm 2.6854 (2.5727)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:39 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][60/195]	eta 0:01:05 lr 0.000053	 wd 0.0500	time 0.1119 (0.4848)	data time 0.0005 (0.3610)	model time 0.1114 (0.1187)	loss 1.4164 (1.6873)	grad_norm 3.1515 (2.5992)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:40 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][70/195]	eta 0:00:54 lr 0.000051	 wd 0.0500	time 0.1215 (0.4325)	data time 0.0005 (0.3102)	model time 0.1210 (0.1159)	loss 1.9805 (1.6854)	grad_norm 3.0143 (2.6066)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:41 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][80/195]	eta 0:00:45 lr 0.000050	 wd 0.0500	time 0.1132 (0.3934)	data time 0.0006 (0.2720)	model time 0.1126 (0.1155)	loss 1.8612 (1.6922)	grad_norm 2.9003 (2.6059)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:42 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][90/195]	eta 0:00:38 lr 0.000048	 wd 0.0500	time 0.1114 (0.3625)	data time 0.0008 (0.2422)	model time 0.1106 (0.1147)	loss 1.6540 (1.6908)	grad_norm 2.2365 (2.6019)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:43 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][100/195]	eta 0:00:32 lr 0.000046	 wd 0.0500	time 0.1104 (0.3377)	data time 0.0006 (0.2183)	model time 0.1098 (0.1139)	loss 1.6611 (1.6983)	grad_norm 2.4202 (2.6091)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:44 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][110/195]	eta 0:00:26 lr 0.000045	 wd 0.0500	time 0.1099 (0.3174)	data time 0.0006 (0.1987)	model time 0.1093 (0.1135)	loss 1.9318 (1.7082)	grad_norm 2.5191 (2.6114)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:46 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][120/195]	eta 0:00:22 lr 0.000043	 wd 0.0500	time 0.1116 (0.3003)	data time 0.0006 (0.1823)	model time 0.1109 (0.1131)	loss 1.8118 (1.7138)	grad_norm 2.7117 (2.6036)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:47 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][130/195]	eta 0:00:18 lr 0.000041	 wd 0.0500	time 0.1151 (0.2861)	data time 0.0007 (0.1684)	model time 0.1144 (0.1131)	loss 1.8761 (1.7172)	grad_norm 2.6501 (2.5861)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:48 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][140/195]	eta 0:00:15 lr 0.000040	 wd 0.0500	time 0.1123 (0.2739)	data time 0.0005 (0.1565)	model time 0.1117 (0.1131)	loss 1.9557 (1.7217)	grad_norm 2.2978 (2.5819)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:49 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][150/195]	eta 0:00:11 lr 0.000038	 wd 0.0500	time 0.1039 (0.2630)	data time 0.0005 (0.1462)	model time 0.1034 (0.1128)	loss 1.8214 (1.7206)	grad_norm 2.9050 (2.5786)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:50 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][160/195]	eta 0:00:08 lr 0.000037	 wd 0.0500	time 0.1075 (0.2536)	data time 0.0007 (0.1372)	model time 0.1069 (0.1125)	loss 1.5185 (1.7272)	grad_norm 2.4105 (2.5733)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:51 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][170/195]	eta 0:00:06 lr 0.000035	 wd 0.0500	time 0.1121 (0.2454)	data time 0.0007 (0.1292)	model time 0.1114 (0.1126)	loss 1.8843 (1.7265)	grad_norm 2.4573 (2.5759)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:52 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][180/195]	eta 0:00:03 lr 0.000034	 wd 0.0500	time 0.1099 (0.2380)	data time 0.0004 (0.1221)	model time 0.1095 (0.1124)	loss 1.4188 (1.7185)	grad_norm 2.5204 (2.5803)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:53 tiny_cifar10_10ep] (main.py 357): INFO Train: [7/10][190/195]	eta 0:00:01 lr 0.000032	 wd 0.0500	time 0.1097 (0.2312)	data time 0.0003 (0.1157)	model time 0.1094 (0.1122)	loss 1.7991 (1.7093)	grad_norm 2.7463 (2.5804)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:58:55 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 7 training takes 0:00:45
+[2026-03-28 18:59:11 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 16.124 (16.124)	Loss 1.0996 (1.0996)	Acc@1 66.406 (66.406)	Acc@5 96.094 (96.094)	Mem 1206MB
+[2026-03-28 18:59:11 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.050 (1.512)	Loss 1.0586 (1.0401)	Acc@1 70.312 (67.543)	Acc@5 97.266 (97.443)	Mem 1206MB
+[2026-03-28 18:59:12 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.051 (0.816)	Loss 1.0625 (1.0373)	Acc@1 65.234 (67.932)	Acc@5 96.484 (97.061)	Mem 1206MB
+[2026-03-28 18:59:12 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.048 (0.569)	Loss 1.0547 (1.0371)	Acc@1 65.625 (67.666)	Acc@5 96.484 (97.253)	Mem 1206MB
+[2026-03-28 18:59:13 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 67.580 Acc@5 97.330
+[2026-03-28 18:59:13 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 67.6%
+[2026-03-28 18:59:13 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 67.58%
+[2026-03-28 18:59:38 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][0/195]	eta 1:20:33 lr 0.000031	 wd 0.0500	time 24.7887 (24.7887)	data time 24.5873 (24.5873)	model time 0.0000 (0.0000)	loss 1.5004 (1.5004)	grad_norm 2.9343 (2.9343)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:39 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][10/195]	eta 0:07:19 lr 0.000030	 wd 0.0500	time 0.1320 (2.3741)	data time 0.0009 (2.2360)	model time 0.0000 (0.0000)	loss 1.2697 (1.5726)	grad_norm 2.8970 (2.8487)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:41 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][20/195]	eta 0:03:48 lr 0.000029	 wd 0.0500	time 0.1282 (1.3049)	data time 0.0008 (1.1716)	model time 0.0000 (0.0000)	loss 1.9377 (1.6926)	grad_norm 2.7652 (2.7613)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:42 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][30/195]	eta 0:02:32 lr 0.000027	 wd 0.0500	time 0.1284 (0.9253)	data time 0.0008 (0.7939)	model time 0.0000 (0.0000)	loss 1.5216 (1.7001)	grad_norm 2.6782 (2.7377)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:43 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][40/195]	eta 0:01:52 lr 0.000026	 wd 0.0500	time 0.1144 (0.7287)	data time 0.0005 (0.6004)	model time 0.0000 (0.0000)	loss 1.2825 (1.6967)	grad_norm 2.6826 (2.7040)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:44 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][50/195]	eta 0:01:28 lr 0.000025	 wd 0.0500	time 0.1216 (0.6085)	data time 0.0006 (0.4828)	model time 0.0000 (0.0000)	loss 1.9664 (1.6841)	grad_norm 3.0027 (2.7157)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:46 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][60/195]	eta 0:01:11 lr 0.000023	 wd 0.0500	time 0.1054 (0.5277)	data time 0.0006 (0.4038)	model time 0.1048 (0.1149)	loss 1.8073 (1.6913)	grad_norm 2.5735 (2.7274)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:47 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][70/195]	eta 0:00:58 lr 0.000022	 wd 0.0500	time 0.1137 (0.4697)	data time 0.0008 (0.3470)	model time 0.1130 (0.1149)	loss 1.9154 (1.7013)	grad_norm 2.5741 (2.7222)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:48 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][80/195]	eta 0:00:48 lr 0.000021	 wd 0.0500	time 0.1095 (0.4256)	data time 0.0004 (0.3042)	model time 0.1090 (0.1139)	loss 2.0645 (1.7041)	grad_norm 2.7350 (2.7181)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:49 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][90/195]	eta 0:00:41 lr 0.000020	 wd 0.0500	time 0.1233 (0.3910)	data time 0.0007 (0.2709)	model time 0.1225 (0.1131)	loss 1.9452 (1.7092)	grad_norm 2.1301 (2.7129)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:50 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][100/195]	eta 0:00:34 lr 0.000019	 wd 0.0500	time 0.1245 (0.3636)	data time 0.0008 (0.2441)	model time 0.1238 (0.1132)	loss 1.9190 (1.6985)	grad_norm 2.1816 (2.6927)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:51 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][110/195]	eta 0:00:29 lr 0.000018	 wd 0.0500	time 0.1047 (0.3414)	data time 0.0005 (0.2222)	model time 0.1041 (0.1137)	loss 1.5688 (1.6882)	grad_norm 2.5202 (2.6876)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:52 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][120/195]	eta 0:00:24 lr 0.000017	 wd 0.0500	time 0.1045 (0.3219)	data time 0.0006 (0.2039)	model time 0.1039 (0.1124)	loss 1.4804 (1.6913)	grad_norm 3.0642 (2.7050)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:53 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][130/195]	eta 0:00:19 lr 0.000016	 wd 0.0500	time 0.1074 (0.3057)	data time 0.0007 (0.1884)	model time 0.1068 (0.1120)	loss 1.2260 (1.6903)	grad_norm 2.6693 (2.7094)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:54 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][140/195]	eta 0:00:16 lr 0.000015	 wd 0.0500	time 0.1036 (0.2915)	data time 0.0006 (0.1750)	model time 0.1029 (0.1112)	loss 1.4433 (1.6917)	grad_norm 2.5546 (2.6976)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:56 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][150/195]	eta 0:00:12 lr 0.000014	 wd 0.0500	time 0.1163 (0.2795)	data time 0.0007 (0.1635)	model time 0.1156 (0.1111)	loss 1.7186 (1.7003)	grad_norm 2.7695 (2.6999)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:57 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][160/195]	eta 0:00:09 lr 0.000013	 wd 0.0500	time 0.1103 (0.2692)	data time 0.0005 (0.1534)	model time 0.1098 (0.1112)	loss 1.6430 (1.7006)	grad_norm 2.6531 (2.6953)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:58 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][170/195]	eta 0:00:06 lr 0.000012	 wd 0.0500	time 0.1103 (0.2600)	data time 0.0005 (0.1444)	model time 0.1098 (0.1113)	loss 1.6880 (1.7018)	grad_norm 2.2548 (2.6903)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 18:59:59 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][180/195]	eta 0:00:03 lr 0.000011	 wd 0.0500	time 0.1093 (0.2518)	data time 0.0004 (0.1365)	model time 0.1089 (0.1112)	loss 1.6631 (1.7002)	grad_norm 2.7939 (2.6963)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:00 tiny_cifar10_10ep] (main.py 357): INFO Train: [8/10][190/195]	eta 0:00:01 lr 0.000010	 wd 0.0500	time 0.1092 (0.2444)	data time 0.0003 (0.1294)	model time 0.1089 (0.1111)	loss 1.5821 (1.7015)	grad_norm 2.7531 (2.6971)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:01 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 8 training takes 0:00:47
+[2026-03-28 19:00:18 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 16.696 (16.696)	Loss 1.0879 (1.0879)	Acc@1 65.625 (65.625)	Acc@5 96.875 (96.875)	Mem 1206MB
+[2026-03-28 19:00:18 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.049 (1.565)	Loss 1.0625 (1.0364)	Acc@1 69.141 (68.111)	Acc@5 98.828 (97.763)	Mem 1206MB
+[2026-03-28 19:00:19 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.050 (0.843)	Loss 1.0615 (1.0328)	Acc@1 66.797 (68.397)	Acc@5 96.875 (97.359)	Mem 1206MB
+[2026-03-28 19:00:19 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.048 (0.588)	Loss 1.0508 (1.0329)	Acc@1 66.797 (68.284)	Acc@5 96.875 (97.442)	Mem 1206MB
+[2026-03-28 19:00:21 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 68.190 Acc@5 97.530
+[2026-03-28 19:00:21 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 68.2%
+[2026-03-28 19:00:21 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 68.19%
+[2026-03-28 19:00:43 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][0/195]	eta 1:14:05 lr 0.000010	 wd 0.0500	time 22.7991 (22.7991)	data time 22.2605 (22.2605)	model time 0.0000 (0.0000)	loss 1.5771 (1.5771)	grad_norm 2.4689 (2.4689)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:45 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][10/195]	eta 0:06:44 lr 0.000009	 wd 0.0500	time 0.1252 (2.1867)	data time 0.0005 (2.0243)	model time 0.0000 (0.0000)	loss 1.9008 (1.6401)	grad_norm 2.4022 (2.5514)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:46 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][20/195]	eta 0:03:30 lr 0.000009	 wd 0.0500	time 0.1253 (1.2050)	data time 0.0005 (1.0606)	model time 0.0000 (0.0000)	loss 1.8651 (1.6678)	grad_norm 2.2153 (2.6123)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:47 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][30/195]	eta 0:02:21 lr 0.000008	 wd 0.0500	time 0.1250 (0.8567)	data time 0.0006 (0.7187)	model time 0.0000 (0.0000)	loss 2.0502 (1.6611)	grad_norm 2.4685 (2.5992)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:48 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][40/195]	eta 0:01:45 lr 0.000007	 wd 0.0500	time 0.1247 (0.6783)	data time 0.0007 (0.5436)	model time 0.0000 (0.0000)	loss 1.9718 (1.6725)	grad_norm 2.6943 (2.6159)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:50 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][50/195]	eta 0:01:22 lr 0.000007	 wd 0.0500	time 0.1741 (0.5709)	data time 0.0006 (0.4371)	model time 0.0000 (0.0000)	loss 1.4085 (1.6662)	grad_norm 2.6366 (2.6450)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:51 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][60/195]	eta 0:01:07 lr 0.000006	 wd 0.0500	time 0.1259 (0.4975)	data time 0.0006 (0.3656)	model time 0.1252 (0.1226)	loss 1.3621 (1.6635)	grad_norm 2.3410 (2.6322)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:52 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][70/195]	eta 0:00:55 lr 0.000006	 wd 0.0500	time 0.1104 (0.4446)	data time 0.0006 (0.3142)	model time 0.1097 (0.1218)	loss 1.8048 (1.6647)	grad_norm 2.4779 (2.6109)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:53 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][80/195]	eta 0:00:46 lr 0.000005	 wd 0.0500	time 0.1130 (0.4042)	data time 0.0007 (0.2755)	model time 0.1122 (0.1201)	loss 1.6844 (1.6622)	grad_norm 3.6244 (2.6275)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:55 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][90/195]	eta 0:00:39 lr 0.000005	 wd 0.0500	time 0.1168 (0.3724)	data time 0.0008 (0.2453)	model time 0.1160 (0.1187)	loss 1.8037 (1.6675)	grad_norm 2.4580 (2.6275)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:56 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][100/195]	eta 0:00:32 lr 0.000004	 wd 0.0500	time 0.1049 (0.3471)	data time 0.0005 (0.2211)	model time 0.1044 (0.1181)	loss 1.3729 (1.6623)	grad_norm 2.4314 (2.6293)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:57 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][110/195]	eta 0:00:27 lr 0.000004	 wd 0.0500	time 0.1162 (0.3256)	data time 0.0007 (0.2012)	model time 0.1154 (0.1164)	loss 1.9774 (1.6713)	grad_norm 2.1611 (2.6224)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:58 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][120/195]	eta 0:00:23 lr 0.000004	 wd 0.0500	time 0.1070 (0.3080)	data time 0.0006 (0.1846)	model time 0.1065 (0.1157)	loss 1.9449 (1.6787)	grad_norm 2.5774 (2.6134)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:00:59 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][130/195]	eta 0:00:19 lr 0.000003	 wd 0.0500	time 0.1096 (0.2927)	data time 0.0007 (0.1706)	model time 0.1089 (0.1147)	loss 1.6736 (1.6747)	grad_norm 2.6009 (2.6181)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:01:00 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][140/195]	eta 0:00:15 lr 0.000003	 wd 0.0500	time 0.1138 (0.2802)	data time 0.0009 (0.1585)	model time 0.1129 (0.1148)	loss 1.8945 (1.6826)	grad_norm 2.5954 (2.6152)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:01:01 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][150/195]	eta 0:00:12 lr 0.000003	 wd 0.0500	time 0.1097 (0.2696)	data time 0.0007 (0.1481)	model time 0.1090 (0.1153)	loss 1.9119 (1.6791)	grad_norm 2.2460 (2.6279)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:01:03 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][160/195]	eta 0:00:09 lr 0.000003	 wd 0.0500	time 0.1086 (0.2602)	data time 0.0007 (0.1389)	model time 0.1079 (0.1154)	loss 1.9574 (1.6827)	grad_norm 2.1428 (2.6258)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:01:04 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][170/195]	eta 0:00:06 lr 0.000003	 wd 0.0500	time 0.1101 (0.2513)	data time 0.0007 (0.1309)	model time 0.1094 (0.1148)	loss 1.2259 (1.6816)	grad_norm 2.3426 (2.6291)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:01:05 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][180/195]	eta 0:00:03 lr 0.000003	 wd 0.0500	time 0.1063 (0.2438)	data time 0.0003 (0.1237)	model time 0.1060 (0.1148)	loss 1.5250 (1.6747)	grad_norm 2.3083 (2.6167)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:01:06 tiny_cifar10_10ep] (main.py 357): INFO Train: [9/10][190/195]	eta 0:00:01 lr 0.000003	 wd 0.0500	time 0.1015 (0.2364)	data time 0.0003 (0.1172)	model time 0.1012 (0.1139)	loss 1.3710 (1.6691)	grad_norm 3.1075 (2.6270)	loss_scale 32768.0000 (32768.0000)	mem 1206MB
+[2026-03-28 19:01:07 tiny_cifar10_10ep] (main.py 368): INFO EPOCH 9 training takes 0:00:46
+[2026-03-28 19:01:23 tiny_cifar10_10ep] (main.py 412): INFO Test: [0/40]	Time 16.053 (16.053)	Loss 1.0820 (1.0820)	Acc@1 66.406 (66.406)	Acc@5 96.875 (96.875)	Mem 1206MB
+[2026-03-28 19:01:23 tiny_cifar10_10ep] (main.py 412): INFO Test: [10/40]	Time 0.052 (1.506)	Loss 1.0596 (1.0371)	Acc@1 69.531 (68.679)	Acc@5 98.047 (97.834)	Mem 1206MB
+[2026-03-28 19:01:24 tiny_cifar10_10ep] (main.py 412): INFO Test: [20/40]	Time 0.048 (0.812)	Loss 1.0645 (1.0338)	Acc@1 66.016 (68.731)	Acc@5 96.875 (97.321)	Mem 1206MB
+[2026-03-28 19:01:24 tiny_cifar10_10ep] (main.py 412): INFO Test: [30/40]	Time 0.034 (0.563)	Loss 1.0488 (1.0335)	Acc@1 66.406 (68.586)	Acc@5 96.875 (97.379)	Mem 1206MB
+[2026-03-28 19:01:25 tiny_cifar10_10ep] (main.py 419): INFO  * Acc@1 68.460 Acc@5 97.480
+[2026-03-28 19:01:25 tiny_cifar10_10ep] (main.py 248): INFO Accuracy of the network on the 10000 test images: 68.5%
+[2026-03-28 19:01:25 tiny_cifar10_10ep] (main.py 256): INFO New max accuracy: 68.46%
+[2026-03-28 19:01:25 tiny_cifar10_10ep] (main.py 282): INFO Training time 0:11:05

@@ -1,0 +1,166 @@
+[2026-03-26 14:35:48 tiny_cifar10_30ep_sparse] (main.py 588): INFO AMP_ENABLE: true
+AMP_OPT_LEVEL: ''
+AUG:
+  AUTO_AUGMENT: rand-m9-mstd0.5-inc1
+  COLOR_JITTER: 0.4
+  CUTMIX: 1.0
+  CUTMIX_MINMAX: null
+  MIXUP: 0.8
+  MIXUP_MODE: batch
+  MIXUP_PROB: 1.0
+  MIXUP_SWITCH_PROB: 0.5
+  RECOUNT: 1
+  REMODE: pixel
+  REPROB: 0.25
+BASE:
+- base.yaml
+DATA:
+  BATCH_SIZE: 128
+  CACHE_MODE: part
+  DATASET: cifar10
+  DATA_PATH: /home/jlx_75/datasets/cifar10
+  IMG_SIZE: 32
+  INTERPOLATION: bicubic
+  MASK_PATCH_SIZE: 32
+  MASK_RATIO: 0.6
+  NUM_WORKERS: 8
+  PERSISTENT_WORKERS: false
+  PIN_MEMORY: true
+  ZIP_MODE: false
+ENABLE_AMP: false
+EVAL_MODE: false
+FUSED_LAYERNORM: false
+MODEL:
+  DDP: torch
+  DROP_PATH_RATE: 0.2
+  DROP_RATE: 0.0
+  LABEL_SMOOTHING: 0.1
+  MMCKPT: false
+  NAME: tiny_cifar10_30ep_sparse
+  NUM_CLASSES: 10
+  PRETRAINED: ''
+  PVMAMBA:
+    DEPTHS:
+    - 2
+    - 4
+    - 8
+    - 4
+    DT_INIT: random
+    D_STATE: 64
+    EMBED_DIM: 64
+    HARD_SPARSE: false
+    IMAGE_SIZE: 224
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 2
+    - 4
+    - 8
+    - 16
+    PATCH_SIZE: 4
+    SPARSE_HIDDEN_RATIO: 0.25
+    SPARSE_LAYERS:
+    - 2
+    - 3
+    SPARSE_THRESHOLD: 0.0
+    SPATIAL_FLAG:
+    - []
+    - []
+    - - 0
+      - 2
+      - 2
+      - 1
+      - 2
+      - 2
+      - 1
+      - 2
+    - - 0
+      - 2
+      - 2
+      - 1
+    SSD_CHUNK_SIZE: 256
+    SSD_EXPANSION: 2
+    TOKEN_MIXER_TYPES:
+    - LoDSA
+    - LoDSA
+    - SaDSA
+    - attention
+  RESUME: ''
+  TYPE: pvmamba
+OUTPUT: ./output_cifar10_sparse_smoketest/tiny_cifar10_30ep_sparse/20260326143547
+PRINT_FREQ: 10
+SAVE_FREQ: 1
+SEED: 0
+TAG: '20260326143548'
+TEST:
+  CROP: true
+  SEQUENTIAL: false
+  SHUFFLE: false
+THROUGHPUT_MODE: false
+TRAIN:
+  ACCUMULATION_STEPS: 1
+  AUTO_RESUME: false
+  BASE_LR: 0.00025
+  CLIP_GRAD: 5.0
+  EPOCHS: 1
+  LAMBDA_SPARSE: 0.0001
+  LAYER_DECAY: 1.0
+  LR_SCHEDULER:
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1
+    GAMMA: 0.1
+    MULTISTEPS: []
+    NAME: cosine
+    WARMUP_PREFIX: true
+  MESA: 1.0
+  MIN_LR: 2.5e-06
+  MOE:
+    SAVE_MASTER: false
+  OPTIMIZER:
+    BETAS:
+    - 0.9
+    - 0.999
+    EPS: 1.0e-08
+    MOMENTUM: 0.9
+    NAME: adamw
+  START_EPOCH: 0
+  USE_CHECKPOINT: false
+  WARMUP_EPOCHS: 0
+  WARMUP_LR: 2.5e-07
+  WEIGHT_DECAY: 0.05
+TRAINCOST_MODE: false
+
+[2026-03-26 14:35:48 tiny_cifar10_30ep_sparse] (main.py 589): INFO {"cfg": "configs/pvmamba/tiny_cifar10_30ep_sparse.yaml", "opts": null, "batch_size": null, "data_path": "/home/jlx_75/datasets/cifar10", "zip": false, "cache_mode": "part", "pretrained": null, "resume": null, "accumulation_steps": null, "use_checkpoint": false, "disable_amp": false, "output": "./output_cifar10_sparse_smoketest", "tag": "20260326143548", "eval": false, "throughput": false, "fused_layernorm": false, "optim": null, "model_ema": false, "model_ema_decay": 0.9999, "model_ema_force_cpu": false, "memory_limit_rate": -1, "ddp": "torch", "enable_preload": false, "enable_persistance": false, "mesa": false, "mesa_value": 1.0, "mute_repeat": false}
+[2026-03-26 14:35:49 tiny_cifar10_30ep_sparse] (main.py 122): INFO Creating model:pvmamba/tiny_cifar10_30ep_sparse
+[2026-03-26 14:35:50 tiny_cifar10_30ep_sparse] (optimizer.py 18): INFO ==============> building optimizer adamw....................
+[2026-03-26 14:35:50 tiny_cifar10_30ep_sparse] (optimizer.py 27): INFO No weight decay list: ['patch_embed.conv1.norm.weight', 'patch_embed.conv1.norm.bias', 'patch_embed.conv2.0.norm.weight', 'patch_embed.conv2.0.norm.bias', 'patch_embed.conv2.1.norm.weight', 'patch_embed.conv2.1.norm.bias', 'patch_embed.conv3.0.norm.weight', 'patch_embed.conv3.0.norm.bias', 'patch_embed.conv3.1.norm.weight', 'patch_embed.conv3.1.norm.bias', 'layers.0.blocks.0.cpe1.bias', 'layers.0.blocks.0.norm1.weight', 'layers.0.blocks.0.norm1.bias', 'layers.0.blocks.0.token_mixer.dt_bias', 'layers.0.blocks.0.token_mixer.A_log', 'layers.0.blocks.0.token_mixer.D', 'layers.0.blocks.0.token_mixer.conv2d.bias', 'layers.0.blocks.0.token_mixer.norm.weight', 'layers.0.blocks.0.token_mixer.norm.bias', 'layers.0.blocks.0.cpe2.bias', 'layers.0.blocks.0.norm2.weight', 'layers.0.blocks.0.norm2.bias', 'layers.0.blocks.0.mlp.fc1.bias', 'layers.0.blocks.0.mlp.fc2.bias', 'layers.0.blocks.1.cpe1.bias', 'layers.0.blocks.1.norm1.weight', 'layers.0.blocks.1.norm1.bias', 'layers.0.blocks.1.token_mixer.dt_bias', 'layers.0.blocks.1.token_mixer.A_log', 'layers.0.blocks.1.token_mixer.D', 'layers.0.blocks.1.token_mixer.conv2d.bias', 'layers.0.blocks.1.token_mixer.norm.weight', 'layers.0.blocks.1.token_mixer.norm.bias', 'layers.0.blocks.1.cpe2.bias', 'layers.0.blocks.1.norm2.weight', 'layers.0.blocks.1.norm2.bias', 'layers.0.blocks.1.mlp.fc1.bias', 'layers.0.blocks.1.mlp.fc2.bias', 'layers.0.downsample.conv.0.conv.bias', 'layers.0.downsample.conv.1.conv.bias', 'layers.0.downsample.conv.2.conv.bias', 'layers.0.downsample.conv.2.norm.weight', 'layers.0.downsample.conv.2.norm.bias', 'layers.1.blocks.0.cpe1.bias', 'layers.1.blocks.0.norm1.weight', 'layers.1.blocks.0.norm1.bias', 'layers.1.blocks.0.token_mixer.dt_bias', 'layers.1.blocks.0.token_mixer.A_log', 'layers.1.blocks.0.token_mixer.D', 'layers.1.blocks.0.token_mixer.conv2d.bias', 'layers.1.blocks.0.token_mixer.norm.weight', 'layers.1.blocks.0.token_mixer.norm.bias', 'layers.1.blocks.0.cpe2.bias', 'layers.1.blocks.0.norm2.weight', 'layers.1.blocks.0.norm2.bias', 'layers.1.blocks.0.mlp.fc1.bias', 'layers.1.blocks.0.mlp.fc2.bias', 'layers.1.blocks.1.cpe1.bias', 'layers.1.blocks.1.norm1.weight', 'layers.1.blocks.1.norm1.bias', 'layers.1.blocks.1.token_mixer.dt_bias', 'layers.1.blocks.1.token_mixer.A_log', 'layers.1.blocks.1.token_mixer.D', 'layers.1.blocks.1.token_mixer.conv2d.bias', 'layers.1.blocks.1.token_mixer.norm.weight', 'layers.1.blocks.1.token_mixer.norm.bias', 'layers.1.blocks.1.cpe2.bias', 'layers.1.blocks.1.norm2.weight', 'layers.1.blocks.1.norm2.bias', 'layers.1.blocks.1.mlp.fc1.bias', 'layers.1.blocks.1.mlp.fc2.bias', 'layers.1.blocks.2.cpe1.bias', 'layers.1.blocks.2.norm1.weight', 'layers.1.blocks.2.norm1.bias', 'layers.1.blocks.2.token_mixer.dt_bias', 'layers.1.blocks.2.token_mixer.A_log', 'layers.1.blocks.2.token_mixer.D', 'layers.1.blocks.2.token_mixer.conv2d.bias', 'layers.1.blocks.2.token_mixer.norm.weight', 'layers.1.blocks.2.token_mixer.norm.bias', 'layers.1.blocks.2.cpe2.bias', 'layers.1.blocks.2.norm2.weight', 'layers.1.blocks.2.norm2.bias', 'layers.1.blocks.2.mlp.fc1.bias', 'layers.1.blocks.2.mlp.fc2.bias', 'layers.1.blocks.3.cpe1.bias', 'layers.1.blocks.3.norm1.weight', 'layers.1.blocks.3.norm1.bias', 'layers.1.blocks.3.token_mixer.dt_bias', 'layers.1.blocks.3.token_mixer.A_log', 'layers.1.blocks.3.token_mixer.D', 'layers.1.blocks.3.token_mixer.conv2d.bias', 'layers.1.blocks.3.token_mixer.norm.weight', 'layers.1.blocks.3.token_mixer.norm.bias', 'layers.1.blocks.3.cpe2.bias', 'layers.1.blocks.3.norm2.weight', 'layers.1.blocks.3.norm2.bias', 'layers.1.blocks.3.mlp.fc1.bias', 'layers.1.blocks.3.mlp.fc2.bias', 'layers.1.downsample.conv.0.conv.bias', 'layers.1.downsample.conv.1.conv.bias', 'layers.1.downsample.conv.2.conv.bias', 'layers.1.downsample.conv.2.norm.weight', 'layers.1.downsample.conv.2.norm.bias', 'layers.2.blocks.0.cpe1.bias', 'layers.2.blocks.0.norm1.weight', 'layers.2.blocks.0.norm1.bias', 'layers.2.blocks.0.token_mixer.dt_bias', 'layers.2.blocks.0.token_mixer.A_log', 'layers.2.blocks.0.token_mixer.D', 'layers.2.blocks.0.token_mixer.conv2d.bias', 'layers.2.blocks.0.token_mixer.norm.weight', 'layers.2.blocks.0.token_mixer.norm.bias', 'layers.2.blocks.0.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.0.cpe2.bias', 'layers.2.blocks.0.norm2.weight', 'layers.2.blocks.0.norm2.bias', 'layers.2.blocks.0.mlp.fc1.bias', 'layers.2.blocks.0.mlp.fc2.bias', 'layers.2.blocks.0.sparse_gate.norm.weight', 'layers.2.blocks.0.sparse_gate.norm.bias', 'layers.2.blocks.0.sparse_gate.fc1.bias', 'layers.2.blocks.0.sparse_gate.fc2.bias', 'layers.2.blocks.1.cpe1.bias', 'layers.2.blocks.1.norm1.weight', 'layers.2.blocks.1.norm1.bias', 'layers.2.blocks.1.token_mixer.dt_bias', 'layers.2.blocks.1.token_mixer.A_log', 'layers.2.blocks.1.token_mixer.D', 'layers.2.blocks.1.token_mixer.conv2d.bias', 'layers.2.blocks.1.token_mixer.norm.weight', 'layers.2.blocks.1.token_mixer.norm.bias', 'layers.2.blocks.1.cpe2.bias', 'layers.2.blocks.1.norm2.weight', 'layers.2.blocks.1.norm2.bias', 'layers.2.blocks.1.mlp.fc1.bias', 'layers.2.blocks.1.mlp.fc2.bias', 'layers.2.blocks.1.sparse_gate.norm.weight', 'layers.2.blocks.1.sparse_gate.norm.bias', 'layers.2.blocks.1.sparse_gate.fc1.bias', 'layers.2.blocks.1.sparse_gate.fc2.bias', 'layers.2.blocks.2.cpe1.bias', 'layers.2.blocks.2.norm1.weight', 'layers.2.blocks.2.norm1.bias', 'layers.2.blocks.2.token_mixer.dt_bias', 'layers.2.blocks.2.token_mixer.A_log', 'layers.2.blocks.2.token_mixer.D', 'layers.2.blocks.2.token_mixer.conv2d.bias', 'layers.2.blocks.2.token_mixer.norm.weight', 'layers.2.blocks.2.token_mixer.norm.bias', 'layers.2.blocks.2.cpe2.bias', 'layers.2.blocks.2.norm2.weight', 'layers.2.blocks.2.norm2.bias', 'layers.2.blocks.2.mlp.fc1.bias', 'layers.2.blocks.2.mlp.fc2.bias', 'layers.2.blocks.2.sparse_gate.norm.weight', 'layers.2.blocks.2.sparse_gate.norm.bias', 'layers.2.blocks.2.sparse_gate.fc1.bias', 'layers.2.blocks.2.sparse_gate.fc2.bias', 'layers.2.blocks.3.cpe1.bias', 'layers.2.blocks.3.norm1.weight', 'layers.2.blocks.3.norm1.bias', 'layers.2.blocks.3.token_mixer.dt_bias', 'layers.2.blocks.3.token_mixer.A_log', 'layers.2.blocks.3.token_mixer.D', 'layers.2.blocks.3.token_mixer.conv2d.bias', 'layers.2.blocks.3.token_mixer.norm.weight', 'layers.2.blocks.3.token_mixer.norm.bias', 'layers.2.blocks.3.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.3.cpe2.bias', 'layers.2.blocks.3.norm2.weight', 'layers.2.blocks.3.norm2.bias', 'layers.2.blocks.3.mlp.fc1.bias', 'layers.2.blocks.3.mlp.fc2.bias', 'layers.2.blocks.3.sparse_gate.norm.weight', 'layers.2.blocks.3.sparse_gate.norm.bias', 'layers.2.blocks.3.sparse_gate.fc1.bias', 'layers.2.blocks.3.sparse_gate.fc2.bias', 'layers.2.blocks.4.cpe1.bias', 'layers.2.blocks.4.norm1.weight', 'layers.2.blocks.4.norm1.bias', 'layers.2.blocks.4.token_mixer.dt_bias', 'layers.2.blocks.4.token_mixer.A_log', 'layers.2.blocks.4.token_mixer.D', 'layers.2.blocks.4.token_mixer.conv2d.bias', 'layers.2.blocks.4.token_mixer.norm.weight', 'layers.2.blocks.4.token_mixer.norm.bias', 'layers.2.blocks.4.cpe2.bias', 'layers.2.blocks.4.norm2.weight', 'layers.2.blocks.4.norm2.bias', 'layers.2.blocks.4.mlp.fc1.bias', 'layers.2.blocks.4.mlp.fc2.bias', 'layers.2.blocks.4.sparse_gate.norm.weight', 'layers.2.blocks.4.sparse_gate.norm.bias', 'layers.2.blocks.4.sparse_gate.fc1.bias', 'layers.2.blocks.4.sparse_gate.fc2.bias', 'layers.2.blocks.5.cpe1.bias', 'layers.2.blocks.5.norm1.weight', 'layers.2.blocks.5.norm1.bias', 'layers.2.blocks.5.token_mixer.dt_bias', 'layers.2.blocks.5.token_mixer.A_log', 'layers.2.blocks.5.token_mixer.D', 'layers.2.blocks.5.token_mixer.conv2d.bias', 'layers.2.blocks.5.token_mixer.norm.weight', 'layers.2.blocks.5.token_mixer.norm.bias', 'layers.2.blocks.5.cpe2.bias', 'layers.2.blocks.5.norm2.weight', 'layers.2.blocks.5.norm2.bias', 'layers.2.blocks.5.mlp.fc1.bias', 'layers.2.blocks.5.mlp.fc2.bias', 'layers.2.blocks.5.sparse_gate.norm.weight', 'layers.2.blocks.5.sparse_gate.norm.bias', 'layers.2.blocks.5.sparse_gate.fc1.bias', 'layers.2.blocks.5.sparse_gate.fc2.bias', 'layers.2.blocks.6.cpe1.bias', 'layers.2.blocks.6.norm1.weight', 'layers.2.blocks.6.norm1.bias', 'layers.2.blocks.6.token_mixer.dt_bias', 'layers.2.blocks.6.token_mixer.A_log', 'layers.2.blocks.6.token_mixer.D', 'layers.2.blocks.6.token_mixer.conv2d.bias', 'layers.2.blocks.6.token_mixer.norm.weight', 'layers.2.blocks.6.token_mixer.norm.bias', 'layers.2.blocks.6.token_mixer.sa_op.sampling_offsets.bias', 'layers.2.blocks.6.cpe2.bias', 'layers.2.blocks.6.norm2.weight', 'layers.2.blocks.6.norm2.bias', 'layers.2.blocks.6.mlp.fc1.bias', 'layers.2.blocks.6.mlp.fc2.bias', 'layers.2.blocks.6.sparse_gate.norm.weight', 'layers.2.blocks.6.sparse_gate.norm.bias', 'layers.2.blocks.6.sparse_gate.fc1.bias', 'layers.2.blocks.6.sparse_gate.fc2.bias', 'layers.2.blocks.7.cpe1.bias', 'layers.2.blocks.7.norm1.weight', 'layers.2.blocks.7.norm1.bias', 'layers.2.blocks.7.token_mixer.dt_bias', 'layers.2.blocks.7.token_mixer.A_log', 'layers.2.blocks.7.token_mixer.D', 'layers.2.blocks.7.token_mixer.conv2d.bias', 'layers.2.blocks.7.token_mixer.norm.weight', 'layers.2.blocks.7.token_mixer.norm.bias', 'layers.2.blocks.7.cpe2.bias', 'layers.2.blocks.7.norm2.weight', 'layers.2.blocks.7.norm2.bias', 'layers.2.blocks.7.mlp.fc1.bias', 'layers.2.blocks.7.mlp.fc2.bias', 'layers.2.blocks.7.sparse_gate.norm.weight', 'layers.2.blocks.7.sparse_gate.norm.bias', 'layers.2.blocks.7.sparse_gate.fc1.bias', 'layers.2.blocks.7.sparse_gate.fc2.bias', 'layers.2.downsample.conv.0.conv.bias', 'layers.2.downsample.conv.1.conv.bias', 'layers.2.downsample.conv.2.conv.bias', 'layers.2.downsample.conv.2.norm.weight', 'layers.2.downsample.conv.2.norm.bias', 'layers.3.blocks.0.cpe1.bias', 'layers.3.blocks.0.norm1.weight', 'layers.3.blocks.0.norm1.bias', 'layers.3.blocks.0.token_mixer.to_out.bias', 'layers.3.blocks.0.cpe2.bias', 'layers.3.blocks.0.norm2.weight', 'layers.3.blocks.0.norm2.bias', 'layers.3.blocks.0.mlp.fc1.bias', 'layers.3.blocks.0.mlp.fc2.bias', 'layers.3.blocks.0.sparse_gate.norm.weight', 'layers.3.blocks.0.sparse_gate.norm.bias', 'layers.3.blocks.0.sparse_gate.fc1.bias', 'layers.3.blocks.0.sparse_gate.fc2.bias', 'layers.3.blocks.1.cpe1.bias', 'layers.3.blocks.1.norm1.weight', 'layers.3.blocks.1.norm1.bias', 'layers.3.blocks.1.token_mixer.to_out.bias', 'layers.3.blocks.1.cpe2.bias', 'layers.3.blocks.1.norm2.weight', 'layers.3.blocks.1.norm2.bias', 'layers.3.blocks.1.mlp.fc1.bias', 'layers.3.blocks.1.mlp.fc2.bias', 'layers.3.blocks.1.sparse_gate.norm.weight', 'layers.3.blocks.1.sparse_gate.norm.bias', 'layers.3.blocks.1.sparse_gate.fc1.bias', 'layers.3.blocks.1.sparse_gate.fc2.bias', 'layers.3.blocks.2.cpe1.bias', 'layers.3.blocks.2.norm1.weight', 'layers.3.blocks.2.norm1.bias', 'layers.3.blocks.2.token_mixer.to_out.bias', 'layers.3.blocks.2.cpe2.bias', 'layers.3.blocks.2.norm2.weight', 'layers.3.blocks.2.norm2.bias', 'layers.3.blocks.2.mlp.fc1.bias', 'layers.3.blocks.2.mlp.fc2.bias', 'layers.3.blocks.2.sparse_gate.norm.weight', 'layers.3.blocks.2.sparse_gate.norm.bias', 'layers.3.blocks.2.sparse_gate.fc1.bias', 'layers.3.blocks.2.sparse_gate.fc2.bias', 'layers.3.blocks.3.cpe1.bias', 'layers.3.blocks.3.norm1.weight', 'layers.3.blocks.3.norm1.bias', 'layers.3.blocks.3.token_mixer.to_out.bias', 'layers.3.blocks.3.cpe2.bias', 'layers.3.blocks.3.norm2.weight', 'layers.3.blocks.3.norm2.bias', 'layers.3.blocks.3.mlp.fc1.bias', 'layers.3.blocks.3.mlp.fc2.bias', 'layers.3.blocks.3.sparse_gate.norm.weight', 'layers.3.blocks.3.sparse_gate.norm.bias', 'layers.3.blocks.3.sparse_gate.fc1.bias', 'layers.3.blocks.3.sparse_gate.fc2.bias', 'norm.weight', 'norm.bias', 'head.bias']
+[2026-03-26 14:35:50 tiny_cifar10_30ep_sparse] (main.py 217): INFO Start training
+[2026-03-26 14:36:14 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][0/195]	eta 1:17:20 lr 0.000250	 wd 0.0500	time 23.7989 (23.7989)	data time 22.7187 (22.7187)	model time 0.0000 (0.0000)	loss 2.4335 (2.4335)	grad_norm nan (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.4335 (2.4335)	loss_sparse 0.500000 (0.500000)	mem 1554MB
+[2026-03-26 14:36:16 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][10/195]	eta 0:07:03 lr 0.000248	 wd 0.0500	time 0.1300 (2.2868)	data time 0.0006 (2.0660)	model time 0.0000 (0.0000)	loss 2.3745 (2.3962)	grad_norm 4.1896 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.3744 (2.3961)	loss_sparse 0.500000 (0.500000)	mem 1110MB
+[2026-03-26 14:36:17 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][20/195]	eta 0:03:39 lr 0.000244	 wd 0.0500	time 0.1169 (1.2544)	data time 0.0007 (1.0825)	model time 0.0000 (0.0000)	loss 2.2757 (2.3058)	grad_norm 2.7891 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.2757 (2.3058)	loss_sparse 0.500000 (0.500000)	mem 1110MB
+[2026-03-26 14:36:18 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][30/195]	eta 0:02:26 lr 0.000236	 wd 0.0500	time 0.1141 (0.8873)	data time 0.0007 (0.7335)	model time 0.0000 (0.0000)	loss 2.1983 (2.2485)	grad_norm 2.1705 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.1982 (2.2484)	loss_sparse 0.500000 (0.500000)	mem 1110MB
+[2026-03-26 14:36:19 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][40/195]	eta 0:01:48 lr 0.000225	 wd 0.0500	time 0.1144 (0.6994)	data time 0.0006 (0.5548)	model time 0.0000 (0.0000)	loss 1.9894 (2.2028)	grad_norm 2.2561 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 1.9893 (2.2028)	loss_sparse 0.499756 (0.499970)	mem 1110MB
+[2026-03-26 14:36:20 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][50/195]	eta 0:01:24 lr 0.000212	 wd 0.0500	time 0.1135 (0.5853)	data time 0.0007 (0.4461)	model time 0.0000 (0.0000)	loss 2.1431 (2.1878)	grad_norm 2.0825 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.1431 (2.1878)	loss_sparse 0.499268 (0.499890)	mem 1110MB
+[2026-03-26 14:36:21 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][60/195]	eta 0:01:08 lr 0.000197	 wd 0.0500	time 0.1188 (0.5097)	data time 0.0007 (0.3731)	model time 0.1181 (0.1233)	loss 2.1666 (2.1735)	grad_norm 1.9183 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.1666 (2.1734)	loss_sparse 0.499268 (0.499788)	mem 1110MB
+[2026-03-26 14:36:23 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][70/195]	eta 0:00:56 lr 0.000179	 wd 0.0500	time 0.1134 (0.4542)	data time 0.0005 (0.3206)	model time 0.1128 (0.1191)	loss 1.9901 (2.1588)	grad_norm 1.8274 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 1.9901 (2.1587)	loss_sparse 0.499023 (0.499687)	mem 1110MB
+[2026-03-26 14:36:24 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][80/195]	eta 0:00:47 lr 0.000161	 wd 0.0500	time 0.1268 (0.4127)	data time 0.0007 (0.2811)	model time 0.1261 (0.1187)	loss 2.1742 (2.1537)	grad_norm 1.9951 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.1741 (2.1537)	loss_sparse 0.499023 (0.499605)	mem 1110MB
+[2026-03-26 14:36:25 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][90/195]	eta 0:00:40 lr 0.000141	 wd 0.0500	time 0.1255 (0.3818)	data time 0.0005 (0.2503)	model time 0.1250 (0.1216)	loss 2.0008 (2.1396)	grad_norm 2.1536 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.0008 (2.1395)	loss_sparse 0.499023 (0.499541)	mem 1110MB
+[2026-03-26 14:36:26 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][100/195]	eta 0:00:33 lr 0.000121	 wd 0.0500	time 0.1250 (0.3568)	data time 0.0007 (0.2256)	model time 0.1243 (0.1229)	loss 2.1318 (2.1353)	grad_norm 2.0093 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.1318 (2.1352)	loss_sparse 0.498779 (0.499480)	mem 1110MB
+[2026-03-26 14:36:28 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][110/195]	eta 0:00:28 lr 0.000101	 wd 0.0500	time 0.1315 (0.3362)	data time 0.0005 (0.2053)	model time 0.1310 (0.1238)	loss 2.0490 (2.1265)	grad_norm 2.0923 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.0490 (2.1264)	loss_sparse 0.498779 (0.499422)	mem 1110MB
+[2026-03-26 14:36:29 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][120/195]	eta 0:00:23 lr 0.000082	 wd 0.0500	time 0.1301 (0.3194)	data time 0.0007 (0.1884)	model time 0.1294 (0.1249)	loss 1.9507 (2.1127)	grad_norm 1.8116 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 1.9507 (2.1127)	loss_sparse 0.498779 (0.499368)	mem 1110MB
+[2026-03-26 14:36:30 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][130/195]	eta 0:00:19 lr 0.000064	 wd 0.0500	time 0.1233 (0.3054)	data time 0.0005 (0.1741)	model time 0.1228 (0.1262)	loss 2.0163 (2.1040)	grad_norm 1.9658 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.0162 (2.1040)	loss_sparse 0.498779 (0.499323)	mem 1110MB
+[2026-03-26 14:36:32 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][140/195]	eta 0:00:16 lr 0.000048	 wd 0.0500	time 0.1237 (0.2927)	data time 0.0008 (0.1618)	model time 0.1228 (0.1263)	loss 2.1141 (2.0985)	grad_norm 1.9649 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.1141 (2.0985)	loss_sparse 0.498779 (0.499285)	mem 1110MB
+[2026-03-26 14:36:33 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][150/195]	eta 0:00:12 lr 0.000034	 wd 0.0500	time 0.1079 (0.2815)	data time 0.0006 (0.1511)	model time 0.1073 (0.1259)	loss 2.2187 (2.0914)	grad_norm 1.8368 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.2186 (2.0913)	loss_sparse 0.498779 (0.499251)	mem 1110MB
+[2026-03-26 14:36:34 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][160/195]	eta 0:00:09 lr 0.000022	 wd 0.0500	time 0.1140 (0.2715)	data time 0.0006 (0.1418)	model time 0.1134 (0.1254)	loss 2.0386 (2.0846)	grad_norm 1.9621 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.0386 (2.0845)	loss_sparse 0.498779 (0.499222)	mem 1110MB
+[2026-03-26 14:36:35 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][170/195]	eta 0:00:06 lr 0.000012	 wd 0.0500	time 0.1189 (0.2625)	data time 0.0008 (0.1335)	model time 0.1181 (0.1247)	loss 2.0386 (2.0764)	grad_norm 1.9146 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.0385 (2.0764)	loss_sparse 0.498779 (0.499196)	mem 1110MB
+[2026-03-26 14:36:37 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][180/195]	eta 0:00:03 lr 0.000006	 wd 0.0500	time 0.1256 (0.2549)	data time 0.0004 (0.1262)	model time 0.1252 (0.1246)	loss 1.9312 (2.0718)	grad_norm 1.8180 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 1.9311 (2.0718)	loss_sparse 0.498779 (0.499173)	mem 1110MB
+[2026-03-26 14:36:38 tiny_cifar10_30ep_sparse] (main.py 412): INFO Train: [0/1][190/195]	eta 0:00:01 lr 0.000003	 wd 0.0500	time 0.1221 (0.2481)	data time 0.0004 (0.1196)	model time 0.1217 (0.1246)	loss 2.0460 (2.0634)	grad_norm 1.9226 (nan)	loss_scale 32768.0000 (32768.0000)	loss_cls 2.0459 (2.0634)	loss_sparse 0.498779 (0.499153)	mem 1110MB
+[2026-03-26 14:36:39 tiny_cifar10_30ep_sparse] (main.py 427): INFO EPOCH 0 training takes 0:00:48
+[2026-03-26 14:36:55 tiny_cifar10_30ep_sparse] (main.py 471): INFO Test: [0/40]	Time 15.723 (15.723)	Loss 1.6006 (1.6006)	Acc@1 42.188 (42.188)	Acc@5 91.406 (91.406)	Mem 1110MB
+[2026-03-26 14:36:55 tiny_cifar10_30ep_sparse] (main.py 471): INFO Test: [10/40]	Time 0.053 (1.478)	Loss 1.5967 (1.6011)	Acc@1 42.969 (44.034)	Acc@5 92.578 (90.412)	Mem 1110MB
+[2026-03-26 14:36:56 tiny_cifar10_30ep_sparse] (main.py 471): INFO Test: [20/40]	Time 0.052 (0.799)	Loss 1.6348 (1.5878)	Acc@1 41.797 (44.847)	Acc@5 92.188 (91.276)	Mem 1110MB
+[2026-03-26 14:36:56 tiny_cifar10_30ep_sparse] (main.py 471): INFO Test: [30/40]	Time 0.062 (0.561)	Loss 1.5352 (1.5889)	Acc@1 45.312 (44.531)	Acc@5 93.750 (91.280)	Mem 1110MB
+[2026-03-26 14:36:58 tiny_cifar10_30ep_sparse] (main.py 478): INFO  * Acc@1 44.600 Acc@5 91.020
+[2026-03-26 14:36:58 tiny_cifar10_30ep_sparse] (main.py 239): INFO Accuracy of the network on the 10000 test images: 44.6%
+[2026-03-26 14:36:58 tiny_cifar10_30ep_sparse] (main.py 247): INFO New max accuracy: 44.60%
+[2026-03-26 14:36:58 tiny_cifar10_30ep_sparse] (main.py 273): INFO Training time 0:01:07
